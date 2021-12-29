@@ -1,0 +1,25 @@
+1637293896517	geckodriver	INFO	Listening on 127.0.0.1:61608
+1637293899573	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "61609" "-no-remote" "-profile" "C:\\Users\\sharm\\AppData\\Local\\Temp\\rust_mozprofileQEsE8S"
+1637293899913	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\sharm\\AppData\\Local\\Temp\\rust_mozprofileQEsE8S\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:61609/devtools/browser/633338b0-d564-42c4-87a2-466d86918304
+1637293901479	Marionette	INFO	Listening on port 61616
+1637293901704	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://staging.investorstatelawguide.com/js/Subscriber/jquery-1.4.1.js, line 3612: unreachable code after return statement
+1637293910896	Marionette	INFO	Stopped listening on port 61616
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1637293911324	geckodriver	INFO	Listening on 127.0.0.1:61669
+1637293914371	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "61670" "-no-remote" "-profile" "C:\\Users\\sharm\\AppData\\Local\\Temp\\rust_mozprofileDBz5Jz"
+1637293914700	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\sharm\\AppData\\Local\\Temp\\rust_mozprofileDBz5Jz\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:61670/devtools/browser/3129c247-76f3-4f5d-ae1c-d0743af0e82d
+1637293916165	Marionette	INFO	Listening on port 61675
+1637293916535	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://staging.investorstatelawguide.com/js/Subscriber/jquery-1.4.1.js, line 3612: unreachable code after return statement
+1637293929700	Marionette	INFO	Stopped listening on port 61675
+JavaScript error: https://staging.investorstatelawguide.com/FEassets/js/jquery-3.3.1-jquery.min.js, line 2: NS_ERROR_NOT_INITIALIZED: 
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
