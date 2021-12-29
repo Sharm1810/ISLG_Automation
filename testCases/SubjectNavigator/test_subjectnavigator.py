@@ -37,6 +37,7 @@ class Test_002_SubjectNavigator:
         self.logger.info("Subject Navigator menu is available")
         self.driver.quit()
 
+    @pytest.mark.regression
     def test_parentBranchcheck(self, setup):
         self.logger.info("***Test Case 002 - Verify Parent Branches***")
         self.driver = setup
@@ -52,18 +53,21 @@ class Test_002_SubjectNavigator:
         self.navigator.clickOnSubjectNavigatormenu()
         self.navigator.clickOnClientListing()
         self.navigator.clickOnBranchA()
-        parentBranchA = self.driver.find_element_by_xpath("//*[@id='spanBranchName-1']").text
+        print("BranchA")
+        parentBranchA = self.driver.find_element_by_link_text("A").text
         if parentBranchA == "A":
             assert True == True
             self.logger.info("***ParentBranch A was clicked***")
             self.driver.save_screenshot(".\\Screenshots\\" + "parentBranchA.png")
         else:
-            assert True == False
-            self.logger.info("***Missing Parent Branch A***")
-            self.driver.save_screenshot(".\\Screenshots\\" + "missingParentBranchA.png")
-        self.navigator.clickOnBranchA()
+                assert True == False
+                self.logger.info("***Missing Parent Branch A***")
+                self.driver.save_screenshot(".\\Screenshots\\" + "missingParentBranchA.png")
+        time.sleep(3)
+        self.navigator.collapseBranchA()
 
-        parentBranchB = self.driver.find_element_by_xpath("//*[@id='spanBranchName-2']").text
+        self.navigator.clickOnBranchB()
+        parentBranchB = self.driver.find_element_by_link_text("B").text
         if parentBranchB == "B":
             assert True == True
             self.logger.info("***ParentBranch B was clicked***")
@@ -72,9 +76,11 @@ class Test_002_SubjectNavigator:
             assert True == False
             self.logger.info("***Missing Parent Branch B***")
             self.driver.save_screenshot(".\\Screenshots\\" + "missingParentBranchB.png")
-        self.navigator.clickOnBranchB()
+        collapseB = self.driver.find_element_by_link_text("B")
+        self.driver.execute_script("arguments[0].click();", collapseB)
 
-        parentBranchC = self.driver.find_element_by_xpath("//*[@id='spanBranchName-3']").text
+        self.navigator.collapseBranchC()
+        parentBranchC = self.driver.find_element_by_xpath("C").text
         if parentBranchC == "C":
             assert True == True
             self.logger.info("***ParentBranch C was clicked***")
@@ -83,7 +89,9 @@ class Test_002_SubjectNavigator:
             assert True == False
             self.logger.info("***Missing Parent Branch C***")
             self.driver.save_screenshot(".\\Screenshots\\" + "missingParentBranchC.png")
-        self.navigator.clickOnBranchC()
+        time.sleep(3)
+        collapseC = self.driver.find_element_by_link_text("C")
+        self.driver.execute_script("arguments[2].click();", collapseC)
 
         parentBranchD = self.driver.find_element_by_xpath("//*[@id='spanBranchName-4']").text
         if parentBranchD == "D":
@@ -94,8 +102,11 @@ class Test_002_SubjectNavigator:
             assert True == False
             self.logger.info("***Missing Parent Branch D***")
             self.driver.save_screenshot(".\\Screenshots\\" + "missingParentBranchD.png")
-        self.navigator.clickOnBranchD()
+        time.sleep(2)
+        collapseD = self.driver.find_element_by_link_text("D")
+        self.driver.execute_script("arguments[0].click();", collapseD)
 
+        self.navigator.clickOnBranchE()
         parentBranchE = self.driver.find_element_by_xpath("//*[@id='spanBranchName-5']").text
         if parentBranchE == "E":
             assert True == True
@@ -105,9 +116,10 @@ class Test_002_SubjectNavigator:
             assert True == False
             self.logger.info("***Missing Parent Branch E***")
             self.driver.save_screenshot(".\\Screenshots\\" + "missingParentBranchE.png")
-        self.navigator.clickOnBranchE()
-        time.sleep(3)
+        time.sleep(2)
+        self.navigator.collapseBranchE()
 
+        self.navigator.clickOnBranchF()
         parentBranchF = self.driver.find_element_by_xpath("//*[@id='spanBranchName-6']").text
         if parentBranchF == "F":
             assert True == True
@@ -117,8 +129,10 @@ class Test_002_SubjectNavigator:
             assert True == False
             self.logger.info("***Missing Parent Branch F***")
             self.driver.save_screenshot(".\\Screenshots\\" + "missingParentBranchF.png")
-        self.navigator.clickOnBranchF()
-        time.sleep(3)
+        # self.navigator.clickOnBranchF()
+        self.driver.find_element_by_link_text("F").click()
+        time.sleep(2)
+        self.navigator.collapseBranchF()
 
         parentBranchG = self.driver.find_element_by_xpath("//*[@id='spanBranchName-7']").text
         if parentBranchG == "G":
@@ -129,7 +143,8 @@ class Test_002_SubjectNavigator:
             assert True == False
             self.logger.info("***Missing Parent Branch G***")
             self.driver.save_screenshot(".\\Screenshots\\" + "missingParentBranchG.png")
-        self.navigator.clickOnBranchG()
+        # self.navigator.clickOnBranchG()
+        self.driver.find_element_by_link_text("G").click()
         time.sleep(3)
 
         parentBranchH = self.driver.find_element_by_xpath("//*[@id='spanBranchName-8']").text
@@ -498,7 +513,7 @@ class Test_002_SubjectNavigator:
             self.logger.error("***Reset Link failed***")
         self.driver.quit()
 
-    #@pytest.mark.regression
+    # @pytest.mark.regression
     def test_fullTextSearch(self, setup):
         self.logger.info("***Test Case 007 - Verify Full Text Search***")
         self.driver = setup
@@ -536,7 +551,7 @@ class Test_002_SubjectNavigator:
         self.driver.find_element_by_tag_name('body').send_keys(Keys.COMMAND + 't')
         self.driver.quit()
 
-    #@pytest.mark.regression
+    # @pytest.mark.regression
     def test_copyLocation(self, setup):
         self.logger.info("***Test Case 008 - Verify Copy Location***")
         self.driver = setup
@@ -563,10 +578,11 @@ class Test_002_SubjectNavigator:
         ActionChains(self.driver).key_down(Keys.ADD).send_keys('p').key_up(Keys.CONTROL).perform()
         ActionChains(self.driver).send_keys(Keys.ENTER)
         action.key_down(Keys.Control).send_keys("v").key_up(Keys.CONTROL).perform()
-        #ctrl + L
+        # ctrl + L
         action.send_keys(Keys.Enter).perform()
-        #testgit
-    #@pytest.mark.regression
+        # testgit
+
+    # @pytest.mark.regression
     def test_expandSearch(self, setup):
         self.logger.info("***Test Case 009 - Verify Expand Search and check for Linguistic Aids***")
         self.driver = setup
