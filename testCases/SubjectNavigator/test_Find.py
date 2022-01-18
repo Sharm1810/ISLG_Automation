@@ -47,10 +47,28 @@ class Test_002_Find:
         text.send_keys("Abuse of Right")
         self.navigator.findText()
         time.sleep(3)
-        textval = self.driver.find_element_by_css_selector("#search-popover > div > p > strong > span")
-        a = self.driver.execute_script("arguments[0].getText();", textval)
-        print(a)
+        textval = self.driver.find_element_by_css_selector("#search-popover > div > p > strong > span").get_attribute(
+            'textContent')
+        print(textval)  # This will print the no of matches found
+        self.logger.info(textval + " Matches Found")
+        time.sleep(3)
+        #Click on a link that contains text
+        #searchtext = self.driver.find_element_by_xpath("//*[contains(text(),'abuse')]")
+        #print(searchtext)
+        time.sleep(3)
+        text.clear()
+        text.send_keys("ahj")
+        self.navigator.findText()
+        time.sleep(3)
+        matchesnotfound = self.driver.find_element_by_css_selector("#search-popover > div > p > strong > span").get_attribute(
+            'textContent')
+        print(matchesnotfound)  # This will print the no of matches found
+        self.logger.info(textval + " 0 Matches Found")
         closepop = self.driver.find_element_by_xpath("//*[@id='search-popover']/a")
         self.driver.execute_script("arguments[0].click();", closepop)
         self.logger.info("****Search Completed***")
+        # Validate reset button
+        self.driver.find_element_by_xpath("//*[@id='search-reset']").click()
+        #emptytext = self.driver.find_element_by_xpath("//*[@id='search-subject']")
+        #print(emptytext)
         self.driver.quit()
