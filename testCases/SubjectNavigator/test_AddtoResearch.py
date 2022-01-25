@@ -29,7 +29,6 @@ class Test_003_AddtoResearch:
         self.driver = setup
         self.driver.get(self.baseURL)
         self.driver.maximize_window()
-
         self.lp = LoginPage(self.driver)
         self.lp.setUserName(self.username)
         self.lp.setPassword(self.password)
@@ -49,3 +48,4 @@ class Test_003_AddtoResearch:
         self.driver.find_element_by_xpath("//*[@ id = 'btn-popup-add']").click()
         self.logger.info("Added to Research Notepad")
         self.driver.quit()
+        self.logger.info("done")

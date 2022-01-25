@@ -1,4 +1,6 @@
 import time
+
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
 
@@ -7,7 +9,7 @@ class SubjectNavigator:
     clientListing_cssseelector = "#dvClientListing > div > button"
     subjectNavigatorHeading_xpath = "//*[@id='page-content']/div/div[3]/div/div[1]/h1"
     subjectTextsearch_textbox_cssselector = "#txtSubjectNavigatorSearch"
-    textFind_button_id = "btnSearchSnTreeData"
+    textFind_button_id = "//*[@id='btn-search-subject-citator']"
     resetLink_xpath = "//*[@id='dvSubjectNavigatorSearchBranch']/a"
     branchNameA_link = "A"
     viewContextlink_xpath = "//*[@id='item-list-item-1']/div/div[1]/div[1]/a[2]"
@@ -65,7 +67,7 @@ class SubjectNavigator:
         self.driver.find_element_by_xpath(self.resetLink_xpath).click()
 
     def findText(self):
-        self.driver.find_element_by_id(self.textFind_button_id).click()
+        self.driver.find_element_by_xpath(self.textFind_button_id).click()
 
     def textInput(self, searchtext):
         self.driver.find_element_by_id("txtSubjectNavigatorSearch").click()
@@ -95,196 +97,214 @@ class SubjectNavigator:
         self.driver.find_element_by_link_text(self.compact_button_xpath).click()
 
     def clickOnBranchA(self):
-        time.sleep(10)
-        print("Before")
-        #self.driver.find_element_by_xpath(self. branchA_xpath).click()
-        #a = self.driver.find_element_by_xpath(self. branchA_xpath)
-        #self.driver.execute_script("arguments[0].click();", a)
-        #self.driver.find_element_by_xpath("//div[contains(@id,'item-list-2ba0e-1')]/..//a")
-        e = self.driver.find_element_by_xpath("//a[contains(@title,'A')]")
-        self.driver.execute_script("arguments[0].click();", e)
-        print("A")
+        a = self.driver.find_element_by_xpath("//span[(text()= 'A')]")
+        self.driver.execute_script("arguments[0].click();", a)
 
     def collapseBranchA(self):
-        collapseA = self.driver.find_element_by_link_text("A")
+        collapseA = self.driver.find_element_by_xpath("//span[(text()= 'A')]")
         self.driver.execute_script("arguments[0].click();", collapseA)
 
     def clickOnBranchB(self):
-        self.driver.find_element_by_link_text(self.branchB_link).click()
+        b = self.driver.find_element_by_xpath("//span[(text()= 'B')]")
+        self.driver.execute_script("arguments[0].click();", b)
 
     def collapseBranchB(self):
-        collapseB = self.driver.find_element_by_link_text("B")
-        self.driver.execute_script("arguments[1].click();", collapseB)
+        collapseB = self.driver.find_element_by_xpath("//span[(text()= 'B')]")
+        self.driver.execute_script("arguments[0].click();", collapseB)
 
     def clickOnBranchC(self):
-        self.driver.find_element_by_link_text(self.branchC_xpath).click()
+        c = self.driver.find_element_by_xpath("//span[text()='C']")
+        self.driver.execute_script("arguments[0].click();", c)
 
     def collapseBranchC(self):
-        collapseC = self.driver.find_element_by_link_text("C")
-        self.driver.execute_script("arguments[2].click();", collapseC)
+        collapseC = self.driver.find_element_by_xpath("//span[text()='C']")
+        self.driver.execute_script("arguments[0].click();", collapseC)
 
     def clickOnBranchD(self):
-        self.driver.find_element_by_link_text(self.branchD_xpath).click()
+        d = self.driver.find_element_by_xpath("//span[text()='D']")
+        self.driver.execute_script("arguments[0].click();", d)
 
     def collapseBranchD(self):
-        collapseD = self.driver.find_element_by_link_text("D")
-        self.driver.execute_script("arguments[3].click();", collapseD)
+        collapseD = self.driver.find_element_by_xpath("//span[text()='D']")
+        self.driver.execute_script("arguments[0].click();", collapseD)
 
     def clickOnBranchE(self):
-        self.driver.find_element_by_link_text(self.branchE_xpath).click()
+        e = self.driver.find_element_by_xpath("//span[text()='E']")
+        self.driver.execute_script("arguments[0].click();", e)
 
     def collapseBranchE(self):
-        collapseE = self.driver.find_element_by_link_text("E")
+        collapseE = self.driver.find_element_by_xpath("//span[text()='E']")
         self.driver.execute_script("arguments[0].click();", collapseE)
 
     def clickOnBranchF(self):
-        self.driver.find_element_by_link_text(self.branchF_xpath).click()
+        f = self.driver.find_element_by_xpath("//span[text()='F']")
+        self.driver.execute_script("arguments[0].click();", f)
 
     def collapseBranchF(self):
-        collapseF = self.driver.find_element_by_link_text("F")
+        collapseF = self.driver.find_element_by_xpath("//span[text()='F']")
         self.driver.execute_script("arguments[0].click();", collapseF)
 
     def clickOnBranchG(self):
-        self.driver.find_element_by_link_text(self.branchG_xpath).click()
+        g = self.driver.find_element_by_xpath("//span[text()='G']")
+        self.driver.execute_script("arguments[0].click();", g)
 
     def collapseBranchG(self):
-        collapseG = self.driver.find_element_by_link_text("G")
+        collapseG = self.driver.find_element_by_xpath("//span[text()='G']")
         self.driver.execute_script("arguments[0].click();", collapseG)
 
     def clickOnBranchH(self):
-        self.driver.find_element_by_link_text(self.branchH_xpath).click()
+        h = self.driver.find_element_by_xpath("//span[text()='H']")
+        self.driver.execute_script("arguments[0].click();", h)
 
     def collapseBranchH(self):
-        collapseH = self.driver.find_element_by_link_text("H")
+        collapseH = self.driver.find_element_by_xpath("//span[text()='H']")
         self.driver.execute_script("arguments[0].click();", collapseH)
 
     def clickOnBranchI(self):
-        self.driver.find_element_by_link_text(self.branchI_xpath).click()
+        i = self.driver.find_element_by_xpath("//span[text()='I']")
+        self.driver.execute_script("arguments[0].click();", i)
 
     def collapseBranchI(self):
-        collapseI = self.driver.find_element_by_link_text("I")
+        collapseI = self.driver.find_element_by_xpath("//span[text()='I']")
         self.driver.execute_script("arguments[0].click();", collapseI)
 
     def clickOnBranchJ(self):
-        self.driver.find_element_by_link_text(self.branchJ_xpath).click()
+        j = self.driver.find_element_by_xpath("//span[text()='J']")
+        self.driver.execute_script("arguments[0].click();", j)
 
     def collapseBranchJ(self):
-        collapseH = self.driver.find_element_by_link_text("H")
-        self.driver.execute_script("arguments[0].click();", collapseH)
+        collapseJ = self.driver.find_element_by_xpath("//span[text()='J']")
+        self.driver.execute_script("arguments[0].click();", collapseJ)
 
     def clickOnBranchK(self):
-        self.driver.find_element_by_link_text(self.branchK_xpath).click()
+        k = self.driver.find_element_by_xpath("//span[text()='K']")
+        self.driver.execute_script("arguments[0].click();", k)
 
     def collapseBranchK(self):
-        collapseK = self.driver.find_element_by_link_text("K")
+        collapseK = self.driver.find_element_by_xpath("//span[text()='K']")
         self.driver.execute_script("arguments[0].click();", collapseK)
 
     def clickOnBranchL(self):
-        self.driver.find_element_by_link_text(self.branchL_xpath).click()
+        l = self.driver.find_element_by_xpath("//span[text()='L']")
+        self.driver.execute_script("arguments[0].click();", l)
 
     def collapseBranchL(self):
-        collapseL = self.driver.find_element_by_link_text("L")
+        collapseL = self.driver.find_element_by_xpath("//span[text()='L']")
         self.driver.execute_script("arguments[0].click();", collapseL)
 
     def clickOnBranchM(self):
-        self.driver.find_element_by_link_text(self.branchM_xpath).click()
+        m = self.driver.find_element_by_xpath("//span[text()='M']")
+        self.driver.execute_script("arguments[0].click();", m)
 
     def collapseBranchM(self):
-        collapseM = self.driver.find_element_by_link_text("M")
+        collapseM = self.driver.find_element_by_xpath("//span[text()='M']")
         self.driver.execute_script("arguments[0].click();", collapseM)
 
     def clickOnBranchN(self):
-        self.driver.find_element_by_link_text(self.branchN_xpath).click()
+        n = self.driver.find_element_by_xpath("//span[text()='M']")
+        self.driver.execute_script("arguments[0].click();", n)
 
     def collapseBranchN(self):
-        collapseN = self.driver.find_element_by_link_text("N")
+        collapseN = self.driver.find_element_by_xpath("//span[text()='N']")
         self.driver.execute_script("arguments[0].click();", collapseN)
 
     def clickOnBranchO(self):
-        self.driver.find_element_by_link_text(self.branchO_xpath).click()
+        o = self.driver.find_element_by_xpath("//span[text()='O']")
+        self.driver.execute_script("arguments[0].click();", o)
 
     def collapseBranchO(self):
-        collapseO = self.driver.find_element_by_link_text("O")
+        collapseO = self.driver.find_element_by_xpath("//span[text()='O']")
         self.driver.execute_script("arguments[0].click();", collapseO)
 
     def clickOnBranchP(self):
-        self.driver.find_element_by_link_text(self.branchP_xpath).click()
+        p = self.driver.find_element_by_xpath("//span[text()='P']")
+        self.driver.execute_script("arguments[0].click();", p)
 
-    def collapseBranchQ(self):
-        collapseQ = self.driver.find_element_by_link_text("Q")
-        self.driver.execute_script("arguments[0].click();", collapseQ)
+    def collapseBranchP(self):
+        collapseP = self.driver.find_element_by_xpath("//span[text()='P']")
+        self.driver.execute_script("arguments[0].click();", collapseP)
 
     def clickOnBranchQ(self):
-        self.driver.find_element_by_link_text(self.branchQ_xpath).click()
+        q = self.driver.find_element_by_xpath("//span[text()='Q']")
+        self.driver.execute_script("arguments[0].click();", q)
 
     def collapseBranchQ(self):
-        collapseQ = self.driver.find_element_by_link_text("Q")
+        collapseQ = self.driver.find_element_by_xpath("//span[text()='Q']")
         self.driver.execute_script("arguments[0].click();", collapseQ)
 
     def clickOnBranchR(self):
-        self.driver.find_element_by_link_text(self.branchR_xpath).click()
+        r = self.driver.find_element_by_xpath("//span[text()='R']")
+        self.driver.execute_script("arguments[0].click();", r)
 
     def collapseBranchR(self):
-        collapseR = self.driver.find_element_by_link_text("R")
+        collapseR = self.driver.find_element_by_xpath("//span[text()='R']")
         self.driver.execute_script("arguments[0].click();", collapseR)
 
     def clickOnBranchS(self):
-        self.driver.find_element_by_link_text(self.branchS_xpath).click()
+        s = self.driver.find_element_by_xpath("//span[text()='S']")
+        self.driver.execute_script("arguments[0].click();", s)
 
     def collapseBranchS(self):
-        collapseS = self.driver.find_element_by_link_text("S")
+        collapseS = self.driver.find_element_by_xpath("//span[text()='S']")
         self.driver.execute_script("arguments[0].click();", collapseS)
 
     def clickOnBranchT(self):
-        self.driver.find_element_by_link_text(self.branchT_xpath).click()
+        t = self.driver.find_element_by_xpath("//span[text()='T']")
+        self.driver.execute_script("arguments[0].click();", t)
 
     def collapseBranchT(self):
-        collapseT = self.driver.find_element_by_link_text("T")
+        collapseT = self.driver.find_element_by_xpath("//span[text()='T']")
         self.driver.execute_script("arguments[0].click();", collapseT)
 
     def clickOnBranchU(self):
-        self.driver.find_element_by_link_text(self.branchU_xpath).click()
+        u = self.driver.find_element_by_xpath("//span[text()='U']")
+        self.driver.execute_script("arguments[0].click();", u)
 
     def collapseBranchU(self):
-        collapseU = self.driver.find_element_by_link_text("U")
+        collapseU = self.driver.find_element_by_xpath("//span[text()='U']")
         self.driver.execute_script("arguments[0].click();", collapseU)
 
     def clickOnBranchV(self):
-        self.driver.find_element_by_link_text(self.branchV_xpath).click()
+        v = self.driver.find_element_by_xpath("//span[text()='V']")
+        self.driver.execute_script("arguments[0].click();", v)
 
     def collapseBranchV(self):
-        collapseV = self.driver.find_element_by_link_text("V")
+        collapseV = self.driver.find_element_by_xpath("//span[text()='V']")
         self.driver.execute_script("arguments[0].click();", collapseV)
 
     def clickOnBranchW(self):
-        self.driver.find_element_by_link_text(self.branchW_xpath).click()
+        w = self.driver.find_element_by_xpath("//span[text()='W']")
+        self.driver.execute_script("arguments[0].click();", w)
 
     def collapseBranchW(self):
-        collapseW = self.driver.find_element_by_link_text("W")
+        collapseW = self.driver.find_element_by_xpath("//span[text()='W']")
         self.driver.execute_script("arguments[0].click();", collapseW)
 
     def clickOnBranchX(self):
-        self.driver.find_element_by_link_text(self.branchX_xpath).click()
+        x = self.driver.find_element_by_xpath("//span[text()='X']")
+        self.driver.execute_script("arguments[0].click();", x)
 
     def collapseBranchX(self):
-        collapseX = self.driver.find_element_by_link_text("X")
+        collapseX = self.driver.find_element_by_xpath("//span[text()='X']")
         self.driver.execute_script("arguments[0].click();", collapseX)
 
     def clickOnBranchY(self):
-        self.driver.find_element_by_link_text(self.branchY_xpath).click()
+        y = self.driver.find_element_by_xpath("//span[text()='Y']")
+        self.driver.execute_script("arguments[0].click();", y)
 
     def collapseBranchY(self):
-        collapseY = self.driver.find_element_by_link_text("E")
+        collapseY = self.driver.find_element_by_xpath("//span[text()='Y']")
         self.driver.execute_script("arguments[0].click();", collapseY)
 
     def clickOnBranchZ(self):
-        self.driver.find_element_by_link_text(self.branchZ_xpath).click()
+        z = self.driver.find_element_by_xpath("//span[text()='Z']")
+        self.driver.execute_script("arguments[0].click();", z)
 
     def collapseBranchZ(self):
         collapseZ = self.driver.find_element_by_link_text("Z")
         self.driver.execute_script("arguments[0].click();", collapseZ)
 
-    def clcikOnFullTextSearch(self):
+    def clickOnFullTextSearch(self):
         self.driver.find_element_by_xpath(self.fulltextsearch_xpath).click()
 
     def clickOnExpandSearch(self):

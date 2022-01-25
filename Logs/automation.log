@@ -3722,3 +3722,755 @@
 2021-12-11 17:49:15,934 - root - INFO - ***ParentBranch B was clicked***
 2021-12-11 17:49:15,934 - root - INFO - ***ParentBranch B was clicked***
 2021-12-11 17:49:15,934 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 16:37:34,760 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 16:37:54,084 - root - INFO - *****Login Successful****
+2021-12-29 16:39:55,772 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 16:40:15,438 - root - INFO - *****Login Successful****
+2021-12-29 16:41:39,031 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 16:42:05,571 - root - INFO - *****Login Successful****
+2021-12-29 16:50:39,440 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 16:51:46,403 - root - INFO - *****Login Successful****
+2021-12-29 16:54:25,666 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 16:54:45,520 - root - INFO - *****Login Successful****
+2021-12-29 16:56:15,025 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 16:56:32,790 - root - INFO - *****Login Successful****
+2021-12-29 16:58:53,788 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 16:59:16,766 - root - INFO - *****Login Successful****
+2021-12-29 17:00:55,540 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:01:13,788 - root - INFO - *****Login Successful****
+2021-12-29 17:03:57,834 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:04:18,315 - root - INFO - *****Login Successful****
+2021-12-29 17:08:52,067 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:09:09,334 - root - INFO - *****Login Successful****
+2021-12-29 17:15:30,694 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:15:56,595 - root - INFO - *****Login Successful****
+2021-12-29 17:16:00,005 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 17:16:03,312 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 17:18:14,314 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:18:35,247 - root - INFO - *****Login Successful****
+2021-12-29 17:18:38,531 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 17:18:41,814 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 17:22:11,480 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:22:30,139 - root - INFO - *****Login Successful****
+2021-12-29 17:22:33,549 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 17:22:36,831 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 17:22:40,113 - root - INFO - ***ParentBranch C was clicked***
+2021-12-29 17:24:44,263 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:25:05,362 - root - INFO - *****Login Successful****
+2021-12-29 17:25:08,787 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 17:25:12,064 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 17:25:15,349 - root - INFO - ***ParentBranch C was clicked***
+2021-12-29 17:36:53,334 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:37:10,700 - root - INFO - *****Login Successful****
+2021-12-29 17:37:14,109 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 17:37:17,402 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 17:42:48,917 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:43:07,510 - root - INFO - *****Login Successful****
+2021-12-29 17:43:11,505 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 17:43:13,793 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 17:45:14,522 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:45:35,814 - root - INFO - *****Login Successful****
+2021-12-29 17:45:39,254 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 17:45:41,467 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 17:47:37,396 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:47:55,594 - root - INFO - *****Login Successful****
+2021-12-29 17:47:58,974 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 17:48:01,177 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 17:49:04,217 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:49:23,015 - root - INFO - *****Login Successful****
+2021-12-29 17:49:28,686 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 17:49:30,913 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 17:50:18,975 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:50:42,451 - root - INFO - *****Login Successful****
+2021-12-29 17:50:48,381 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 17:50:51,633 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 17:51:22,409 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:51:41,652 - root - INFO - *****Login Successful****
+2021-12-29 17:51:46,565 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 17:51:49,807 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 17:53:50,961 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 17:54:14,740 - root - INFO - *****Login Successful****
+2021-12-29 17:54:20,258 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 17:54:23,500 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 18:01:19,279 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 18:01:38,256 - root - INFO - *****Login Successful****
+2021-12-29 18:01:43,591 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 18:10:50,309 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 18:11:07,811 - root - INFO - *****Login Successful****
+2021-12-29 18:11:13,330 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 18:11:16,587 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 18:11:56,109 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 18:12:16,849 - root - INFO - *****Login Successful****
+2021-12-29 18:12:22,606 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 18:12:25,863 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 18:12:28,077 - root - INFO - ***ParentBranch C was clicked***
+2021-12-29 18:17:37,682 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 18:17:55,561 - root - INFO - *****Login Successful****
+2021-12-29 18:18:00,935 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 18:18:04,178 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 18:18:06,382 - root - INFO - ***ParentBranch C was clicked***
+2021-12-29 18:18:06,583 - root - INFO - ***ParentBranch D was clicked***
+2021-12-29 18:50:08,693 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 18:50:26,852 - root - INFO - *****Login Successful****
+2021-12-29 18:50:32,441 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 18:50:35,680 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 18:50:37,896 - root - INFO - ***ParentBranch C was clicked***
+2021-12-29 18:50:40,105 - root - INFO - ***ParentBranch D was clicked***
+2021-12-29 19:05:44,674 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 19:06:02,916 - root - INFO - *****Login Successful****
+2021-12-29 19:06:08,725 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 19:06:11,957 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 19:06:14,156 - root - INFO - ***ParentBranch C was clicked***
+2021-12-29 19:07:07,473 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 19:07:31,250 - root - INFO - *****Login Successful****
+2021-12-29 19:07:36,709 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 19:07:39,925 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 19:07:42,144 - root - INFO - ***ParentBranch C was clicked***
+2021-12-29 19:07:44,339 - root - INFO - ***ParentBranch D was clicked***
+2021-12-29 19:09:26,168 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 19:09:44,818 - root - INFO - *****Login Successful****
+2021-12-29 19:09:50,209 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 19:09:53,425 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 19:09:55,633 - root - INFO - ***ParentBranch C was clicked***
+2021-12-29 19:09:57,848 - root - INFO - ***ParentBranch D was clicked***
+2021-12-29 20:11:34,221 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 20:11:46,029 - root - INFO - *****Login Successful****
+2021-12-29 20:11:50,887 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 20:11:54,166 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 20:11:56,414 - root - INFO - ***ParentBranch C was clicked***
+2021-12-29 20:11:58,682 - root - INFO - ***ParentBranch D was clicked***
+2021-12-29 20:24:47,632 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 20:24:59,433 - root - INFO - *****Login Successful****
+2021-12-29 20:25:04,245 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 20:25:07,553 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 20:25:09,789 - root - INFO - ***ParentBranch C was clicked***
+2021-12-29 20:25:12,095 - root - INFO - ***ParentBranch D was clicked***
+2021-12-29 20:26:55,604 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 20:27:07,825 - root - INFO - *****Login Successful****
+2021-12-29 20:27:12,641 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 20:32:29,050 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 20:32:42,286 - root - INFO - *****Login Successful****
+2021-12-29 20:32:47,173 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 20:32:49,473 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 20:32:51,733 - root - INFO - ***ParentBranch C was clicked***
+2021-12-29 20:32:54,034 - root - INFO - ***ParentBranch D was clicked***
+2021-12-29 20:40:48,842 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 20:40:59,777 - root - INFO - *****Login Successful****
+2021-12-29 20:41:04,252 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 20:41:06,461 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 20:41:08,678 - root - INFO - ***ParentBranch C was clicked***
+2021-12-29 20:41:10,922 - root - INFO - ***ParentBranch D was clicked***
+2021-12-29 20:49:29,388 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 20:49:41,662 - root - INFO - *****Login Successful****
+2021-12-29 20:49:46,269 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 20:49:48,517 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 20:49:50,729 - root - INFO - ***ParentBranch C was clicked***
+2021-12-29 20:49:52,982 - root - INFO - ***ParentBranch D was clicked***
+2021-12-29 20:49:55,210 - root - INFO - ***ParentBranch E was clicked***
+2021-12-29 21:30:06,253 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-29 21:30:18,167 - root - INFO - *****Login Successful****
+2021-12-29 21:30:22,659 - root - INFO - ***ParentBranch A was clicked***
+2021-12-29 21:30:24,894 - root - INFO - ***ParentBranch B was clicked***
+2021-12-29 21:30:27,141 - root - INFO - ***ParentBranch C was clicked***
+2021-12-29 21:30:29,378 - root - INFO - ***ParentBranch D was clicked***
+2021-12-29 21:30:31,596 - root - INFO - ***ParentBranch E was clicked***
+2021-12-31 09:02:07,398 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-31 09:02:20,160 - root - INFO - *****Login Successful****
+2021-12-31 10:53:48,621 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-31 10:54:01,107 - root - INFO - *****Login Successful****
+2021-12-31 10:57:11,438 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2021-12-31 10:57:29,547 - root - INFO - *****Login Successful****
+2021-12-31 10:57:34,943 - root - INFO - ***ParentBranch A was clicked***
+2021-12-31 10:57:37,191 - root - INFO - ***ParentBranch B was clicked***
+2021-12-31 10:57:39,425 - root - INFO - ***ParentBranch C was clicked***
+2021-12-31 10:57:41,681 - root - INFO - ***ParentBranch D was clicked***
+2021-12-31 10:57:43,930 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 09:09:59,223 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 09:10:17,815 - root - INFO - *****Login Successful****
+2022-01-05 09:10:22,825 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 09:10:25,066 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 09:10:27,280 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 09:10:29,556 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 09:10:31,800 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 09:13:18,672 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 09:13:41,776 - root - INFO - *****Login Successful****
+2022-01-05 09:13:47,143 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 09:13:49,388 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 09:13:51,606 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 09:13:53,862 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 09:13:54,131 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 09:17:29,328 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 09:17:51,035 - root - INFO - *****Login Successful****
+2022-01-05 09:17:56,326 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 09:17:58,558 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 09:18:00,788 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 09:18:03,065 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 09:18:03,323 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 09:29:49,464 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 09:30:11,829 - root - INFO - *****Login Successful****
+2022-01-05 09:30:48,802 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 09:31:10,203 - root - INFO - *****Login Successful****
+2022-01-05 09:34:17,903 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 09:34:43,408 - root - INFO - *****Login Successful****
+2022-01-05 09:35:49,071 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 09:36:06,442 - root - INFO - *****Login Successful****
+2022-01-05 09:36:20,033 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 09:40:34,740 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 09:40:53,900 - root - INFO - *****Login Successful****
+2022-01-05 09:42:15,989 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 09:42:39,116 - root - INFO - *****Login Successful****
+2022-01-05 09:42:44,732 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 09:43:16,745 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 09:43:37,734 - root - INFO - *****Login Successful****
+2022-01-05 09:43:44,171 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 09:43:46,389 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 09:43:48,587 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 09:43:50,872 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 09:43:51,117 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 09:45:26,946 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 09:45:44,570 - root - INFO - *****Login Successful****
+2022-01-05 09:45:50,173 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 09:45:52,408 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 09:45:54,629 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 09:45:56,897 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 09:45:57,137 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 09:47:49,210 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 09:48:21,567 - root - INFO - *****Login Successful****
+2022-01-05 09:48:27,214 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 09:48:29,465 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 09:48:31,692 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 09:48:33,969 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 09:48:34,213 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 09:51:22,451 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 09:51:45,624 - root - INFO - *****Login Successful****
+2022-01-05 09:51:51,318 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 09:51:53,573 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 09:51:55,811 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 09:51:58,082 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 09:51:58,331 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 09:53:21,909 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 09:53:50,796 - root - INFO - *****Login Successful****
+2022-01-05 09:53:56,458 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 09:53:56,714 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 09:53:57,043 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 09:53:57,286 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 09:53:57,550 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 10:31:32,352 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 10:31:54,779 - root - INFO - *****Login Successful****
+2022-01-05 10:32:00,211 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 10:32:00,408 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 10:32:00,619 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 10:32:00,846 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 10:32:01,087 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 10:32:22,452 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 10:32:46,563 - root - INFO - *****Login Successful****
+2022-01-05 10:32:52,001 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 10:32:52,193 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 10:32:52,442 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 10:32:52,724 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 10:32:52,986 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 10:35:58,799 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 10:36:23,766 - root - INFO - *****Login Successful****
+2022-01-05 11:50:45,871 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 11:51:08,858 - root - INFO - *****Login Successful****
+2022-01-05 11:52:10,946 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 11:52:33,139 - root - INFO - *****Login Successful****
+2022-01-05 11:54:10,724 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 11:54:30,412 - root - INFO - *****Login Successful****
+2022-01-05 11:55:22,062 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 11:55:42,199 - root - INFO - *****Login Successful****
+2022-01-05 11:57:48,330 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 11:58:08,844 - root - INFO - *****Login Successful****
+2022-01-05 11:58:14,553 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 11:58:14,868 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 11:58:15,189 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 11:58:15,457 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 11:58:15,749 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 11:59:19,756 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 11:59:45,196 - root - INFO - *****Login Successful****
+2022-01-05 11:59:51,334 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 11:59:51,662 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 11:59:51,975 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 11:59:52,248 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 11:59:52,559 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 12:00:31,716 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 12:00:51,270 - root - INFO - *****Login Successful****
+2022-01-05 12:00:56,900 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 12:00:59,200 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 12:00:59,478 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 12:00:59,803 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 12:01:00,133 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 12:02:09,103 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 12:02:28,534 - root - INFO - *****Login Successful****
+2022-01-05 12:02:34,764 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 12:02:37,033 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 12:02:39,305 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 12:02:41,601 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 12:02:43,909 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 12:10:08,846 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 12:10:27,959 - root - INFO - *****Login Successful****
+2022-01-05 12:10:33,624 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 12:10:35,943 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 12:10:38,213 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 12:10:40,532 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 12:10:42,817 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 12:10:45,123 - root - INFO - ***ParentBranch F was clicked***
+2022-01-05 12:10:47,439 - root - INFO - ***ParentBranch G was clicked***
+2022-01-05 12:17:12,531 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-05 12:17:32,595 - root - INFO - *****Login Successful****
+2022-01-05 12:17:38,371 - root - INFO - ***ParentBranch A was clicked***
+2022-01-05 12:17:40,646 - root - INFO - ***ParentBranch B was clicked***
+2022-01-05 12:17:42,952 - root - INFO - ***ParentBranch C was clicked***
+2022-01-05 12:17:45,261 - root - INFO - ***ParentBranch D was clicked***
+2022-01-05 12:17:47,566 - root - INFO - ***ParentBranch E was clicked***
+2022-01-05 12:17:49,895 - root - INFO - ***ParentBranch F was clicked***
+2022-01-05 12:17:52,167 - root - INFO - ***ParentBranch G was clicked***
+2022-01-06 15:48:15,828 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-06 15:49:15,044 - root - INFO - *****Login Successful****
+2022-01-06 15:49:21,610 - root - INFO - ***ParentBranch A was clicked***
+2022-01-06 15:49:23,873 - root - INFO - ***ParentBranch B was clicked***
+2022-01-06 15:49:26,097 - root - INFO - ***ParentBranch C was clicked***
+2022-01-06 15:49:28,371 - root - INFO - ***ParentBranch D was clicked***
+2022-01-06 15:49:30,639 - root - INFO - ***ParentBranch E was clicked***
+2022-01-06 15:49:32,919 - root - INFO - ***ParentBranch F was clicked***
+2022-01-06 15:49:35,166 - root - INFO - ***ParentBranch G was clicked***
+2022-01-06 15:49:37,459 - root - INFO - ***ParentBranch H was clicked***
+2022-01-06 15:49:39,764 - root - INFO - ***ParentBranch I was clicked***
+2022-01-06 15:49:42,080 - root - INFO - ***ParentBranch J was clicked***
+2022-01-06 16:59:58,980 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-06 17:00:17,175 - root - INFO - *****Login Successful****
+2022-01-06 17:00:23,906 - root - INFO - ***ParentBranch A was clicked***
+2022-01-06 17:00:26,207 - root - INFO - ***ParentBranch B was clicked***
+2022-01-06 17:00:28,482 - root - INFO - ***ParentBranch C was clicked***
+2022-01-06 17:00:30,807 - root - INFO - ***ParentBranch D was clicked***
+2022-01-06 17:00:33,100 - root - INFO - ***ParentBranch E was clicked***
+2022-01-06 17:00:35,407 - root - INFO - ***ParentBranch F was clicked***
+2022-01-06 17:00:37,684 - root - INFO - ***ParentBranch G was clicked***
+2022-01-06 17:00:39,966 - root - INFO - ***ParentBranch H was clicked***
+2022-01-06 17:00:42,253 - root - INFO - ***ParentBranch I was clicked***
+2022-01-06 17:00:44,592 - root - INFO - ***ParentBranch J was clicked***
+2022-01-06 17:00:46,887 - root - INFO - ***ParentBranch K was clicked***
+2022-01-06 17:00:49,203 - root - INFO - ***Missing Parent Branch K***
+2022-01-06 17:00:51,540 - root - INFO - ***ParentBranch M was clicked***
+2022-01-06 17:00:53,835 - root - INFO - ***Missing Parent Branch N***
+2022-01-06 17:00:56,183 - root - INFO - ***Missing Parent Branch O***
+2022-01-06 17:00:58,555 - root - INFO - ***ParentBranch P was clicked***
+2022-01-06 17:01:00,940 - root - INFO - ***Missing Parent Branch Q***
+2022-01-06 17:01:03,313 - root - INFO - ***ParentBranch R was clicked***
+2022-01-06 17:01:05,727 - root - INFO - ***ParentBranch S was clicked***
+2022-01-06 17:01:08,123 - root - INFO - ***ParentBranch T was clicked***
+2022-01-06 17:01:10,578 - root - INFO - ***Missing Parent Branch U***
+2022-01-06 17:01:12,978 - root - INFO - ***ParentBranch V was clicked***
+2022-01-06 17:01:15,283 - root - INFO - ***ParentBranch X was clicked***
+2022-01-06 17:01:17,657 - root - INFO - ***ParentBranch Y was clicked***
+2022-01-06 17:01:20,059 - root - INFO - ***ParentBranch Z was clicked***
+2022-01-06 17:06:21,801 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-06 17:06:43,015 - root - INFO - *****Login Successful****
+2022-01-06 17:06:49,530 - root - INFO - ***ParentBranch A was clicked***
+2022-01-06 17:06:51,837 - root - INFO - ***ParentBranch B was clicked***
+2022-01-06 17:06:54,100 - root - INFO - ***ParentBranch C was clicked***
+2022-01-06 17:06:56,393 - root - INFO - ***ParentBranch D was clicked***
+2022-01-06 17:06:58,703 - root - INFO - ***ParentBranch E was clicked***
+2022-01-06 17:07:01,035 - root - INFO - ***ParentBranch F was clicked***
+2022-01-06 17:07:03,392 - root - INFO - ***ParentBranch G was clicked***
+2022-01-06 17:07:05,732 - root - INFO - ***ParentBranch H was clicked***
+2022-01-06 17:07:08,121 - root - INFO - ***ParentBranch I was clicked***
+2022-01-06 17:07:10,467 - root - INFO - ***ParentBranch J was clicked***
+2022-01-06 17:07:12,769 - root - INFO - ***ParentBranch K was clicked***
+2022-01-06 17:07:15,088 - root - INFO - ***ParentBranch L was clicked***
+2022-01-06 17:07:17,442 - root - INFO - ***ParentBranch M was clicked***
+2022-01-06 17:07:19,741 - root - INFO - ***ParentBranch N was clicked***
+2022-01-06 17:07:22,113 - root - INFO - ***ParentBranch O was clicked***
+2022-01-06 17:07:24,509 - root - INFO - ***ParentBranch P was clicked***
+2022-01-06 17:07:26,910 - root - INFO - ***Missing Parent Branch Q***
+2022-01-06 17:07:29,256 - root - INFO - ***ParentBranch R was clicked***
+2022-01-06 17:07:31,635 - root - INFO - ***ParentBranch S was clicked***
+2022-01-06 17:07:34,050 - root - INFO - ***ParentBranch T was clicked***
+2022-01-06 17:07:36,487 - root - INFO - ***ParentBranch U was clicked***
+2022-01-06 17:07:38,920 - root - INFO - ***ParentBranch V was clicked***
+2022-01-06 17:07:41,246 - root - INFO - ***ParentBranch X was clicked***
+2022-01-06 17:07:43,629 - root - INFO - ***ParentBranch Y was clicked***
+2022-01-06 17:07:45,958 - root - INFO - ***ParentBranch Z was clicked***
+2022-01-06 17:27:34,881 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-06 17:27:53,042 - root - INFO - *****Login Successful****
+2022-01-06 17:29:41,769 - root - INFO - ***Test Case 001 - Verify Parent Branches***
+2022-01-06 17:30:09,315 - root - INFO - *****Login Successful****
+2022-01-06 17:36:14,905 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-06 17:36:38,795 - root - INFO - *****Login Successful****
+2022-01-06 17:36:38,795 - root - INFO - **** Subject Navigator testing *****
+2022-01-06 17:36:42,281 - root - INFO - Subject Navigator menu is available
+2022-01-06 17:39:22,025 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-06 17:39:47,660 - root - INFO - *****Login Successful****
+2022-01-06 17:39:47,661 - root - INFO - **** Subject Navigator testing *****
+2022-01-06 17:39:52,084 - root - INFO - Subject Navigator menu is available
+2022-01-06 17:43:05,816 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-06 17:43:31,795 - root - INFO - *****Login Successful****
+2022-01-06 17:43:31,796 - root - INFO - **** Subject Navigator testing *****
+2022-01-06 17:43:36,275 - root - INFO - Subject Navigator menu is available
+2022-01-06 17:43:37,890 - root - INFO - ****Search Completed***
+2022-01-06 17:45:22,634 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-06 17:45:46,819 - root - INFO - *****Login Successful****
+2022-01-06 17:45:46,819 - root - INFO - **** Subject Navigator testing *****
+2022-01-06 17:45:50,945 - root - INFO - Subject Navigator menu is available
+2022-01-06 17:47:31,958 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-06 17:47:52,758 - root - INFO - *****Login Successful****
+2022-01-06 17:47:52,758 - root - INFO - **** Subject Navigator testing *****
+2022-01-06 17:47:56,788 - root - INFO - Subject Navigator menu is available
+2022-01-06 17:49:07,378 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-06 17:49:29,371 - root - INFO - *****Login Successful****
+2022-01-06 17:49:29,371 - root - INFO - **** Subject Navigator testing *****
+2022-01-06 17:49:33,309 - root - INFO - Subject Navigator menu is available
+2022-01-06 17:54:07,299 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-06 17:54:26,289 - root - INFO - *****Login Successful****
+2022-01-06 17:54:26,289 - root - INFO - **** Subject Navigator testing *****
+2022-01-06 17:54:30,737 - root - INFO - Subject Navigator menu is available
+2022-01-11 10:23:52,876 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 10:24:11,816 - root - INFO - *****Login Successful****
+2022-01-11 10:24:11,817 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 10:24:16,277 - root - INFO - Subject Navigator menu is available
+2022-01-11 10:26:10,934 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 10:26:29,475 - root - INFO - *****Login Successful****
+2022-01-11 10:26:29,475 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 10:26:33,152 - root - INFO - Subject Navigator menu is available
+2022-01-11 10:29:55,443 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 10:30:18,791 - root - INFO - *****Login Successful****
+2022-01-11 10:30:18,792 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 10:30:23,308 - root - INFO - Subject Navigator menu is available
+2022-01-11 10:31:22,640 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 10:31:42,052 - root - INFO - *****Login Successful****
+2022-01-11 10:31:42,052 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 10:31:46,367 - root - INFO - Subject Navigator menu is available
+2022-01-11 18:31:43,251 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 18:31:59,411 - root - INFO - *****Login Successful****
+2022-01-11 18:31:59,411 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 18:32:03,452 - root - INFO - Subject Navigator menu is available
+2022-01-11 18:32:09,369 - root - INFO - ****Search Completed***
+2022-01-11 18:37:45,719 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 18:38:05,076 - root - INFO - *****Login Successful****
+2022-01-11 18:38:05,076 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 18:38:08,723 - root - INFO - Subject Navigator menu is available
+2022-01-11 18:38:14,689 - root - INFO - ****Search Completed***
+2022-01-11 18:40:03,427 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 18:40:19,461 - root - INFO - *****Login Successful****
+2022-01-11 18:40:19,461 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 18:40:23,466 - root - INFO - Subject Navigator menu is available
+2022-01-11 18:40:29,445 - root - INFO - ****Search Completed***
+2022-01-11 18:41:48,343 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 18:42:07,768 - root - INFO - *****Login Successful****
+2022-01-11 18:42:07,768 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 18:42:11,151 - root - INFO - Subject Navigator menu is available
+2022-01-11 18:42:17,032 - root - INFO - ****Search Completed***
+2022-01-11 18:48:06,281 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 18:48:28,726 - root - INFO - *****Login Successful****
+2022-01-11 18:48:28,726 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 18:48:32,324 - root - INFO - Subject Navigator menu is available
+2022-01-11 19:00:34,154 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 19:00:50,687 - root - INFO - *****Login Successful****
+2022-01-11 19:00:50,688 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 19:00:54,720 - root - INFO - Subject Navigator menu is available
+2022-01-11 19:01:35,647 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 19:01:52,244 - root - INFO - *****Login Successful****
+2022-01-11 19:01:52,244 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 19:01:55,908 - root - INFO - Subject Navigator menu is available
+2022-01-11 19:02:01,871 - root - INFO - ****Search Completed***
+2022-01-11 19:12:01,321 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 19:12:17,359 - root - INFO - *****Login Successful****
+2022-01-11 19:12:17,359 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 19:12:21,079 - root - INFO - Subject Navigator menu is available
+2022-01-11 19:12:27,018 - root - INFO - ****Search Completed***
+2022-01-11 19:15:03,763 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 19:15:29,171 - root - INFO - *****Login Successful****
+2022-01-11 19:15:29,171 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 19:15:32,327 - root - INFO - Subject Navigator menu is available
+2022-01-11 19:18:00,574 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 19:18:24,896 - root - INFO - *****Login Successful****
+2022-01-11 19:18:24,896 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 19:18:30,009 - root - INFO - Subject Navigator menu is available
+2022-01-11 19:19:51,772 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-11 19:20:11,896 - root - INFO - *****Login Successful****
+2022-01-11 19:20:11,897 - root - INFO - **** Subject Navigator testing *****
+2022-01-11 19:20:14,996 - root - INFO - Subject Navigator menu is available
+2022-01-11 19:20:21,734 - root - INFO - ****Search Completed***
+2022-01-12 14:31:11,248 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 14:31:37,289 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 14:32:20,570 - root - INFO - *****Login Successful****
+2022-01-12 14:32:20,570 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 14:32:25,999 - root - INFO - Subject Navigator menu is available
+2022-01-12 14:32:32,878 - root - INFO - ****Search Completed***
+2022-01-12 14:37:39,134 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 14:37:58,885 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 14:39:16,335 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 14:39:54,589 - root - INFO - *****Login Successful****
+2022-01-12 14:39:54,590 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 14:40:01,830 - root - INFO - Subject Navigator menu is available
+2022-01-12 14:40:10,010 - root - INFO - ****Search Completed***
+2022-01-12 14:41:24,701 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 14:41:58,954 - root - INFO - *****Login Successful****
+2022-01-12 14:41:58,955 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 14:42:05,555 - root - INFO - Subject Navigator menu is available
+2022-01-12 14:42:12,398 - root - INFO - ****Search Completed***
+2022-01-12 14:47:20,818 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 14:47:50,810 - root - INFO - *****Login Successful****
+2022-01-12 14:47:50,810 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 14:47:55,268 - root - INFO - Subject Navigator menu is available
+2022-01-12 14:48:01,224 - root - INFO - ****Search Completed***
+2022-01-12 15:52:07,392 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 15:52:31,205 - root - INFO - *****Login Successful****
+2022-01-12 15:52:31,206 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 15:52:35,156 - root - INFO - Subject Navigator menu is available
+2022-01-12 15:52:39,064 - root - INFO - ****Search Completed***
+2022-01-12 16:00:27,016 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 16:00:47,472 - root - INFO - *****Login Successful****
+2022-01-12 16:00:47,473 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 16:00:52,237 - root - INFO - Subject Navigator menu is available
+2022-01-12 16:01:40,319 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 16:02:09,341 - root - INFO - *****Login Successful****
+2022-01-12 16:02:09,341 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 16:02:14,119 - root - INFO - Subject Navigator menu is available
+2022-01-12 16:05:03,471 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 16:05:23,352 - root - INFO - *****Login Successful****
+2022-01-12 16:05:23,352 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 16:05:28,401 - root - INFO - Subject Navigator menu is available
+2022-01-12 16:05:33,078 - root - INFO - ****Search Completed***
+2022-01-12 16:06:21,077 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 16:06:45,883 - root - INFO - *****Login Successful****
+2022-01-12 16:06:45,883 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 16:06:49,497 - root - INFO - Subject Navigator menu is available
+2022-01-12 16:06:53,831 - root - INFO - ****Search Completed***
+2022-01-12 16:11:09,835 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 16:11:30,416 - root - INFO - *****Login Successful****
+2022-01-12 16:11:30,416 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 16:11:34,554 - root - INFO - Subject Navigator menu is available
+2022-01-12 16:11:39,312 - root - INFO - ****Search Completed***
+2022-01-12 17:59:35,074 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 18:00:00,663 - root - INFO - *****Login Successful****
+2022-01-12 18:00:00,663 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 18:00:05,112 - root - INFO - Subject Navigator menu is available
+2022-01-12 18:00:13,579 - root - INFO - ****Search Completed***
+2022-01-12 18:08:24,222 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 18:08:50,861 - root - INFO - *****Login Successful****
+2022-01-12 18:08:50,861 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 18:08:54,347 - root - INFO - Subject Navigator menu is available
+2022-01-12 18:09:56,505 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 18:10:18,150 - root - INFO - *****Login Successful****
+2022-01-12 18:10:18,150 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 18:10:26,828 - root - INFO - Subject Navigator menu is available
+2022-01-12 18:10:31,272 - root - INFO - ****Search Completed***
+2022-01-12 18:13:27,076 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 18:13:52,751 - root - INFO - *****Login Successful****
+2022-01-12 18:13:52,751 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 18:13:56,672 - root - INFO - Subject Navigator menu is available
+2022-01-12 18:14:01,138 - root - INFO - ****Search Completed***
+2022-01-12 18:15:39,147 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 18:16:05,290 - root - INFO - *****Login Successful****
+2022-01-12 18:16:05,291 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 18:16:09,279 - root - INFO - Subject Navigator menu is available
+2022-01-12 18:16:13,831 - root - INFO - 53Matches Found
+2022-01-12 18:16:13,846 - root - INFO - ****Search Completed***
+2022-01-12 18:27:51,969 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-12 18:28:12,576 - root - INFO - *****Login Successful****
+2022-01-12 18:28:12,576 - root - INFO - **** Subject Navigator testing *****
+2022-01-12 18:28:16,142 - root - INFO - Subject Navigator menu is available
+2022-01-12 18:28:20,014 - root - INFO - 53 Matches Found
+2022-01-12 18:28:20,032 - root - INFO - ****Search Completed***
+2022-01-18 09:55:56,882 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-18 09:56:14,071 - root - INFO - *****Login Successful****
+2022-01-18 09:56:14,071 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 09:56:18,865 - root - INFO - Subject Navigator menu is available
+2022-01-18 09:56:25,368 - root - INFO - 53 Matches Found
+2022-01-18 09:56:25,387 - root - INFO - ****Search Completed***
+2022-01-18 10:28:54,868 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-18 10:29:26,204 - root - INFO - *****Login Successful****
+2022-01-18 10:29:26,204 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 10:29:29,415 - root - INFO - Subject Navigator menu is available
+2022-01-18 10:29:34,561 - root - INFO - 53 Matches Found
+2022-01-18 10:29:34,579 - root - INFO - ****Search Completed***
+2022-01-18 10:40:17,793 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-18 10:41:10,600 - root - INFO - *****Login Successful****
+2022-01-18 10:41:10,601 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 10:41:13,734 - root - INFO - Subject Navigator menu is available
+2022-01-18 10:41:17,731 - root - INFO - 53 Matches Found
+2022-01-18 10:41:20,813 - root - INFO - 53 0 Matches Found
+2022-01-18 10:41:20,824 - root - INFO - ****Search Completed***
+2022-01-18 10:42:05,615 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-18 10:42:55,763 - root - INFO - *****Login Successful****
+2022-01-18 10:42:55,764 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 10:43:00,921 - root - INFO - Subject Navigator menu is available
+2022-01-18 10:43:06,644 - root - INFO - 53 Matches Found
+2022-01-18 10:43:09,738 - root - INFO - 53 0 Matches Found
+2022-01-18 10:43:09,753 - root - INFO - ****Search Completed***
+2022-01-18 11:24:03,837 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-18 11:24:34,739 - root - INFO - *****Login Successful****
+2022-01-18 11:24:34,739 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 11:24:38,839 - root - INFO - Subject Navigator menu is available
+2022-01-18 11:24:43,148 - root - INFO - 53 Matches Found
+2022-01-18 11:25:31,675 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-18 11:25:49,239 - root - INFO - *****Login Successful****
+2022-01-18 11:25:49,239 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 11:25:54,786 - root - INFO - Subject Navigator menu is available
+2022-01-18 11:25:59,555 - root - INFO - 53 Matches Found
+2022-01-18 11:28:07,974 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-18 11:28:32,777 - root - INFO - *****Login Successful****
+2022-01-18 11:28:32,777 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 11:28:35,957 - root - INFO - Subject Navigator menu is available
+2022-01-18 11:28:39,731 - root - INFO - 53 Matches Found
+2022-01-18 11:28:45,860 - root - INFO - 53 0 Matches Found
+2022-01-18 11:28:45,872 - root - INFO - ****Search Completed***
+2022-01-18 11:29:17,909 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-18 11:29:53,033 - root - INFO - *****Login Successful****
+2022-01-18 11:29:53,033 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 11:29:57,218 - root - INFO - Subject Navigator menu is available
+2022-01-18 11:30:04,636 - root - INFO - 53 Matches Found
+2022-01-18 11:31:16,909 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-18 11:31:39,551 - root - INFO - *****Login Successful****
+2022-01-18 11:31:39,551 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 11:31:43,906 - root - INFO - Subject Navigator menu is available
+2022-01-18 11:31:48,082 - root - INFO - 53 Matches Found
+2022-01-18 11:31:54,178 - root - INFO - 53 0 Matches Found
+2022-01-18 11:31:54,192 - root - INFO - ****Search Completed***
+2022-01-18 11:40:06,539 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-18 11:40:19,304 - root - INFO - *****Login Successful****
+2022-01-18 11:40:19,304 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 11:40:24,343 - root - INFO - Subject Navigator menu is available
+2022-01-18 11:40:29,109 - root - INFO - 53 Matches Found
+2022-01-18 11:40:38,228 - root - INFO - 53 0 Matches Found
+2022-01-18 11:40:38,241 - root - INFO - ****Search Completed***
+2022-01-18 11:48:58,390 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-18 11:49:20,277 - root - INFO - *****Login Successful****
+2022-01-18 11:49:20,277 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 11:49:24,992 - root - INFO - Subject Navigator menu is available
+2022-01-18 11:49:29,014 - root - INFO - 53 Matches Found
+2022-01-18 11:49:38,126 - root - INFO - 53 0 Matches Found
+2022-01-18 11:49:38,139 - root - INFO - ****Search Completed***
+2022-01-18 11:53:58,452 - root - INFO - ****TestCase 002 - Verify Subject Navigator menu***
+2022-01-18 11:54:09,843 - root - INFO - *****Login Successful****
+2022-01-18 11:54:09,844 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 11:54:13,720 - root - INFO - Subject Navigator menu is available
+2022-01-18 11:54:17,538 - root - INFO - 53 Matches Found
+2022-01-18 11:54:26,661 - root - INFO - 53 0 Matches Found
+2022-01-18 11:54:26,679 - root - INFO - ****Search Completed***
+2022-01-18 11:54:57,925 - root - INFO - ****TestCase 003 - Verify Add to Research***
+2022-01-18 11:55:09,524 - root - INFO - *****Login Successful****
+2022-01-18 11:55:09,525 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 11:55:13,373 - root - INFO - Subject Navigator menu is available
+2022-01-18 11:58:14,121 - root - INFO - ****TestCase 003 - Verify Add to Research***
+2022-01-18 11:58:25,595 - root - INFO - *****Login Successful****
+2022-01-18 11:58:25,596 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 11:58:29,391 - root - INFO - Subject Navigator menu is available
+2022-01-18 11:59:48,879 - root - INFO - ****TestCase 003 - Verify Add to Research***
+2022-01-18 12:00:00,511 - root - INFO - *****Login Successful****
+2022-01-18 12:00:00,511 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 12:00:04,278 - root - INFO - Subject Navigator menu is available
+2022-01-18 12:06:53,967 - root - INFO - ****TestCase 003 - Verify Add to Research***
+2022-01-18 12:07:07,532 - root - INFO - *****Login Successful****
+2022-01-18 12:07:07,532 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 12:07:11,057 - root - INFO - Subject Navigator menu is available
+2022-01-18 12:12:04,126 - root - INFO - ****TestCase 003 - Verify Add to Research***
+2022-01-18 12:12:15,231 - root - INFO - *****Login Successful****
+2022-01-18 12:12:15,231 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 12:12:18,987 - root - INFO - Subject Navigator menu is available
+2022-01-18 12:16:39,881 - root - INFO - ****TestCase 003 - Verify Add to Research***
+2022-01-18 12:16:53,243 - root - INFO - *****Login Successful****
+2022-01-18 12:16:53,244 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 12:16:57,018 - root - INFO - Subject Navigator menu is available
+2022-01-18 12:19:03,203 - root - INFO - ****TestCase 003 - Verify Add to Research***
+2022-01-18 12:19:14,622 - root - INFO - *****Login Successful****
+2022-01-18 12:19:14,622 - root - INFO - **** Subject Navigator testing *****
+2022-01-18 12:19:18,188 - root - INFO - Subject Navigator menu is available
+2022-01-18 12:19:21,075 - root - INFO - Added to Research Notepad
+2022-01-24 14:51:09,773 - root - INFO - ****TestCase 004 - Verify Add to Research***
+2022-01-24 14:52:19,317 - root - INFO - ****TestCase 004 - Verify Add to Research***
+2022-01-24 14:56:35,866 - root - INFO - ****TestCase 004 - Verify Add to Research***
+2022-01-24 14:56:48,618 - root - INFO - *****Login Successful****
+2022-01-24 14:56:48,619 - root - INFO - **** Subject Navigator testing *****
+2022-01-24 15:20:17,256 - root - INFO - ****TestCase 004 - Verify Add to Research***
+2022-01-24 15:20:52,173 - root - INFO - ****TestCase 004 - Verify Add to Research***
+2022-01-24 16:01:48,768 - root - INFO - ****TestCase 004 - Verify Add to Research***
+2022-01-24 16:21:04,098 - root - INFO - ****TestCase 004 - Verify Add to Research***
+2022-01-24 16:21:17,282 - root - INFO - *****Login Successful****
+2022-01-24 16:21:17,282 - root - INFO - **** Subject Navigator testing *****
+2022-01-24 17:16:36,119 - root - INFO - ****TestCase 004 - Verify Add to Research***
+2022-01-24 17:16:48,487 - root - INFO - *****Login Successful****
+2022-01-24 17:16:48,487 - root - INFO - **** Subject Navigator testing *****
+2022-01-24 17:19:15,186 - root - INFO - ****TestCase 004 - Verify Add to Research***
+2022-01-24 17:19:26,567 - root - INFO - *****Login Successful****
+2022-01-24 17:19:26,567 - root - INFO - **** Subject Navigator testing *****
+2022-01-24 17:29:54,564 - root - INFO - ****TestCase 004 - Verify Add to Research***
+2022-01-24 17:30:07,433 - root - INFO - *****Login Successful****
+2022-01-24 17:30:07,433 - root - INFO - **** Subject Navigator testing *****
+2022-01-24 17:44:09,454 - root - INFO - ****TestCase 004 - Verify Add to Research***
+2022-01-24 17:44:22,265 - root - INFO - *****Login Successful****
+2022-01-24 17:44:22,265 - root - INFO - **** Subject Navigator testing *****
+2022-01-24 17:44:27,138 - root - INFO - ***Dispute Document is displayed for card***
+2022-01-24 17:44:27,179 - root - INFO - ***Dispute Details is displayed for card***
+2022-01-24 17:46:56,118 - root - INFO - ****TestCase 004 - Verify Add to Research***
+2022-01-24 17:47:08,959 - root - INFO - *****Login Successful****
+2022-01-24 17:47:08,959 - root - INFO - **** Subject Navigator testing *****
+2022-01-24 17:47:13,766 - root - INFO - ***Dispute Document is displayed for card***
+2022-01-24 17:47:13,809 - root - INFO - ***Dispute Details is displayed for card***
+2022-01-24 17:51:02,565 - root - INFO - ****TestCase 004 - Verify Add to Research***
+2022-01-24 17:51:28,646 - root - INFO - *****Login Successful****
+2022-01-24 17:51:28,646 - root - INFO - **** Subject Navigator testing *****
+2022-01-24 17:51:33,474 - root - INFO - ***Dispute Document is displayed for card***
+2022-01-24 17:51:33,532 - root - INFO - ***Dispute Details is displayed for card***
+2022-01-24 17:51:33,870 - root - INFO - ****Compact View is clicked****
+2022-01-24 17:51:36,193 - root - INFO - done
+2022-01-25 09:52:13,338 - root - INFO - ****TestCase 005 - Boolean Find***
+2022-01-25 09:54:13,390 - root - INFO - *****Login Successful****
+2022-01-25 09:54:13,390 - root - INFO - **** Subject Navigator testing *****
+2022-01-25 10:18:41,938 - root - INFO - ****TestCase 005 - Boolean Find***
+2022-01-25 10:20:36,635 - root - INFO - *****Login Successful****
+2022-01-25 10:20:36,635 - root - INFO - **** Subject Navigator testing *****
+2022-01-25 10:35:28,380 - root - INFO - ****TestCase 005 - Boolean Find***
+2022-01-25 10:37:19,771 - root - INFO - *****Login Successful****
+2022-01-25 10:37:19,772 - root - INFO - **** Subject Navigator testing *****
+2022-01-25 10:38:21,271 - root - INFO - ****TestCase 005 - Boolean Find***
+2022-01-25 10:39:40,786 - root - INFO - *****Login Successful****
+2022-01-25 10:39:40,787 - root - INFO - **** Subject Navigator testing *****
+2022-01-25 10:47:51,719 - root - INFO - ****TestCase 005 - Boolean Find***
+2022-01-25 10:49:22,086 - root - INFO - *****Login Successful****
+2022-01-25 10:49:22,086 - root - INFO - **** Subject Navigator testing *****
+2022-01-25 10:55:36,347 - root - INFO - ****TestCase 005 - Boolean Find***
+2022-01-25 10:57:21,317 - root - INFO - *****Login Successful****
+2022-01-25 10:57:21,323 - root - INFO - **** Subject Navigator testing *****
+2022-01-25 11:18:30,895 - root - INFO - ****TestCase 005 - Boolean Find***
+2022-01-25 11:19:27,133 - root - INFO - *****Login Successful****
+2022-01-25 11:19:27,133 - root - INFO - **** Subject Navigator testing *****
+2022-01-25 11:20:19,981 - root - INFO - ****TestCase 005 - Boolean Find***
+2022-01-25 11:21:41,443 - root - INFO - *****Login Successful****
+2022-01-25 11:21:41,444 - root - INFO - **** Subject Navigator testing *****
+2022-01-25 11:23:01,160 - root - INFO - ****TestCase 005 - Boolean Find***
+2022-01-25 11:24:19,493 - root - INFO - *****Login Successful****
+2022-01-25 11:24:19,493 - root - INFO - **** Subject Navigator testing *****
+2022-01-25 11:26:24,650 - root - INFO - ****TestCase 005 - Boolean Find***
+2022-01-25 11:27:46,254 - root - INFO - *****Login Successful****
+2022-01-25 11:27:46,254 - root - INFO - **** Subject Navigator testing *****
+2022-01-25 11:27:57,687 - root - INFO - None
+2022-01-25 11:35:12,311 - root - INFO - ****TestCase 005 - Boolean Find***
+2022-01-25 11:36:19,664 - root - INFO - *****Login Successful****
+2022-01-25 11:36:27,003 - root - INFO - Clicked on the expand search
+2022-01-25 11:36:30,041 - root - INFO - By Default Boolean is selected
+2022-01-25 11:36:30,060 - root - INFO - By Default Stemming is selected
+2022-01-25 11:39:54,803 - root - INFO - ****TestCase 005 - Boolean Find***
+2022-01-25 11:40:28,607 - root - INFO - *****Login Successful****
+2022-01-25 11:40:36,904 - root - INFO - Clicked on the expand search
+2022-01-25 11:40:39,940 - root - INFO - By Default Boolean is selected
+2022-01-25 11:40:39,954 - root - INFO - By Default Stemming is selected
+2022-01-25 11:40:39,961 - root - INFO - By Default Fuzzy Typo is selected
+2022-01-25 11:53:27,503 - root - INFO - ****TestCase 006 - Verify search by boolean***
+2022-01-25 11:54:21,910 - root - INFO - *****Login Successful****
+2022-01-25 11:54:27,365 - root - INFO - Subject Navigator menu is available
+2022-01-25 11:54:33,449 - root - INFO - 4 Matches Found
+2022-01-25 12:42:37,155 - root - INFO - ****TestCase 006 - Verify search by boolean***
+2022-01-25 12:43:53,066 - root - INFO - *****Login Successful****
+2022-01-25 12:44:00,068 - root - INFO - Subject Navigator menu is available
+2022-01-25 12:44:08,480 - root - INFO - 4 Matches Found
+2022-01-25 12:44:14,701 - root - INFO - 63  Matches Found
+2022-01-25 12:44:14,725 - root - INFO - ****Search Completed***
+2022-01-25 13:16:47,344 - root - INFO - ****TestCase 006 - Verify search by boolean***
+2022-01-25 13:18:07,986 - root - INFO - *****Login Successful****
+2022-01-25 13:18:14,161 - root - INFO - Subject Navigator menu is available
+2022-01-25 13:18:21,810 - root - INFO - 4 Matches Found
+2022-01-25 13:18:28,000 - root - INFO - 63  Matches Found
+2022-01-25 13:18:31,171 - root - INFO - 165  Matches Found
+2022-01-25 13:18:31,215 - root - INFO - ****Search Completed***
