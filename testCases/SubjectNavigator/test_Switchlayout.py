@@ -24,6 +24,7 @@ class Test_004_Switchlayout:
     password = ReadConfig.getPassword()
     logger = LogGen.loggen()
 
+    @pytest.mark.SwitchLayout_2
     def test_Switchlayout(self, setup):
         self.logger.info("****TestCase 004 - Switch Layout***")
         self.driver = setup

@@ -40,6 +40,9 @@ class Test_003_AddtoResearch:
         self.navigator.clickOnClientListing()
         self.logger.info("Subject Navigator menu is available")
         self.navigator.clickOnBranchA()
+        #Clicks on Expand All of the first row
+        self.driver.find_element_by_xpath("(//div[contains(@class,'card__actions')]/a[1])[1]").click()
+        time.sleep(2)
         self.driver.find_element_by_xpath("//*[contains(@title,'Actions')]").click()
         self.driver.find_element_by_xpath("//*[contains(@title,'Research Notepad')]").click()
         self.driver.find_element_by_css_selector("#popup-add-to-rn > div.scrolling-content > div:nth-child(3) > div > ul > li:nth-child(2) > label").click()

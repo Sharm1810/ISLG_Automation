@@ -11,11 +11,15 @@ from pageObjects.SubjectNavigator import SubjectNavigator
 from utilities.readProperties import ReadConfig
 from utilities.customLogger import LogGen
 from selenium.webdriver.common.keys import Keys
+from ddt import ddt, data, unpack
 from selenium.webdriver import ActionChains
 import string
 import pyperclip
 
 import random
+
+
+@ddt
 
 
 class Test_006_SearchByBoolean:
@@ -24,8 +28,9 @@ class Test_006_SearchByBoolean:
     password = ReadConfig.getPassword()
     logger = LogGen.loggen()
 
+    # @data("Canada And Country")
+    # @unpack
     def test_searchByBoolean(self, setup):
-        self.logger.info("****TestCase 006 - Verify search by boolean***")
         self.driver = setup
         self.driver.get(self.baseURL)
         self.driver.maximize_window()
@@ -38,32 +43,34 @@ class Test_006_SearchByBoolean:
         self.navigator = SubjectNavigator(self.driver)
         self.navigator.clickOnSubjectNavigatormenu()
         self.navigator.clickOnClientListing()
+
+        self.logger.info("****TestCase 006 - Verify search by boolean***")
         self.logger.info("Subject Navigator menu is available")
         self.driver.find_element_by_xpath("//*[@id='search-subject']").click()
         text = self.driver.find_element_by_xpath("//*[@id='search-subject']")
         # entering Canada And Country as search value
         text.send_keys("Canada And Country")
         self.navigator.findText()
-        time.sleep(3)
-        textval = self.driver.find_element_by_css_selector("#search-popover > div > p > strong > span").get_attribute(
+        time.sleep(2)
+        textval = self.driver.find_element_by_css_selector("#search-subject").get_attribute(
             'textContent')
         print(textval)  # This will print the no of matches found
         self.logger.info(textval + " Matches Found")
-        time.sleep(3)
+        time.sleep(2)
         text.clear()
         text.send_keys("(Abuse or Rights) AND (abuse w/5 rights)")
         self.navigator.findText()
-        time.sleep(3)
-        textval2 = self.driver.find_element_by_css_selector("#search-popover > div > p > strong > span").get_attribute(
+        time.sleep(2)
+        textval2 = self.driver.find_element_by_css_selector("#search-subject").get_attribute(
             'textContent')
         print(textval2)  # This will print the no of matches found
         self.logger.info(textval2 + "  Matches Found")
         text.clear()
-        #fuzzysearch
+        # fuzzysearch
         text.send_keys("countr%ies")
         self.navigator.findText()
-        time.sleep(3)
-        textval4 = self.driver.find_element_by_css_selector("#search-popover > div > p > strong > span").get_attribute(
+        time.sleep(2)
+        textval4 = self.driver.find_element_by_css_selector("#search-subject").get_attribute(
             'textContent')
         print(textval4)  # This will print the no of matches found
         self.logger.info(textval4 + "  Matches Found")

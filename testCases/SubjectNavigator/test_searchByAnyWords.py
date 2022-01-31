@@ -18,14 +18,14 @@ import pyperclip
 import random
 
 
-class Test_007_SearchByAllWords:
+class Test_008_SearchByAnyWords:
     baseURL = ReadConfig.getApplicationURL()
     username = ReadConfig.getUsername()
     password = ReadConfig.getPassword()
     logger = LogGen.loggen()
 
-    def test_searchOptions(self, setup):
-        self.logger.info("****TestCase 007 - Search By All Words***")
+    def test_searchByAnyWords(self, setup):
+        self.logger.info("****TestCase 008 - Search By Any Words***")
         self.driver = setup
         self.driver.get(self.baseURL)
         self.driver.maximize_window()
@@ -42,8 +42,8 @@ class Test_007_SearchByAllWords:
         time.sleep(2)
         self.driver.find_element_by_xpath("//*[@id='btn-search-options-control']/i").click()
         self.logger.info("Clicked on the expand search")
-        allwords = self.driver.find_element_by_id("rb-all-words")
-        self.driver.execute_script("arguments[0].click();", allwords)
+        anywords = self.driver.find_element_by_xpath("//input[@id='rb-any-words']")
+        self.driver.execute_script("arguments[0].click();", anywords)
         self.driver.find_element_by_xpath("//*[@id='btn-search-options-control']/i").click()
         text = self.driver.find_element_by_xpath("//*[@id='search-subject']")
         # entering Canada And Country as search value

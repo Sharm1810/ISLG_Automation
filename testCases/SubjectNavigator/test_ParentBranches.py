@@ -22,26 +22,6 @@ class Test_001_ParentBranches:
     logger = LogGen.loggen()
 
     def test_ParentBranches(self, setup):
-        self.logger.info("****TestCase 001 - Verify Subject Navigator menu***")
-        self.driver = setup
-        self.driver.get(self.baseURL)
-        self.driver.maximize_window()
-
-        self.lp = LoginPage(self.driver)
-        self.lp.setUserName(self.username)
-        self.lp.setPassword(self.password)
-        self.lp.clickLogin()
-        self.logger.info("*****Login Successful****")
-        self.logger.info("**** Subject Navigator testing *****")
-
-        self.navigator = SubjectNavigator(self.driver)
-        self.navigator.clickOnSubjectNavigatormenu()
-        # self.navigator.clickOnClientListing()
-        self.logger.info("Subject Navigator menu is available")
-        self.driver.quit()
-
-    @pytest.mark.regression
-    def test_parentBranchcheck(self, setup):
         self.logger.info("***Test Case 001 - Verify Parent Branches***")
         self.driver = setup
         self.driver.get(self.baseURL)
@@ -249,7 +229,7 @@ class Test_001_ParentBranches:
         self.navigator.clickOnBranchQ()
         time.sleep(2)
         parentBranchQ = self.driver.find_element_by_link_text("Q").text
-        if parentBranchQ == "P":
+        if parentBranchQ == "Q":
             assert True == True
             self.logger.info("***ParentBranch Q was clicked***")
             self.driver.save_screenshot(".\\Screenshots\\" + "parentBranchQ.png")
@@ -353,3 +333,4 @@ class Test_001_ParentBranches:
             self.logger.info("***Missing Parent Branch Z***")
             self.driver.save_screenshot(".\\Screenshots\\" + "missingParentBranchZ.png")
         self.navigator.collapseBranchZ()
+        self.driver.quit()
