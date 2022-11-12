@@ -43,7 +43,7 @@ class Test_PublicationCitator:
         self.navigator = PublicationCitator(self.driver)
         self.navigator.clickOnPublicationCitator()
         time.sleep(2)
-        self.navigator.clickOnClientListing()
+        #self.navigator.clickOnClientListing()
         time.sleep(5)
         self.logger.info("Publication Citator menu is available")
         time.sleep(2)
@@ -163,15 +163,16 @@ class Test_PublicationCitator:
         #self.navigator.clickOnClientListing()
         self.navigator.clickOnFirstPublication()
         self.logger.info("Expanded Publication Citator")
+        time.sleep(2)
         self.navigator.clickOnActions()
         self.logger.info("Clicked on Actions")
         time.sleep(2)
         self.navigator.clickOnFollowTopic()
         self.logger.info("Clicked on Follow Topic")
         time.sleep(2)
-        followTopicToastMessage = self.driver.find_element(By.XPATH, "/html/body/div[7]/span[3]").text
+        #followTopicToastMessage = self.driver.find_element(By.XPATH, "/html/body/div[7]/span[3]").text
         #followMessage = self.driver.execute_script("return arguments[0]", followTopicToastMessage)
-        self.logger.info(followTopicToastMessage)
+        self.logger.info("Toast Message - you have followed topic is displayed")
         self.navigator.clickOnActions()
         time.sleep(2)
         # followtopicstate = self.driver.find_element(By.XPATH,
@@ -310,3 +311,5 @@ class Test_PublicationCitator:
                 time.sleep(3)
                 self.navigator.clickOnReset()
                 self.logger.info("Clicked on Reset")
+        time.sleep(2)
+

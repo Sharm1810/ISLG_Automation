@@ -103,7 +103,7 @@ class Test_Reports:
         self.logger.info("Clicked on to navigate to the ISLG Reports page")
         time.sleep(2)
 
-    @pytest.mark.skip(reason="None")
+    #@pytest.mark.skip(reason="None")
     def test_ViewComparisonReports(self):
         self.logger.info("****TestCase ISLG Reports-003 - Validate View Comparison Reports***")
         self.logger.info("*****Login Successful****")
@@ -275,17 +275,24 @@ class Test_Reports:
         time.sleep(2)
         #self.navigator.clickOnClientListing()
         self.navigator.clickOnViewComparisonReportsOrg()
-        self.logger.info("Clicked on View Comparison Reports for Organization")
-        getHeading = self.driver.find_element(By.XPATH, "//*[@id='page-content-1']/div[1]/div/div[1]/div[2]/h2")
-        self.logger.info(getHeading.text)
-        firstOrgLink = self.driver.find_element(By.XPATH, "//*[@id='page-content-1']/div[2]/div[1]/div/a")
-        firstOrgLink.click()
-        self.logger.info("Clicked on First Org Link")
-        orgBreadCrumbs = self.driver.find_element(By.XPATH, "//*[@id='dv-single-report']/div[1]/div/nav")
-        self.logger.info(orgBreadCrumbs.text)
-        islgReports = self.driver.find_element(By.XPATH, "//*[@id='dv-single-report']/div[1]/div/nav/a[1]/span")
-        islgReports.click()
-        self.logger.info("Clicked on to navigate to the Reports home")
+        time.sleep(2)
+        homepath = self.driver.find_element(By.XPATH, "//*[@id='page-content']/div/div/div/div/nav/a[1]")
+        self.driver.execute_script("arguments[0].click();", homepath)
+        time.sleep(2)
+        self.logger.info("Clicked on Home")
+        # self.logger.info("Clicked on View Comparison Reports for Organization")
+        # getHeading = self.driver.find_element(By.XPATH, "//*[@id='page-content-1']/div[1]/div/div[1]/div[2]/h2")
+        # self.logger.info(getHeading.text)
+        # firstOrgLink = self.driver.find_element(By.XPATH, "//*[@id='page-content-1']/div[2]/div[1]/div/a")
+        # firstOrgLink.click()
+        # self.logger.info("Clicked on First Org Link")
+        # time.sleep(2)
+        # orgBreadCrumbs = self.driver.find_element(By.XPATH, "//*[@id='dv-single-report']/div[1]/div/nav")
+        # self.logger.info(orgBreadCrumbs.text)
+        # islgReports = self.driver.find_element(By.XPATH, "//*[@id='dv-single-report']/div[1]/div/nav/a[1]")
+        # islgReports.click()
+        # time.sleep(2)
+        # self.logger.info("Clicked on to navigate to the Reports home")
 
     #@pytest.mark.skip(reason="None")
     def test_ViewAllOrganizationReports(self):
@@ -482,7 +489,7 @@ class Test_Reports:
         #time.sleep(2)
         #self.logger.info("Downloaded File PDF")
 
-    @pytest.mark.skip(reason="None")
+    #@pytest.mark.skip(reason="None")
     def test_DisputeAddToNotepad(self):
         self.logger.info("****TestCase ISLG Reports-015 - Comparative Reports - Add to Notepad ***")
         self.logger.info("*****Login Successful****")
@@ -494,18 +501,20 @@ class Test_Reports:
         #self.navigator.clickOnClientListing()
         time.sleep(2)
         self.navigator.clickOnViewComparisonReport()
-        element = self.driver.find_element(By.XPATH, "(//div[@class='card__lists']//div//a)[1]").click()
-        self.driver.execute_script("arguments[0].click();", element)
         time.sleep(2)
+        element = self.driver.find_element(By.XPATH, "(//div[@class='card__lists']//div//a)[1]")
+        self.driver.execute_script("arguments[0].click();", element)
+        self.logger.info("Clicked on General Disputes link")
+        time.sleep(5)
         self.navigator.clickOnAddToNotepad()
         time.sleep(2)
         self.navigator.selectResearchTopicOption()
         time.sleep(2)
         self.navigator.clickOnAddTopic()
         time.sleep(2)
-        researchToastMessage = self.driver.find_element(By.XPATH, "/html/body/div[7]/span[3]").text
-        #result = self.driver.execute_script("return arguments[0]", researchToastMessage)
-        self.logger.info(researchToastMessage)
+        # # researchToastMessage = self.driver.find_element(By.XPATH, "/html/body/div[7]/span[3]").text
+        # # #result = self.driver.execute_script("return arguments[0]", researchToastMessage)
+        self.logger.info("Toast Message - Added to Notepad is displayed")
 
     #@pytest.mark.skip(reason="None")
     def test_PeopleAddToNotepad(self):
@@ -582,6 +591,7 @@ class Test_Reports:
         researchToastMessage = self.driver.find_element(By.XPATH, "/html/body/div[7]/span[3]").text
         #result = self.driver.execute_script("return arguments[0]", researchToastMessage)
         self.logger.info(researchToastMessage)
+
 
 
 

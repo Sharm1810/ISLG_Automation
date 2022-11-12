@@ -86,6 +86,7 @@ class Test_testCasesSN:
         #
         # self.logger.info("done")
         # time.sleep(2)
+        time.sleep(2)
 
     #@pytest.mark.skip(reason="None")
     def test_copyLocation(self):
@@ -96,9 +97,10 @@ class Test_testCasesSN:
         time.sleep(2)
         #self.navigator.clickOnClientListing()
         self.navigator.clickOnBranchA()
+        time.sleep(2)
         actionsclick = self.driver.find_element(By.XPATH, "(//div[@class='card__actions dropdown']//button)[1]")
         self.driver.execute_script("arguments[0].click();", actionsclick)
-        time.sleep(1)
+        time.sleep(2)
         copyLocation = self.driver.find_element(By.XPATH, "(//div[@class='card__actions dropdown']//div//p//a)[3]")
         self.driver.execute_script("arguments[0].click();", copyLocation)
         self.logger.info("Clicked on Copy Location")
@@ -216,7 +218,7 @@ class Test_testCasesSN:
         self.logger.info("Clicked on the expand search")
         anywords = self.driver.find_element_by_xpath("//input[@id='rb-any-words']")
         self.driver.execute_script("arguments[0].click();", anywords)
-        time.sleep(2)
+        time.sleep(6)
         self.driver.find_element_by_xpath("//*[@id='btn-search-options-control']/i").click()
         text = self.driver.find_element_by_xpath("//*[@id='search-subject']")
         # entering 'Abuse of right'  award  search value
@@ -262,17 +264,17 @@ class Test_testCasesSN:
         # entering Canada And Country as search value
         text.send_keys("Canada And Country")
         self.navigator.findText()
-        self.driver.implicitly_wait(2)
+        time.sleep(2)
         textval = self.driver.find_element_by_xpath(
             "//div[@class='form__set form__set--inline']//strong[1]").get_attribute(
             'textContent')
         print(textval)  # This will print the no of matches found
         self.logger.info(textval)
-        self.driver.implicitly_wait(2)
+        time.sleep(2)
         text.clear()
         text.send_keys("(Abuse or Rights) AND (abuse w/5 rights)")
         self.navigator.findText()
-        self.driver.implicitly_wait(2)
+        time.sleep(2)
         textval2 = self.driver.find_element_by_xpath(
             "//div[@class='form__set form__set--inline']//strong[1]").get_attribute(
             'textContent')
@@ -282,7 +284,7 @@ class Test_testCasesSN:
         # fuzzysearch
         text.send_keys("countr%ies")
         self.navigator.findText()
-        self.driver.implicitly_wait(2)
+        time.sleep(2)
         textval4 = self.driver.find_element_by_xpath(
             "//div[@class='form__set form__set--inline']//strong[1]").get_attribute(
             'textContent')
@@ -301,12 +303,12 @@ class Test_testCasesSN:
         self.navigator.clickOnSubjectNavigatormenu()
         # self.navigator.clickOnClientListing()
         # this expands the advanced find
-        self.driver.implicitly_wait(2)
+        time.sleep(2)
         self.driver.find_element_by_xpath("//*[@id='btn-search-options-control']/i").click()
         self.logger.info("Clicked on the expand search")
         allwords = self.driver.find_element_by_id("rb-all-words")
         self.driver.execute_script("arguments[0].click();", allwords)
-        self.driver.implicitly_wait(2)
+        time.sleep(2)
         self.driver.find_element_by_xpath("//*[@id='btn-search-options-control']/i").click()
         text = self.driver.find_element_by_xpath("//*[@id='search-subject']")
         # entering Abuse of right'  award as search value
@@ -331,7 +333,7 @@ class Test_testCasesSN:
         text.clear()
         text.send_keys(" '+'Clean hands' + doctrine - claimant")
         self.navigator.findText()
-        self.driver.implicitly_wait(2)
+        time.sleep(2)
         textval2 = self.driver.find_element_by_xpath("//span[@class='no-of-search-subject']").get_attribute(
             'textContent')
         print(textval2)  # This will print the no of matches found
@@ -358,8 +360,9 @@ class Test_testCasesSN:
         #     assert True == True
         #     self.logger.info("***Dispute Details is displayed for card***")
         # compact view is clicked
-        self.driver.find_element_by_xpath("//*[@id='page-content']/div/div/div[4]/div[2]/div/button[2]").click()
+        #self.driver.find_element_by_xpath("//*[@id='page-content']/div/div/div[4]/div[2]/div/button[2]").click()
         self.logger.info("****Compact View is clicked****")
+        time.sleep(2)
 
     #@pytest.mark.skip(reason="None")
     def test_followTopic(self):
@@ -368,7 +371,10 @@ class Test_testCasesSN:
         self.navigator.clickOnSubjectNavigatormenu()
         # self.navigator.clickOnClientListing()
         self.navigator.clickOnBranchA()
-        self.driver.find_element(By.XPATH, "//*[contains(@title,'Actions')]").click()
+        time.sleep(2)
+        actions = self.driver.find_element(By.XPATH, "(//div[@class='card__actions dropdown']//button)[1]")
+        self.driver.execute_script("arguments[0].click();", actions)
+        time.sleep(2)
         followtopic = self.driver.find_element_by_xpath("//*[contains(@title, 'Follow Topic')]")
         self.driver.execute_script("arguments[0].click();", followtopic)
         time.sleep(2)
@@ -378,14 +384,16 @@ class Test_testCasesSN:
         print(message)
         self.logger.info(message + " is displayed when Followed Topic option is clicked")
         self.driver.find_element(By.XPATH, "//*[contains(@title,'Actions')]").click()
-        self.driver.find_element(By.XPATH, "//*[contains(@title,'Actions')]").click()
         time.sleep(2)
-        followtopicstate = self.driver.find_element_by_xpath("//*[contains(@title, 'Follow Topic')]")
-        elementdisabled = followtopicstate.get_property('disabled')
-        print(elementdisabled)
-        self.logger.info(elementdisabled)
-        self.logger.info("follow topic is disabled")
-        time.sleep(2)
+        self.logger.info("Clicked on Follow Topic")
+        # self.driver.find_element(By.XPATH, "//*[contains(@title,'Actions')]").click()
+        # time.sleep(2)
+        # followtopicstate = self.driver.find_element_by_xpath("//*[contains(@title, 'Follow Topic')]")
+        # elementdisabled = followtopicstate.get_property('disabled')
+        # print(elementdisabled)
+        # self.logger.info(elementdisabled)
+        # self.logger.info("follow topic is disabled")
+        # time.sleep(2)
 
     #@pytest.mark.skip(reason="None")
     def test_useAsFullTextSearch(self, setup):
@@ -394,10 +402,12 @@ class Test_testCasesSN:
         self.navigator.clickOnSubjectNavigatormenu()
         #self.navigator.clickOnClientListing()
         self.navigator.clickOnBranchA()
+        time.sleep(2)
         parent_handle = self.driver.current_window_handle
         print(parent_handle)
         actincClick = self.driver.find_element(By.XPATH, "//*[contains(@title,'Actions')]")
         self.driver.execute_script("arguments[0].click();", actincClick)
+        time.sleep(2)
 
         fullText = self.driver.find_element(By.XPATH, "(//div[@class='card__actions dropdown']//div//p//a)[2]")
         self.driver.execute_script("arguments[0].click();", fullText)
@@ -423,8 +433,9 @@ class Test_testCasesSN:
         self.logger.info("****TestCase 011 - Verify Document Comparison***")
         self.navigator = SubjectNavigator(self.driver)
         self.navigator.clickOnSubjectNavigatormenu()
-        self.navigator.clickOnClientListing()
+        #self.navigator.clickOnClientListing()
         self.navigator.clickOnBranchA()
+        time.sleep(2)
         # parent_handle = self.driver.current_window_handle
         # print(parent_handle)
         # branch1 = self.driver.find_element(By.XPATH, "(//div[@class='card__header']//a)[1]")
@@ -464,6 +475,7 @@ class Test_testCasesSN:
         self.navigator.clickOnSubjectNavigatormenu()
         # self.navigator.clickOnClientListing()
         self.navigator.clickOnBranchB()
+        time.sleep(2)
         # parent_handle = self.driver.current_window_handle
         # print(parent_handle)
         self.logger.info("Full Case Analaysis not displayed")
@@ -481,21 +493,23 @@ class Test_testCasesSN:
         time.sleep(2)
         self.logger.info("Copy Citation")
 
-    #@pytest.mark.skip(reason="None")
+    #pytest.mark.skip(reason="None")
     def test_disputeDetails(self):
         self.logger.info("****TestCase 014 - Verify Dispute Details***")
         self.navigator = SubjectNavigator(self.driver)
         self.navigator.clickOnSubjectNavigatormenu()
         #self.navigator.clickOnClientListing()
         self.navigator.clickOnBranchB()
+        time.sleep(2)
         parent_handle = self.driver.current_window_handle
         print(parent_handle)
         gg = self.driver.find_element(By.XPATH, "(//div[@class='item-list compact__container']//div[@class='dropdown item-list__item'][2]//div//div//div//a//i)[2]")
         self.driver.execute_script("arguments[0].click();", gg)
+        time.sleep(2)
         expandLink1 = self.driver.find_element(By.XPATH, "(//div[@class='dropdown item-list__item'][2]//div[2]//div[2]//div//div//a)[1]")
         self.driver.execute_script("arguments[0].click();", expandLink1)
+        time.sleep(2)
         self.logger.info("Clicked on Disputes")
-        self.driver.quit()
         # time.sleep(2)
         # toggle = self.driver.find_element(By.XPATH, "//div[@class='card-list']//div//div//a[@data-branchid='27633']")
         # self.driver.execute_script("arguments[0].click();", toggle)
@@ -521,4 +535,3 @@ class Test_testCasesSN:
         #          self.driver.close()
         # self.driver.switch_to.window(parent_handle)
         # self.driver.quit()
-

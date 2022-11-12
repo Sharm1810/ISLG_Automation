@@ -1,11 +1,21 @@
+import logging
+from telnetlib import EC
+
 import pytest
 import time
 
+import self
+from basepage import wait
+from selenium.common import exceptions
+from selenium.common.exceptions import NoSuchElementException, TimeoutException, ElementNotInteractableException
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+from Configurations.conftest import setup
 
 from pageObjects.LoginPage import LoginPage
 from pageObjects.SubjectNavigator import SubjectNavigator
+
 from utilities.readProperties import ReadConfig
 from utilities.customLogger import LogGen
 from selenium.webdriver.common.keys import Keys
@@ -14,14 +24,43 @@ import string
 import pyperclip
 
 import random
+    # use function
 
+#log = log_utils.custom_logger(logging.INFO)
 
 @pytest.mark.usefixtures("setup")
-class Test_001_ParentBranches:
+class TestBranches:
     logger = LogGen.loggen()
 
+    @pytest.fixture(scope='function')
+
+    def initialize(self):
+       # self.main_page = MainPage(self.driver)
+        #self.exe_status = ExecutionStatus(self.driver)
+        #self.ui_helpers = UIHelpers(self.driver)
+
+        def cleanup():
+            self.driver.delete_all_cookies()
+
+        yield
+        cleanup()
+
+    # @pytest.fixture(autouse=True)
+    # def class_level_setup(self, request):
+    #     """
+    #     This method is used for one time setup of test execution process.
+    #     :return: it returns nothing
+    #     """
+    #     test_name = request.function.__name__
+    #     #if data_reader.get_data(test_name, "Runmode") != "Y":
+    #         pytest.skip("Excluded from current execution run.")
+
+
+
+
+    #@pytest.mark.skip(reason="None")
     def test_ParentBranches(self):
-        self.logger.info("***Test Case 001 - Verify Expand/Collapse Parent Branches***")
+        self.logger.info("***Test Case 001 (DevOps Text Case ID - 1443) - Verify Expand/Collapse Parent Branches***")
         self.logger.info("*****Login Successful****")
         self.logger.info("**** Subject Navigator testing *****")
         self.navigator = SubjectNavigator(self.driver)
@@ -325,4 +364,40 @@ class Test_001_ParentBranches:
             self.logger.info("***Missing Parent Branch Z***")
             self.driver.save_screenshot(".\\Screenshots\\" + "missingParentBranchZ.png")
         self.navigator.collapseBranchZ()
-        self.driver.quit()
+
+    def test_SubBranches(self):
+        self.logger.info("***Test Case 002 (DevOps Text Case ID - 1622) - Verify Expand/Collapse Sub Branches***")
+        self.navigator = SubjectNavigator(self.driver)
+        self.navigator.clickOnSubjectNavigatormenu()
+        #self.navigator.clickOnClientListing()
+        self.navigator.clickOnBranchA()
+        try:
+            time.sleep(2)
+            expandAllLink = self.driver.find_element(By.XPATH, "(//div[@class='card__actions dropdown']//a)[1]")
+            self.driver.execute_script("arguments[0].click();", expandAllLink)
+            self.logger.info("Clicked on Expand All Link")
+            time.sleep(2)
+            cardList = self.driver.find_element(By.XPATH, "(//ul[@class='list--icons']//li//a)[1]")
+            self.driver.execute_script("arguments[0].scrollIntoView();", cardList)
+            self.driver.execute_script("arguments[0].click();", cardList)
+            getTextCardList = cardList.text
+            self.logger.info(getTextCardList)
+            time.sleep(2)
+            self.logger.info("Clicked on the First link-Card List")
+            time.sleep(2)
+            cardHeaderExpandAll = self.driver.find_element(By.XPATH, "(//div[@class='card card--basic card--inner dropdown']//div//div//a)[1]")
+            self.driver.execute_script("arguments[0].click();", cardHeaderExpandAll)
+            self.logger.info("Clicked on Expand All associated with the card List")
+            # linkText = self.driver.find_element(By.XPATH, "(//div[@class='card-list']//div[@class='card card--basic card--inner dropdown']//div[@class='card__content dropdown__content branch__content']//div//div//div//a)[1]")
+            # self.driver.execute_script("arguments[0].click();", linkText)
+            # getlinkText = linkText.text
+            # self.logger.info("Clicked on the Link")
+            # self.logger.info(getlinkText)
+        except AttributeError:
+            print("No element")
+
+
+
+
+
+

@@ -26,8 +26,7 @@ def setup(request):
     # if browser == 'chrome':
     options = Options()
     driver = webdriver.Chrome(executable_path="C:\\chromedriver",chrome_options=options)
-    driver.get("https://staging.investorstatelawguide.com")
-    #driver.get("https://app.investorstatelawguide.com/Login/")
+    driver.get("https://app.investorstatelawguide.com")
     driver.maximize_window()
     driver.find_element(By.XPATH, "//*[@id='UserName']").send_keys("sharmishri")
     driver.find_element(By.XPATH, "//*[@id='Password']").send_keys("Messages321@")

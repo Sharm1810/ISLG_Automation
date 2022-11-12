@@ -559,5 +559,6 @@ class Test_FullTextSearch:
                 self.logger.info("Opened Full Case Analysis")
                 self.driver.close()
         self.driver.switch_to.window(parent_handle)
-        self.driver.quit()
+        time.sleep(2)
+
 

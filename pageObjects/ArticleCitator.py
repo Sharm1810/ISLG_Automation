@@ -6,22 +6,21 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
-from pageObjects.BasePage import BasePage
 from utilities.customLogger import LogGen
 
 logger = LogGen.loggen()
 
 
-class ArticleCitator(BasePage):
+class ArticleCitator():
     articleCitatormenu_cssselector = "#Rslink > li:nth-child(2) > a"
     clientListing_cssseelector = "#dvClientListing > div > button"
     firstBranchExpand_cssselector = "#page-content > div > div:nth-child(9) > div > div:nth-child(1) > div > div.card__header > a.cursor--pointer.card__title.dropdown__toggle.acTitleClick"
     elementActions_xpath = "//div[@class='tabs']//div//div//button[normalize-space()='Actions']"
     elementResearchNotepad_xpath = "//div[@role='tablist']//a[@title='Add to Research Notepad'][normalize-space("")='Research Notepad']"
-    researchTopicOption_cssselector = "#popup-add-to-rn > div.scrolling-content > div:nth-child(3) > div ""> ul > li:nth-child(2) > label"
+    researchTopicOption_xpath = "(//div[@class='card card--compact']//ul//li)[1]//span"
     researchAddbutton_xpath = "//*[@id='btn-popup-add-next']"
-    # doucmentComparison_xpath = "//div[@role='tablist']//a[@title='Add to Document Comparison'][normalize-space()='Document Comparison']"
-    addDocumentoption_xpath = "//*[@id='popup-add-to-rn']/div[1]/div[3]/div[1]/ul/li/label"
+    doucmentComparison_xpath = "//div[@role='tablist']//a[@title='Add to Document Comparison'][normalize-space()='Document Comparison']"
+    addDocumentoption_xpath = "//div[@class='card card--compact entire-articlecitator']//ul//li//label//span"
     addEntireDocumentAdd_xpath = "//*[@id='btn-popup-add']"
     toastMessageResearch_xpath = "/html/body/div[7]/span[3]"
     documentComparison_xpath = "//div[@class='card card--details']//div[@class='tabs']//div//div//p//a[2]"
@@ -45,9 +44,49 @@ class ArticleCitator(BasePage):
     instrumentDetTab_xpath = "//a[normalize-space()='Instrument Details']"
     findButton_xpath = "//button[@id='btn-search-articlecitator-citator']"
     resetLink_xpath = "//*[@id='search-reset']"
+    researchNotepadSecond_xpath = "//div[@class='card card--compact entire-articlecitator']//ul//li//label//span"
+    downloadDocument_xpath = "//*[@id='frm-download-treatiesrules-view']/p/a/span"
+    addToDocumentComparison_xpath = "//button[@title='Add to Document Comparison']"
+    #addToDocumentComparison_xpath = "//form[@id='frm-download-document-view']//p//a"
+    addToNotepad_xpath = "//*[@id='frm-download-treatiesrules-view']/p/button[2]"
+    copyCitation_xpath = "//*[@id='treaties-rules']/div[1]/div[2]/p/small/a/span"
+    viewOriginalPDF_xpath = "//*[@id='treaties-rules']/div[1]/div[5]/div[2]/a/span[2]/span"
+    firstLink_xpath = "(//div[@class='ACCardData']//div//div//a)[1]"
+    provisionRuleSeeAll_xpath = "(//div[@class='tabs__content-container']//div//div//ul//li[1]//a)[1]"
+    fullCaseAnalysis_xpath = "//div[@class='document__footer-right']//a"
+    documentView1_xpath = "//*[@id='document-view']/div[1]/p/i[1]"
+    documentComparisonFirstOption_xpath = "//div[@class='card card--compact']//ul//li[1]"
+    documentCompareAdd_xpath = "//button[@id='btn-comparison-add']"
+    documentCompareCancel_xpath = "//*[@id='btn-comparison-Cancel']"
+    seeAllGroups_xpath = "//*[@id='popup-add-to-dc']/div[1]/div[1]/div[2]/a"
+    researchNotepad_xpath = "//button[@title='Add to Notepad']"
+    researchOption_xpath = "(//label[@class='form__radio']//input)[1]"
+    addNotepad_xpath = "//*[@id='btn-popup-add']"
+    seeAllTopics_xpath ="//*[@id='popup-add-to-rn']/div[1]/div[1]/div[2]/a"
+    researchNotepadHeading_xpath ="//*[@id='ResearchTopicMaster']/div[1]/div/div[1]"
+    closeResearchNotepad_xpath = "//*[@id='popup-add-to-rn']/div[1]/p[1]/a"
+    createResearchTopic_xpath = "//*[@id='popup-add-to-rn']/div[1]/div[2]/div/p/a"
+    enterTopic_xpath = "//*[@id='topic-name']"
+    saveTopic_xpath = "//*[@id='btn-create-new-research-topic']"
+    copyCitationlink_xpath = "//div[@class='citationdiv']//p//a"
+    downloadDocumentLink_xpath = "//*[@id='frm-download-document-view']/p/a"
+    viewPDF_xpath = "//div[@class='grid__col grid__col--md-4']//a"
+    subjectNavigatorMenu_xpath = "(//nav[@class='document__nav primarylang']//ul//li//a[1]//img)[1]"
+    subjectNavigatorExpandLink_xpath = "//div[@class='dropdown default-sidebar']//button"
+    jurisprudenceCitatorMenu_xpath = "//nav[@class='document__nav primarylang']//li[3]//a//img"
+    jurisprudenceCitatorExpandLink_xpath = "//div[@class='dropdown default-sidebar']//button"
+    publicationCitatorMenu_xpath = "//nav[@class='document__nav primarylang']//ul//li[4]//a//img"
+    publicationCitatorExpandLink_xpath = "//div[@class='dropdown default-sidebar']//button"
+    termsAndPhrasesMenu_xpath = "//nav[@class='document__nav primarylang']//ul//li[5]//a//img"
+    termsAndPhrasesExpandLink_xpath = "//div[@class='dropdown default-sidebar']//button"
+    keywordSearch_xpath = "//nav[@class='document__nav primarylang']//ul//li[6]//a"
+    keywordSearchEntry_xpath = "//*[@id='txtkeyword']"
+    searchButton_xpath = "//*[@id='btnKeywordSearch']"
+    goToFullTextSearch_xpath = "//*[@id='GotoFulltextSearch']"
+
 
     def __init__(self, driver):
-        super().__init__(driver)
+        self.driver = driver
 
     def clickOnArticleCitatormenu(self):
         self.driver.find_element_by_css_selector(self.articleCitatormenu_cssselector).click()
@@ -70,7 +109,7 @@ class ArticleCitator(BasePage):
         self.driver.execute_script("arguments[0].click();", elementResearchNotepad)
 
     def clickOnResearchTopicOption(self):
-        elementResearchTopic = self.driver.find_element(By.CSS_SELECTOR, self.researchTopicOption_cssselector)
+        elementResearchTopic = self.driver.find_element(By.XPATH, self.researchTopicOption_xpath)
         self.driver.execute_script("arguments[0].click();", elementResearchTopic)
 
     def clickOnAddResearch(self):
@@ -173,3 +212,149 @@ class ArticleCitator(BasePage):
     def clickOnReset(self):
         resetLink = self.driver.find_element(By.XPATH, self.resetLink_xpath)
         self.driver.execute_script("arguments[0].click();", resetLink)
+
+    def clickOnSeeAll(self):
+        seeAllLink = self.driver.find_element(By.XPATH, self.provisionRuleSeeAll_xpath)
+        self.driver.execute_script("arguments[0].click();", seeAllLink)
+
+    def clickOnFullCase(self):
+        fullcase = self.driver.find_element(By.XPATH, self.fullCaseAnalysis_xpath)
+        self.driver.execute_script("arguments[0].click();", fullcase)
+
+    def getDocumentView(self):
+        documentView = self.driver.find_element(By.XPATH, self.documentView1_xpath)
+        #self.logger.info(documentView.text)
+        print(documentView.text)
+
+    def addToDocumentComparison(self):
+        documentComparison = self.driver.find_element(By.XPATH, self.addToDocumentComparison_xpath)
+        self.driver.execute_script("arguments[0].click();", documentComparison)
+
+    def selectDocumentCmparisonOption(self):
+        options = self.driver.find_element(By.XPATH, self.documentComparisonFirstOption_xpath)
+        self.driver.execute_script("arguments[0].click();", options)
+
+    def clickOnAddDocumentCompare(self):
+        addCompare = self.driver.find_element(By.XPATH, self.documentComparisonAdd_xpath)
+        self.driver.execute_script("arguments[0].click();", addCompare)
+
+    def clickOnCancelCompare(self):
+        cancelCompare = self.driver.find_element(By.XPATH, self.documentCompareCancel_xpath)
+        self.driver.execute_script("arguments[0].click();",cancelCompare)
+
+    def clickOnSeeAllGroups(self):
+        seeAll = self.driver.find_element(By.XPATH, self.seeAllGroups_xpath)
+        self.driver.execute_script("arguments[0].click();", seeAll)
+
+    def clickOnResearch(self):
+        researchNotepad = self.driver.find_element(By.XPATH, self.researchNotepad_xpath)
+        self.driver.execute_script("arguments[0].click();", researchNotepad)
+
+    def selectResearchOption(self):
+        researchOption = self.driver.find_element(By.XPATH, self.researchOption_xpath)
+        self.driver.execute_script("arguments[0].click();", researchOption)
+
+    def clickOnAddNotepad(self):
+        addNote = self.driver.find_element(By.XPATH, self.addNotepad_xpath)
+        self.driver.execute_script("arguments[0].click();", addNote)
+
+    def clickOnSeeAllTopics(self):
+        seeAllTopics = self.driver.find_element(By.XPATH, self.seeAllTopics_xpath)
+        self.driver.execute_script("arguments[0].click();", seeAllTopics)
+
+    def clickOnCloseResearchNotepad(self):
+        closeResearch = self.driver.find_element(By.XPATH, self.closeResearchNotepad_xpath)
+        self.driver.execute_script("arguments[0].click();", closeResearch)
+
+    def clickOnCreateResearchTopic(self):
+        createTopic = self.driver.find_element(By.XPATH, self.createResearchTopic_xpath)
+        self.driver.execute_script("arguments[0].click();", createTopic)
+
+    def sendTopic(self):
+        topic = self.driver.find_element(By.XPATH, self.enterTopic_xpath)
+        topic1 = topic.send_keys("TopicTest")
+        return topic1
+
+    def clickOnSave(self):
+        saveTopic = self.driver.find_element(By.XPATH, self.saveTopic_xpath)
+        self.driver.execute_script("arguments[0].click();", saveTopic)
+
+    def clickOnCopyCitationLink(self):
+        copyCitationLink = self.driver.find_element(By.XPATH, self.copyCitationlink_xpath)
+        self.driver.execute_script("arguments[0].click();", copyCitationLink)
+
+    def clickOnDownloadDocumentLink(self):
+        downloadDoc = self.driver.find_element(By.XPATH, self.downloadDocumentLink_xpath)
+        self.driver.execute_script("arguments[0].click();", downloadDoc)
+
+    def clickOnViewPDF(self):
+        viewpdf = self.driver.find_element(By.XPATH, self.viewPDF_xpath)
+        self.driver.execute_script("arguments[0].click();", viewpdf)
+
+    def clickOnSubjectNavigatorMenu(self):
+        subjectNavigator = self.driver.find_element(By.XPATH, self.subjectNavigatorMenu_xpath)
+        self.driver.execute_script("arguments[0].click();", subjectNavigator)
+
+    def clickOnSubjectNavigatorLink(self):
+        subjectNavigatorLink = self.driver.find_element(By.XPATH, self.subjectNavigatorExpandLink_xpath)
+        self.driver.execute_script("arguments[0].click();", subjectNavigatorLink)
+
+    def clickOnJurisprudenceNavigatorMenu(self):
+        jurisprudenceCitator = self.driver.find_element(By.XPATH, self.jurisprudenceCitatorMenu_xpath)
+        self.driver.execute_script("arguments[0].click();", jurisprudenceCitator)
+
+    def clickOnJurisprudenceLink(self):
+        jurisprudenceLink = self.driver.find_element(By.XPATH, self.jurisprudenceCitatorExpandLink_xpath)
+        self.driver.execute_script("arguments[0].click();", jurisprudenceLink)
+
+    def clickOnPublicationCitatorMenu(self):
+        publicationCitator = self.driver.find_element(By.XPATH, self.publicationCitatorMenu_xpath)
+        self.driver.execute_script("arguments[0].click();", publicationCitator)
+
+    def clickOnPublicationLink(self):
+        publicationLink = self.driver.find_element(By.XPATH, self.publicationCitatorExpandLink_xpath)
+        self.driver.execute_script("arguments[0].click();", publicationLink)
+
+    def clickOnTermsAndPhrasesMenu(self):
+        termsAndPhrases = self.driver.find_element(By.XPATH, self.termsAndPhrasesMenu_xpath)
+        self.driver.execute_script("arguments[0].click();", termsAndPhrases)
+
+    def clickOnTermsAndPhrasesLink(self):
+        termsAndPhrasesLink = self.driver.find_element(By.XPATH, self.termsAndPhrasesExpandLink_xpath)
+        self.driver.execute_script("arguments[0].click();", termsAndPhrasesLink)
+
+    def clickOnKeywordSearch(self):
+        keywordSearch = self.driver.find_element(By.XPATH, self.keywordSearch_xpath)
+        self.driver.execute_script("arguments[0].click();", keywordSearch)
+
+    def clickOnKeywordSearchEntry(self):
+        keywordSearchEntry = self.driver.find_element(By.XPATH, self.keywordSearchEntry_xpath)
+        keyword = keywordSearchEntry.send_keys("case")
+        return keyword
+
+    def clickOnSearchButton(self):
+        buttonSearch = self.driver.find_element(By.XPATH, self.searchButton_xpath)
+        self.driver.execute_script("arguments[0].click();", buttonSearch)
+
+    def clickOnGoToFullTextSearch(self):
+        fulltextSearch = self.driver.find_element(By.XPATH, self.goToFullTextSearch_xpath)
+        self.driver.execute_script("arguments[0].click();", fulltextSearch)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

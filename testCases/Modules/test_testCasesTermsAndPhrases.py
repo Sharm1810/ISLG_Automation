@@ -122,7 +122,7 @@ class Test_TermsAndPhrases:
         time.sleep(2)
         self.navigator.clickOnCopyLocation()
         self.logger.info("Clicked on Copy Location")
-        time.sleep(2)
+        time.sleep(3)
         # stringtext = pyperclip.paste()  # text will have the content of clipboard
         # print(stringtext)
         # self.driver.close()
@@ -305,4 +305,4 @@ class Test_TermsAndPhrases:
                 self.driver.close()
         self.driver.switch_to.window(parent_handle)
         time.sleep(2)
-        self.driver.quit()
+

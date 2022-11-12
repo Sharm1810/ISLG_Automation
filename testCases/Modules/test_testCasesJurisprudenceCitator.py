@@ -275,6 +275,7 @@ class Test_JurisprudenceCitator:
         #self.navigator.clickOnClientListing()
         self.navigator.clickOnFirstJurisprudence()
         self.logger.info("Expanded Jurisprudence")
+        time.sleep(2)
         self.navigator.clickOnInnerDropdown()
         time.sleep(2)
         self.navigator.clickOnDisputeDetailsTab()
@@ -286,24 +287,27 @@ class Test_JurisprudenceCitator:
         self.navigator.clickOnExpandProceedingDetails()
         self.logger.info("Clicked on Expand Proceeding Details Dropdown")
         time.sleep(2)
-        self.navigator.clickOnExpandProceedingDetailsTribunal()
-        parent_handle = self.driver.current_window_handle
-        print(parent_handle)
+        # self.navigator.clickOnExpandProceedingDetailsTribunal()
+        # time.sleep(2)
+        # parent_handle = self.driver.current_window_handle
+        # print(parent_handle)
+        # time.sleep(2)
+        # all_handles = self.driver.window_handles
+        # print(all_handles)
+        # for handle in all_handles:
+        #     if handle != parent_handle:
+        #         self.driver.switch_to.window(handle)
+        #         time.sleep(2)
+        #         navMenuTitle = self.driver.find_element(By.XPATH, "//*[@id='page-content']/div/div/div[1]/div/nav").text
+        #         self.logger.info(navMenuTitle)
+        #         heading2 = self.driver.find_element(By.XPATH,
+        #                                             "//*[@id='page-content-1']/div[1]/div[1]/div[1]/div[2]/h2").text
+        #         self.logger.info(heading2)
+        #         self.driver.close()
+        # self.driver.switch_to.window(parent_handle)
         time.sleep(2)
-        all_handles = self.driver.window_handles
-        print(all_handles)
-        for handle in all_handles:
-            if handle != parent_handle:
-                self.driver.switch_to.window(handle)
-                time.sleep(2)
-                navMenuTitle = self.driver.find_element(By.XPATH, "//*[@id='page-content']/div/div/div[1]/div/nav").text
-                self.logger.info(navMenuTitle)
-                heading2 = self.driver.find_element(By.XPATH,
-                                                    "//*[@id='page-content-1']/div[1]/div[1]/div[1]/div[2]/h2").text
-                self.logger.info(heading2)
-                self.driver.close()
-        self.driver.switch_to.window(parent_handle)
 
+    #@pytest.mark.skip(reason="None")
     def test_findAndReset(self):
         self.logger.info("****TestCase AC-009 - Validate Find and Reset***")
         self.navigator = JurisprudenceCitator(self.driver)
@@ -331,4 +335,4 @@ class Test_JurisprudenceCitator:
                 time.sleep(3)
                 self.navigator.clickOnReset()
                 self.logger.info("Clicked on Reset")
-        self.driver.quit()
+        time.sleep(2)
