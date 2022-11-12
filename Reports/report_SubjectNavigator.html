@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) { // eslint-disable-line no-redeclare
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function findAll(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sortColumn(elem) {
+    toggleSortStates(elem);
+    const colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    let key;
+    if (elem.classList.contains('result')) {
+        key = keyResult;
+    } else if (elem.classList.contains('links')) {
+        key = keyLink;
+    } else {
+        key = keyAlpha;
+    }
+    sortTable(elem, key(colIndex));
+}
+
+function showAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(showExtras);
+}
+
+function hideAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(hideExtras);
+}
+
+function showExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.remove('collapsed');
+    expandcollapse.classList.remove('expander');
+    expandcollapse.classList.add('collapser');
+}
+
+function hideExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.add('collapsed');
+    expandcollapse.classList.remove('collapser');
+    expandcollapse.classList.add('expander');
+}
+
+function showFilters() {
+    const filterItems = document.getElementsByClassName('filter');
+    for (let i = 0; i < filterItems.length; i++)
+        filterItems[i].hidden = false;
+}
+
+function addCollapse() {
+    // Add links for show/hide all
+    const resulttable = find('table#results-table');
+    const showhideall = document.createElement('p');
+    showhideall.innerHTML = '<a href="javascript:showAllExtras()">Show all details</a> / ' +
+                            '<a href="javascript:hideAllExtras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    findAll('.col-result').forEach(function(elem) {
+        const collapsed = getQueryParameter('collapsed') || 'Passed';
+        const extras = elem.parentNode.nextElementSibling;
+        const expandcollapse = document.createElement('span');
+        if (extras.classList.contains('collapsed')) {
+            expandcollapse.classList.add('expander');
+        } else if (collapsed.includes(elem.innerHTML)) {
+            extras.classList.add('collapsed');
+            expandcollapse.classList.add('expander');
+        } else {
+            expandcollapse.classList.add('collapser');
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener('click', function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains('collapsed')) {
+                showExtras(event.currentTarget);
+            } else {
+                hideExtras(event.currentTarget);
+            }
+        });
+    });
+}
+
+function getQueryParameter(name) {
+    const match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function init () { // eslint-disable-line no-unused-vars
+    resetSortHeaders();
+
+    addCollapse();
+
+    showFilters();
+
+    sortColumn(find('.initial-sort'));
+
+    findAll('.sortable').forEach(function(elem) {
+        elem.addEventListener('click',
+            function() {
+                sortColumn(elem);
+            }, false);
+    });
+}
+
+function sortTable(clicked, keyFunc) {
+    const rows = findAll('.results-table-row');
+    const reversed = !clicked.classList.contains('asc');
+    const sortedRows = sort(rows, keyFunc, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    const thead = document.getElementById('results-table-head');
+    document.getElementById('results-table').remove();
+    const parent = document.createElement('table');
+    parent.id = 'results-table';
+    parent.appendChild(thead);
+    sortedRows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName('BODY')[0].appendChild(parent);
+}
+
+function sort(items, keyFunc, reversed) {
+    const sortArray = items.map(function(item, i) {
+        return [keyFunc(item), i];
+    });
+
+    sortArray.sort(function(a, b) {
+        const keyA = a[0];
+        const keyB = b[0];
+
+        if (keyA == keyB) return 0;
+
+        if (reversed) {
+            return keyA < keyB ? 1 : -1;
+        } else {
+            return keyA > keyB ? 1 : -1;
+        }
+    });
+
+    return sortArray.map(function(item) {
+        const index = item[1];
+        return items[index];
+    });
+}
+
+function keyAlpha(colIndex) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[colIndex].firstChild.data.toLowerCase();
+    };
+}
+
+function keyLink(colIndex) {
+    return function(elem) {
+        const dataCell = elem.childNodes[1].childNodes[colIndex].firstChild;
+        return dataCell == null ? '' : dataCell.innerText.toLowerCase();
+    };
+}
+
+function keyResult(colIndex) {
+    return function(elem) {
+        const strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+            'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[colIndex].firstChild.data);
+    };
+}
+
+function resetSortHeaders() {
+    findAll('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    findAll('.sortable').forEach(function(elem) {
+        const icon = document.createElement('div');
+        icon.className = 'sort-icon';
+        icon.textContent = 'vvv';
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove('desc', 'active');
+        elem.classList.add('asc', 'inactive');
+    });
+}
+
+function toggleSortStates(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        resetSortHeaders();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function isAllRowsHidden(value) {
+    return value.hidden == false;
+}
+
+function filterTable(elem) { // eslint-disable-line no-unused-vars
+    const outcomeAtt = 'data-test-result';
+    const outcome = elem.getAttribute(outcomeAtt);
+    const classOutcome = outcome + ' results-table-row';
+    const outcomeRows = document.getElementsByClassName(classOutcome);
+
+    for(let i = 0; i < outcomeRows.length; i++){
+        outcomeRows[i].hidden = !elem.checked;
+    }
+
+    const rows = findAll('.results-table-row').filter(isAllRowsHidden);
+    const allRowsHidden = rows.length == 0 ? true : false;
+    const notFoundMessage = document.getElementById('not-found-message');
+    notFoundMessage.hidden = !allRowsHidden;
+}
+</script>
+    <h1>report.html</h1>
+    <p>Report generated on 30-Jun-2022 at 17:11:07 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>Application: </td>
+        <td>ISLG Subscriber</td></tr>
+      <tr>
+        <td>Packages</td>
+        <td>{"pluggy": "1.0.0", "py": "1.11.0", "pytest": "6.2.5"}</td></tr>
+      <tr>
+        <td>Platform</td>
+        <td>Windows-10-10.0.19044-SP0</td></tr>
+      <tr>
+        <td>Project Name</td>
+        <td>ISLG Subscriber</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>3.9.6</td></tr>
+      <tr>
+        <td>Tester Name</td>
+        <td>Sharmila</td></tr></table>
+    <h2>Summary</h2>
+    <p>14 tests ran in 169.12 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">14 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable" col="duration">Duration</th>
+          <th class="sortable links" col="links">Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">SubjectNavigator/test_testCasesSN.py::Test_testCasesSN::test_addtoResearch</td>
+          <td class="col-duration">45.58</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesSN.py:30 ****TestCase 001 - Verify Add to Research***
+INFO     root:test_testCasesSN.py:33 Clicked on Subject Navigator from the navigation menu
+INFO     root:test_testCasesSN.py:37 Clicked on Branch A
+INFO     root:test_testCasesSN.py:58 Added to Research Notepad<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">SubjectNavigator/test_testCasesSN.py::Test_testCasesSN::test_copyLocation</td>
+          <td class="col-duration">10.62</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesSN.py:91 ****TestCase 002 - Copy Location***
+INFO     root:test_testCasesSN.py:92 *****Login Successful****
+INFO     root:test_testCasesSN.py:103 Clicked on Copy Location<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">SubjectNavigator/test_testCasesSN.py::Test_testCasesSN::test_find</td>
+          <td class="col-duration">13.74</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>56
+No records found.
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesSN.py:130 ****TestCase 003 - Verify Find and Reset***
+INFO     root:test_testCasesSN.py:134 Subject Navigator menu is available
+INFO     root:test_testCasesSN.py:144 56 Matches Found
+INFO     root:test_testCasesSN.py:154 56  Matches Found
+INFO     root:test_testCasesSN.py:158 ****Search Completed***<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">SubjectNavigator/test_testCasesSN.py::Test_testCasesSN::test_searchOptions</td>
+          <td class="col-duration">9.92</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>43
+12
+3
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesSN.py:164 ****TestCase 005 - Verify Search By All Words***
+INFO     root:test_testCasesSN.py:171 Clicked on the expand search
+INFO     root:test_testCasesSN.py:184 Search Entry - &#x27;Abuse of Right&#x27; 
+INFO     root:test_testCasesSN.py:185 43 No of Matches found
+INFO     root:test_testCasesSN.py:194 Search Entry - &#x27;Clean hands&#x27; doctrine 
+INFO     root:test_testCasesSN.py:195 12 Matches Found
+INFO     root:test_testCasesSN.py:203 Search Entry - &#x27;+&#x27;Clean hands&#x27; + doctrine - claimant 
+INFO     root:test_testCasesSN.py:204 3 Matches Found<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">SubjectNavigator/test_testCasesSN.py::Test_testCasesSN::test_searchByAnyWords</td>
+          <td class="col-duration">10.56</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>388
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesSN.py:208 ****TestCase 006 - Verify Search By Any Words***
+INFO     root:test_testCasesSN.py:215 Clicked on the expand search
+INFO     root:test_testCasesSN.py:229 Search Entry - &#x27;Canada&#x27; 
+INFO     root:test_testCasesSN.py:230 388 No of Matches found<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">SubjectNavigator/test_testCasesSN.py::Test_testCasesSN::test_searchByBoolean</td>
+          <td class="col-duration">10.56</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>5 records found
+66 records found
+174 records found
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesSN.py:254 ****TestCase 007 - Verify Search By Boolean***
+INFO     root:test_testCasesSN.py:258 Subject Navigator menu is available
+INFO     root:test_testCasesSN.py:269 5 records found
+INFO     root:test_testCasesSN.py:279 66 records found
+INFO     root:test_testCasesSN.py:289 174 records found
+INFO     root:test_testCasesSN.py:292 ****Search Completed***<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">SubjectNavigator/test_testCasesSN.py::Test_testCasesSN::test_searchByAllWords</td>
+          <td class="col-duration">7.72</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>43
+12
+3
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesSN.py:298 ****TestCase 008 - Search By All Words***
+INFO     root:test_testCasesSN.py:305 Clicked on the expand search
+INFO     root:test_testCasesSN.py:318 Search Entry - &#x27;Abuse of Right&#x27; 
+INFO     root:test_testCasesSN.py:319 43 No of Matches found
+INFO     root:test_testCasesSN.py:328 Search Entry - &#x27;Clean hands&#x27; doctrine 
+INFO     root:test_testCasesSN.py:329 12 Matches Found
+INFO     root:test_testCasesSN.py:337 Search Entry - &#x27;+&#x27;Clean hands&#x27; + doctrine - claimant 
+INFO     root:test_testCasesSN.py:338 3 Matches Found<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">SubjectNavigator/test_testCasesSN.py::Test_testCasesSN::test_switchlayout</td>
+          <td class="col-duration">6.60</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesSN.py:342 ****TestCase 009 - Verify Card/Compact View***
+INFO     root:test_testCasesSN.py:361 ****Compact View is clicked****<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">SubjectNavigator/test_testCasesSN.py::Test_testCasesSN::test_followTopic</td>
+          <td class="col-duration">12.73</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>You have followed this topic.
+False
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesSN.py:365 ****TestCase 004 - Verify Follow Topic***
+INFO     root:test_testCasesSN.py:378 You have followed this topic. is displayed when Followed Topic option is clicked
+INFO     root:test_testCasesSN.py:385 False
+INFO     root:test_testCasesSN.py:386 follow topic is disabled<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">SubjectNavigator/test_testCasesSN.py::Test_testCasesSN::test_useAsFullTextSearch</td>
+          <td class="col-duration">12.41</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>CDwindow-06581209C03BB4CDC2797C79499BBE18
+[&#x27;CDwindow-06581209C03BB4CDC2797C79499BBE18&#x27;, &#x27;CDwindow-A034D96A97566CC46E33FB4247756566&#x27;]
+×
+Abuse of corporate form (legal personality, etc.)
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesSN.py:391 ****TestCase 010 - Verify Use As Full Text Search***
+INFO     root:test_testCasesSN.py:414 ×
+Abuse of corporate form (legal personality, etc.)  Full Text is present<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">SubjectNavigator/test_testCasesSN.py::Test_testCasesSN::test_documentComparison</td>
+          <td class="col-duration">5.37</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesSN.py:422 ****TestCase 011 - Verify Document Comparison***
+INFO     root:test_testCasesSN.py:433 Clicked on Cross Reference<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">SubjectNavigator/test_testCasesSN.py::Test_testCasesSN::test_fullCaseAnalaysis</td>
+          <td class="col-duration">6.45</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesSN.py:461 ****TestCase 012 - Verify Full Case Analysis***
+INFO     root:test_testCasesSN.py:468 Full Case Analaysis not displayed<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">SubjectNavigator/test_testCasesSN.py::Test_testCasesSN::test_copyCitation</td>
+          <td class="col-duration">7.60</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesSN.py:473 ****TestCase 013 - Verify Copy Citation***
+INFO     root:test_testCasesSN.py:481 Copy Citation<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">SubjectNavigator/test_testCasesSN.py::Test_testCasesSN::test_disputeDetails</td>
+          <td class="col-duration">9.04</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>CDwindow-06581209C03BB4CDC2797C79499BBE18
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesSN.py:485 ****TestCase 014 - Verify Dispute Details***
+INFO     root:test_testCasesSN.py:496 Clicked on Disputes<br/></div></td></tr></tbody></table></body></html>

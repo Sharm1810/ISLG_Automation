@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) { // eslint-disable-line no-redeclare
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function findAll(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sortColumn(elem) {
+    toggleSortStates(elem);
+    const colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    let key;
+    if (elem.classList.contains('result')) {
+        key = keyResult;
+    } else if (elem.classList.contains('links')) {
+        key = keyLink;
+    } else {
+        key = keyAlpha;
+    }
+    sortTable(elem, key(colIndex));
+}
+
+function showAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(showExtras);
+}
+
+function hideAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(hideExtras);
+}
+
+function showExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.remove('collapsed');
+    expandcollapse.classList.remove('expander');
+    expandcollapse.classList.add('collapser');
+}
+
+function hideExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.add('collapsed');
+    expandcollapse.classList.remove('collapser');
+    expandcollapse.classList.add('expander');
+}
+
+function showFilters() {
+    const filterItems = document.getElementsByClassName('filter');
+    for (let i = 0; i < filterItems.length; i++)
+        filterItems[i].hidden = false;
+}
+
+function addCollapse() {
+    // Add links for show/hide all
+    const resulttable = find('table#results-table');
+    const showhideall = document.createElement('p');
+    showhideall.innerHTML = '<a href="javascript:showAllExtras()">Show all details</a> / ' +
+                            '<a href="javascript:hideAllExtras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    findAll('.col-result').forEach(function(elem) {
+        const collapsed = getQueryParameter('collapsed') || 'Passed';
+        const extras = elem.parentNode.nextElementSibling;
+        const expandcollapse = document.createElement('span');
+        if (extras.classList.contains('collapsed')) {
+            expandcollapse.classList.add('expander');
+        } else if (collapsed.includes(elem.innerHTML)) {
+            extras.classList.add('collapsed');
+            expandcollapse.classList.add('expander');
+        } else {
+            expandcollapse.classList.add('collapser');
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener('click', function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains('collapsed')) {
+                showExtras(event.currentTarget);
+            } else {
+                hideExtras(event.currentTarget);
+            }
+        });
+    });
+}
+
+function getQueryParameter(name) {
+    const match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function init () { // eslint-disable-line no-unused-vars
+    resetSortHeaders();
+
+    addCollapse();
+
+    showFilters();
+
+    sortColumn(find('.initial-sort'));
+
+    findAll('.sortable').forEach(function(elem) {
+        elem.addEventListener('click',
+            function() {
+                sortColumn(elem);
+            }, false);
+    });
+}
+
+function sortTable(clicked, keyFunc) {
+    const rows = findAll('.results-table-row');
+    const reversed = !clicked.classList.contains('asc');
+    const sortedRows = sort(rows, keyFunc, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    const thead = document.getElementById('results-table-head');
+    document.getElementById('results-table').remove();
+    const parent = document.createElement('table');
+    parent.id = 'results-table';
+    parent.appendChild(thead);
+    sortedRows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName('BODY')[0].appendChild(parent);
+}
+
+function sort(items, keyFunc, reversed) {
+    const sortArray = items.map(function(item, i) {
+        return [keyFunc(item), i];
+    });
+
+    sortArray.sort(function(a, b) {
+        const keyA = a[0];
+        const keyB = b[0];
+
+        if (keyA == keyB) return 0;
+
+        if (reversed) {
+            return keyA < keyB ? 1 : -1;
+        } else {
+            return keyA > keyB ? 1 : -1;
+        }
+    });
+
+    return sortArray.map(function(item) {
+        const index = item[1];
+        return items[index];
+    });
+}
+
+function keyAlpha(colIndex) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[colIndex].firstChild.data.toLowerCase();
+    };
+}
+
+function keyLink(colIndex) {
+    return function(elem) {
+        const dataCell = elem.childNodes[1].childNodes[colIndex].firstChild;
+        return dataCell == null ? '' : dataCell.innerText.toLowerCase();
+    };
+}
+
+function keyResult(colIndex) {
+    return function(elem) {
+        const strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+            'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[colIndex].firstChild.data);
+    };
+}
+
+function resetSortHeaders() {
+    findAll('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    findAll('.sortable').forEach(function(elem) {
+        const icon = document.createElement('div');
+        icon.className = 'sort-icon';
+        icon.textContent = 'vvv';
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove('desc', 'active');
+        elem.classList.add('asc', 'inactive');
+    });
+}
+
+function toggleSortStates(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        resetSortHeaders();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function isAllRowsHidden(value) {
+    return value.hidden == false;
+}
+
+function filterTable(elem) { // eslint-disable-line no-unused-vars
+    const outcomeAtt = 'data-test-result';
+    const outcome = elem.getAttribute(outcomeAtt);
+    const classOutcome = outcome + ' results-table-row';
+    const outcomeRows = document.getElementsByClassName(classOutcome);
+
+    for(let i = 0; i < outcomeRows.length; i++){
+        outcomeRows[i].hidden = !elem.checked;
+    }
+
+    const rows = findAll('.results-table-row').filter(isAllRowsHidden);
+    const allRowsHidden = rows.length == 0 ? true : false;
+    const notFoundMessage = document.getElementById('not-found-message');
+    notFoundMessage.hidden = !allRowsHidden;
+}
+</script>
+    <h1>report.html</h1>
+    <p>Report generated on 08-Aug-2022 at 20:24:25 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>Application: </td>
+        <td>ISLG Subscriber</td></tr>
+      <tr>
+        <td>Packages</td>
+        <td>{"pluggy": "1.0.0", "py": "1.11.0", "pytest": "6.2.5"}</td></tr>
+      <tr>
+        <td>Platform</td>
+        <td>Windows-10-10.0.19044-SP0</td></tr>
+      <tr>
+        <td>Project Name</td>
+        <td>ISLG Subscriber</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>3.9.6</td></tr>
+      <tr>
+        <td>Tester Name</td>
+        <td>Sharmila</td></tr></table>
+    <h2>Summary</h2>
+    <p>13 tests ran in 323.33 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">13 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable" col="duration">Duration</th>
+          <th class="sortable links" col="links">Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Modules/test_testCasesArticleCitator.py::Test_testCasesArticleCitator::test_addtoResearch</td>
+          <td class="col-duration">49.31</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesArticleCitator.py:37 ****TestCase AC-001 - Verify Add to Research***
+INFO     root:test_testCasesArticleCitator.py:38 *****Login Successful****
+INFO     root:test_testCasesArticleCitator.py:39 **** Article Citator testing *****
+INFO     root:test_testCasesArticleCitator.py:44 Article Citator menu is available
+INFO     root:test_testCasesArticleCitator.py:50 First Branch is expanded
+INFO     root:test_testCasesArticleCitator.py:53 Clicked on Actions
+INFO     root:test_testCasesArticleCitator.py:56 Clicked on Research Notepad
+INFO     root:test_testCasesArticleCitator.py:61 Selected the option
+INFO     root:test_testCasesArticleCitator.py:64 Clicked on Add Research
+INFO     root:test_testCasesArticleCitator.py:66 Selected Entire Document option
+INFO     root:test_testCasesArticleCitator.py:68 Clicked on Add
+INFO     root:test_testCasesArticleCitator.py:71 Displayed message Added to your research notepad.<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Modules/test_testCasesArticleCitator.py::Test_testCasesArticleCitator::test_documentComparison</td>
+          <td class="col-duration">26.02</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesArticleCitator.py:77 ****TestCase AC-002 - Verify Document to Comparison***
+INFO     root:test_testCasesArticleCitator.py:82 First Branch is expanded
+INFO     root:test_testCasesArticleCitator.py:85 Clicked on Actions
+INFO     root:test_testCasesArticleCitator.py:88 Clicked On Document Comparison
+INFO     root:test_testCasesArticleCitator.py:91 Selected the first option
+INFO     root:test_testCasesArticleCitator.py:94 Clicked on Add Document Comparison
+INFO     root:test_testCasesArticleCitator.py:97 Displayed messageAdded to your document comparison group.<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Modules/test_testCasesArticleCitator.py::Test_testCasesArticleCitator::test_copyLocation</td>
+          <td class="col-duration">19.32</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesArticleCitator.py:103 ****TestCase AC-003 - Verify Copy Location***
+INFO     root:test_testCasesArticleCitator.py:108 First Branch is expanded
+INFO     root:test_testCasesArticleCitator.py:111 Clicked on Actions
+INFO     root:test_testCasesArticleCitator.py:114 Clicked on Copy Location<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Modules/test_testCasesArticleCitator.py::Test_testCasesArticleCitator::test_followTopic</td>
+          <td class="col-duration">20.91</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesArticleCitator.py:138 ****TestCase AC-004 - Verify Follow Topic***
+INFO     root:test_testCasesArticleCitator.py:143 First Branch is expanded
+INFO     root:test_testCasesArticleCitator.py:146 Clicked on Actions
+INFO     root:test_testCasesArticleCitator.py:149 Clicked on Follow Topic
+INFO     root:test_testCasesArticleCitator.py:152 Displayed messageYou have followed this topic.<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Modules/test_testCasesArticleCitator.py::Test_testCasesArticleCitator::test_collapse</td>
+          <td class="col-duration">19.69</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesArticleCitator.py:166 ****TestCase AC-005 - Verify Collapse- Provision tab and Instrumentation Deatils***
+INFO     root:test_testCasesArticleCitator.py:167 *****Login Successful****
+INFO     root:test_testCasesArticleCitator.py:168 **** Subject Navigator testing *****
+INFO     root:test_testCasesArticleCitator.py:176 Provision/Rule References is displayed
+INFO     root:test_testCasesArticleCitator.py:179 Instrument Details is displayed<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Modules/test_testCasesArticleCitator.py::Test_testCasesArticleCitator::test_provisionTab</td>
+          <td class="col-duration">23.83</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>self.driver.execute_script(&quot;window.scrollBy(0,1800)&quot;, &quot;&quot;)
+self.driver.execute_script(&quot;window.scrollBy(0,1800)&quot;, &quot;&quot;)
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesArticleCitator.py:185 ****TestCase AC-006 - Verify Provision Tab***
+INFO     root:test_testCasesArticleCitator.py:186 *****Login Successful****
+INFO     root:test_testCasesArticleCitator.py:187 **** Subject Navigator testing *****
+INFO     root:test_testCasesArticleCitator.py:192 Article Citator menu is available
+INFO     root:test_testCasesArticleCitator.py:198 First Branch is expanded
+INFO     root:test_testCasesArticleCitator.py:202 Provision Tab is set to focus
+INFO     root:test_testCasesArticleCitator.py:209 None
+INFO     root:test_testCasesArticleCitator.py:214 self.driver.execute_script(&quot;window.scrollBy(0,1800)&quot;, &quot;&quot;)  copied citation
+INFO     root:test_testCasesArticleCitator.py:226 Clicked on Instrument Details Tab
+INFO     root:test_testCasesArticleCitator.py:231 None
+INFO     root:test_testCasesArticleCitator.py:236 self.driver.execute_script(&quot;window.scrollBy(0,1800)&quot;, &quot;&quot;)  copied citation<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Modules/test_testCasesArticleCitator.py::Test_testCasesArticleCitator::test_provisionTabFind</td>
+          <td class="col-duration">44.79</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesArticleCitator.py:250 ****TestCase AC-007 - Verify Find in Provision Tab***
+INFO     root:test_testCasesArticleCitator.py:255 Article Citator menu is available
+INFO     root:test_testCasesArticleCitator.py:261 First Branch is expanded
+INFO     root:test_testCasesArticleCitator.py:264 Clicking on Provision tab
+INFO     root:test_testCasesArticleCitator.py:282 
+INFO     root:test_testCasesArticleCitator.py:285 &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;278a0463722e1b411a12cb71506621ab&quot;, element=&quot;aaf9ac8b-b04a-42bf-b2f7-4d7ba01641bd&quot;)&gt;
+INFO     root:test_testCasesArticleCitator.py:282 No records found.
+INFO     root:test_testCasesArticleCitator.py:285 &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;278a0463722e1b411a12cb71506621ab&quot;, element=&quot;aaf9ac8b-b04a-42bf-b2f7-4d7ba01641bd&quot;)&gt;
+INFO     root:test_testCasesArticleCitator.py:282 No records found.
+INFO     root:test_testCasesArticleCitator.py:285 &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;278a0463722e1b411a12cb71506621ab&quot;, element=&quot;aaf9ac8b-b04a-42bf-b2f7-4d7ba01641bd&quot;)&gt;<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Modules/test_testCasesArticleCitator.py::Test_testCasesArticleCitator::test_instrumentDetailsTab</td>
+          <td class="col-duration">20.01</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>Element exist -Instrument Details
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesArticleCitator.py:291 ****TestCase AC-008 - Verify Instrument Deatils Tab***
+INFO     root:test_testCasesArticleCitator.py:296 Article Citator menu is available
+INFO     root:test_testCasesArticleCitator.py:301 Thirty First Branch is expanded
+INFO     root:test_testCasesArticleCitator.py:304 Clicked on Instrument Details Tab<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Modules/test_testCasesArticleCitator.py::Test_testCasesArticleCitator::test_find</td>
+          <td class="col-duration">22.17</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesArticleCitator.py:309 ****TestCase AC-009 - Validate Find and Reset***
+INFO     root:test_testCasesArticleCitator.py:314 Article Citator menu is available
+INFO     root:test_testCasesArticleCitator.py:332 5 Matches Found<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Modules/test_testCasesArticleCitator.py::Test_testCasesArticleCitator::test_fullCaseAnalysis</td>
+          <td class="col-duration">17.56</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesArticleCitator.py:338 ****TestCase AC-010 - Validate Full Case Analysis***
+INFO     root:test_testCasesArticleCitator.py:347 Thirty First Branch is expanded
+INFO     root:test_testCasesArticleCitator.py:349 Clicked on Full Case Analysis<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Modules/test_testCasesArticleCitator.py::Test_testCasesArticleCitator::test_provisionExtract</td>
+          <td class="col-duration">20.17</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesArticleCitator.py:378 ****TestCase AC-011 - Validate Provision Extract***
+INFO     root:test_testCasesArticleCitator.py:389 Fourth Branch is expanded
+INFO     root:test_testCasesArticleCitator.py:395 Document Extract for Provision: APPENDIX I Article 1(2)<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Modules/test_testCasesArticleCitator.py::Test_testCasesArticleCitator::test_viewAllProvisions</td>
+          <td class="col-duration">22.16</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesArticleCitator.py:402 ****TestCase AC-012 - Validate View All Provisions***
+INFO     root:test_testCasesArticleCitator.py:414 Fourth Branch is expanded
+INFO     root:test_testCasesArticleCitator.py:422 Clicked on View All provisions<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Modules/test_testCasesArticleCitator.py::Test_testCasesArticleCitator::test_filterType</td>
+          <td class="col-duration">16.92</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesArticleCitator.py:429 ****TestCase AC-012 - Validate Filter Type and Clear Filters***
+INFO     root:test_testCasesArticleCitator.py:436 Filter Type is expanded
+INFO     root:test_testCasesArticleCitator.py:444 Arbitration Rules is displayed
+INFO     root:test_testCasesArticleCitator.py:453 International Treaties &amp; Rules is displayed
+INFO     root:test_testCasesArticleCitator.py:461 Bilateral Investment Treaties (BITs) is displayed
+INFO     root:test_testCasesArticleCitator.py:468 Free Trade Agreement (FTAs)  is displayed
+INFO     root:test_testCasesArticleCitator.py:475 NAFTA is displayed
+INFO     root:test_testCasesArticleCitator.py:482 Regional/Sectoral Agreements  is displayed<br/></div></td></tr></tbody></table></body></html>

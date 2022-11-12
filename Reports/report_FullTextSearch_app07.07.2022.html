@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) { // eslint-disable-line no-redeclare
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function findAll(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sortColumn(elem) {
+    toggleSortStates(elem);
+    const colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    let key;
+    if (elem.classList.contains('result')) {
+        key = keyResult;
+    } else if (elem.classList.contains('links')) {
+        key = keyLink;
+    } else {
+        key = keyAlpha;
+    }
+    sortTable(elem, key(colIndex));
+}
+
+function showAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(showExtras);
+}
+
+function hideAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(hideExtras);
+}
+
+function showExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.remove('collapsed');
+    expandcollapse.classList.remove('expander');
+    expandcollapse.classList.add('collapser');
+}
+
+function hideExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.add('collapsed');
+    expandcollapse.classList.remove('collapser');
+    expandcollapse.classList.add('expander');
+}
+
+function showFilters() {
+    const filterItems = document.getElementsByClassName('filter');
+    for (let i = 0; i < filterItems.length; i++)
+        filterItems[i].hidden = false;
+}
+
+function addCollapse() {
+    // Add links for show/hide all
+    const resulttable = find('table#results-table');
+    const showhideall = document.createElement('p');
+    showhideall.innerHTML = '<a href="javascript:showAllExtras()">Show all details</a> / ' +
+                            '<a href="javascript:hideAllExtras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    findAll('.col-result').forEach(function(elem) {
+        const collapsed = getQueryParameter('collapsed') || 'Passed';
+        const extras = elem.parentNode.nextElementSibling;
+        const expandcollapse = document.createElement('span');
+        if (extras.classList.contains('collapsed')) {
+            expandcollapse.classList.add('expander');
+        } else if (collapsed.includes(elem.innerHTML)) {
+            extras.classList.add('collapsed');
+            expandcollapse.classList.add('expander');
+        } else {
+            expandcollapse.classList.add('collapser');
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener('click', function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains('collapsed')) {
+                showExtras(event.currentTarget);
+            } else {
+                hideExtras(event.currentTarget);
+            }
+        });
+    });
+}
+
+function getQueryParameter(name) {
+    const match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function init () { // eslint-disable-line no-unused-vars
+    resetSortHeaders();
+
+    addCollapse();
+
+    showFilters();
+
+    sortColumn(find('.initial-sort'));
+
+    findAll('.sortable').forEach(function(elem) {
+        elem.addEventListener('click',
+            function() {
+                sortColumn(elem);
+            }, false);
+    });
+}
+
+function sortTable(clicked, keyFunc) {
+    const rows = findAll('.results-table-row');
+    const reversed = !clicked.classList.contains('asc');
+    const sortedRows = sort(rows, keyFunc, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    const thead = document.getElementById('results-table-head');
+    document.getElementById('results-table').remove();
+    const parent = document.createElement('table');
+    parent.id = 'results-table';
+    parent.appendChild(thead);
+    sortedRows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName('BODY')[0].appendChild(parent);
+}
+
+function sort(items, keyFunc, reversed) {
+    const sortArray = items.map(function(item, i) {
+        return [keyFunc(item), i];
+    });
+
+    sortArray.sort(function(a, b) {
+        const keyA = a[0];
+        const keyB = b[0];
+
+        if (keyA == keyB) return 0;
+
+        if (reversed) {
+            return keyA < keyB ? 1 : -1;
+        } else {
+            return keyA > keyB ? 1 : -1;
+        }
+    });
+
+    return sortArray.map(function(item) {
+        const index = item[1];
+        return items[index];
+    });
+}
+
+function keyAlpha(colIndex) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[colIndex].firstChild.data.toLowerCase();
+    };
+}
+
+function keyLink(colIndex) {
+    return function(elem) {
+        const dataCell = elem.childNodes[1].childNodes[colIndex].firstChild;
+        return dataCell == null ? '' : dataCell.innerText.toLowerCase();
+    };
+}
+
+function keyResult(colIndex) {
+    return function(elem) {
+        const strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+            'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[colIndex].firstChild.data);
+    };
+}
+
+function resetSortHeaders() {
+    findAll('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    findAll('.sortable').forEach(function(elem) {
+        const icon = document.createElement('div');
+        icon.className = 'sort-icon';
+        icon.textContent = 'vvv';
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove('desc', 'active');
+        elem.classList.add('asc', 'inactive');
+    });
+}
+
+function toggleSortStates(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        resetSortHeaders();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function isAllRowsHidden(value) {
+    return value.hidden == false;
+}
+
+function filterTable(elem) { // eslint-disable-line no-unused-vars
+    const outcomeAtt = 'data-test-result';
+    const outcome = elem.getAttribute(outcomeAtt);
+    const classOutcome = outcome + ' results-table-row';
+    const outcomeRows = document.getElementsByClassName(classOutcome);
+
+    for(let i = 0; i < outcomeRows.length; i++){
+        outcomeRows[i].hidden = !elem.checked;
+    }
+
+    const rows = findAll('.results-table-row').filter(isAllRowsHidden);
+    const allRowsHidden = rows.length == 0 ? true : false;
+    const notFoundMessage = document.getElementById('not-found-message');
+    notFoundMessage.hidden = !allRowsHidden;
+}
+</script>
+    <h1>report.html</h1>
+    <p>Report generated on 07-Jul-2022 at 21:37:13 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>Application: </td>
+        <td>ISLG Subscriber</td></tr>
+      <tr>
+        <td>Packages</td>
+        <td>{"pluggy": "1.0.0", "py": "1.11.0", "pytest": "6.2.5"}</td></tr>
+      <tr>
+        <td>Platform</td>
+        <td>Windows-10-10.0.19044-SP0</td></tr>
+      <tr>
+        <td>Project Name</td>
+        <td>ISLG Subscriber</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>3.9.6</td></tr>
+      <tr>
+        <td>Tester Name</td>
+        <td>Sharmila</td></tr></table>
+    <h2>Summary</h2>
+    <p>12 tests ran in 330.30 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">12 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable" col="duration">Duration</th>
+          <th class="sortable links" col="links">Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">FullTextSearch/test_testCasesFullTextSearch.py::Test_FullTextSearch::test_SearchAndReset</td>
+          <td class="col-duration">69.02</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>3316 documents
+6537 documents
+3 documents
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesFullTextSearch.py:47 ****TestCase Full Text Search-001 - Validate Search &amp; Reset***
+INFO     root:test_testCasesFullTextSearch.py:48 *****Login Successful****
+INFO     root:test_testCasesFullTextSearch.py:49 **** Full Text Search testing *****
+INFO     root:test_testCasesFullTextSearch.py:52 Full Text Search menu was clicked
+INFO     root:test_testCasesFullTextSearch.py:56 Full Text Search
+INFO     root:test_testCasesFullTextSearch.py:74 3316 documents Matches Found
+INFO     root:test_testCasesFullTextSearch.py:78 Clicked on Reset
+INFO     root:test_testCasesFullTextSearch.py:74 6537 documents Matches Found
+INFO     root:test_testCasesFullTextSearch.py:78 Clicked on Reset
+INFO     root:test_testCasesFullTextSearch.py:74 3 documents Matches Found
+INFO     root:test_testCasesFullTextSearch.py:78 Clicked on Reset<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">FullTextSearch/test_testCasesFullTextSearch.py::Test_FullTextSearch::test_CopyCitation</td>
+          <td class="col-duration">14.43</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesFullTextSearch.py:84 ****TestCase Full Text Search-002 - Validate Copy Citation***
+INFO     root:test_testCasesFullTextSearch.py:85 *****Login Successful****
+INFO     root:test_testCasesFullTextSearch.py:86 **** Full Text Search testing *****
+INFO     root:test_testCasesFullTextSearch.py:89 Full Text Search menu was clicked
+INFO     root:test_testCasesFullTextSearch.py:93 Full Text Search
+INFO     root:test_testCasesFullTextSearch.py:99 Clicked on Copy Citation<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">FullTextSearch/test_testCasesFullTextSearch.py::Test_FullTextSearch::test_ResearchNotepad</td>
+          <td class="col-duration">22.35</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesFullTextSearch.py:110 ****TestCase Full Text Search-003 - Validate Research Notepad***
+INFO     root:test_testCasesFullTextSearch.py:111 *****Login Successful****
+INFO     root:test_testCasesFullTextSearch.py:112 **** Full Text Search testing *****
+INFO     root:test_testCasesFullTextSearch.py:115 Full Text Search menu was clicked
+INFO     root:test_testCasesFullTextSearch.py:123 Clicked on Actions
+INFO     root:test_testCasesFullTextSearch.py:126 Clicked on Research Notepad
+INFO     root:test_testCasesFullTextSearch.py:129 Clicked on Research Topic
+INFO     root:test_testCasesFullTextSearch.py:132 Clicked on Research Add button<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">FullTextSearch/test_testCasesFullTextSearch.py::Test_FullTextSearch::test_ViewDocument</td>
+          <td class="col-duration">32.45</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>Treaty or Rules
+[&#x27;CDwindow-5C977985A9A53BE5B88E8176FE8D28F0&#x27;, &#x27;CDwindow-637575FB1C3D90E8A599FF48C43FD55E&#x27;]
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesFullTextSearch.py:138 ****TestCase Full Text Search-005 - Validate View Document***
+INFO     root:test_testCasesFullTextSearch.py:139 *****Login Successful****
+INFO     root:test_testCasesFullTextSearch.py:140 **** Full Text Search testing *****
+INFO     root:test_testCasesFullTextSearch.py:143 Full Text Search menu was clicked
+INFO     root:test_testCasesFullTextSearch.py:163 Clicked on View Document<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">FullTextSearch/test_testCasesFullTextSearch.py::Test_FullTextSearch::test_AllWords</td>
+          <td class="col-duration">15.66</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2889 documentscontaining: &quot;test&quot;
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesFullTextSearch.py:177 ****TestCase Full Text Search-006 - Validate All Words***
+INFO     root:test_testCasesFullTextSearch.py:178 *****Login Successful****
+INFO     root:test_testCasesFullTextSearch.py:179 **** Full Text Search testing *****
+INFO     root:test_testCasesFullTextSearch.py:182 Full Text Search menu was clicked
+INFO     root:test_testCasesFullTextSearch.py:195 2889 documentscontaining: &quot;test&quot;<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">FullTextSearch/test_testCasesFullTextSearch.py::Test_FullTextSearch::test_AnyWords</td>
+          <td class="col-duration">15.38</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2889 documentscontaining: &quot;test&quot;
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesFullTextSearch.py:199 ****TestCase Full Text Search-007 - Validate Any Words***
+INFO     root:test_testCasesFullTextSearch.py:200 *****Login Successful****
+INFO     root:test_testCasesFullTextSearch.py:201 **** Full Text Search testing *****
+INFO     root:test_testCasesFullTextSearch.py:204 Full Text Search menu was clicked
+INFO     root:test_testCasesFullTextSearch.py:217 2889 documentscontaining: &quot;test&quot;<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">FullTextSearch/test_testCasesFullTextSearch.py::Test_FullTextSearch::test_Boolean</td>
+          <td class="col-duration">15.06</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2889 documentscontaining: &quot;test&quot;
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesFullTextSearch.py:221 ****TestCase Full Text Search-008 - Validate Boolean***
+INFO     root:test_testCasesFullTextSearch.py:222 *****Login Successful****
+INFO     root:test_testCasesFullTextSearch.py:223 **** Full Text Search testing *****
+INFO     root:test_testCasesFullTextSearch.py:226 Full Text Search menu was clicked
+INFO     root:test_testCasesFullTextSearch.py:233 False
+INFO     root:test_testCasesFullTextSearch.py:234 Boolean option is selected by default
+INFO     root:test_testCasesFullTextSearch.py:242 2889 documentscontaining: &quot;test&quot;<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">FullTextSearch/test_testCasesFullTextSearch.py::Test_FullTextSearch::test_DefaultliguisticAids</td>
+          <td class="col-duration">6.44</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesFullTextSearch.py:246 ****TestCase Full Text Search-009 - Validate default selection Linguistic Aids ***
+INFO     root:test_testCasesFullTextSearch.py:247 *****Login Successful****
+INFO     root:test_testCasesFullTextSearch.py:248 **** Full Text Search testing *****
+INFO     root:test_testCasesFullTextSearch.py:251 Full Text Search menu was clicked
+INFO     root:test_testCasesFullTextSearch.py:256 True
+INFO     root:test_testCasesFullTextSearch.py:258 True
+INFO     root:test_testCasesFullTextSearch.py:260 &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;00f3ee56df71d447fc7ca3f66735eb3a&quot;, element=&quot;99d525de-afba-4856-b52d-e736ff72e23d&quot;)&gt;
+INFO     root:test_testCasesFullTextSearch.py:263 1<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">FullTextSearch/test_testCasesFullTextSearch.py::Test_FullTextSearch::test_BasicFilters</td>
+          <td class="col-duration">43.31</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>7
+English
+record found
+12
+Jan
+Month found
+201
+1922
+1923
+1924
+1925
+1926
+1927
+1928
+1929
+1930
+1931
+1932
+1933
+1934
+1935
+1936
+1937
+1938
+1939
+1940
+1941
+1942
+1943
+1944
+1945
+1946
+1947
+1948
+1949
+1950
+1951
+1952
+1953
+1954
+1955
+1956
+1957
+1958
+1959
+1960
+1961
+1962
+1963
+1964
+1965
+1966
+1967
+1968
+1969
+1970
+1971
+1972
+1973
+1974
+1975
+1976
+1977
+1978
+1979
+1980
+1981
+1982
+1983
+1984
+1985
+1986
+1987
+1988
+1989
+1990
+1991
+1992
+1993
+1994
+1995
+1996
+1997
+1998
+1999
+2000
+2001
+2002
+2003
+2004
+2005
+2006
+2007
+2008
+2009
+2010
+2011
+2012
+2013
+2014
+2015
+2016
+2017
+2018
+2019
+2020
+2021
+Year found
+42
+27
+28
+29
+30
+31
+1
+2
+date found
+12
+Jan
+Feb
+Mar
+Apr
+May
+Jun
+Jul
+Aug
+Sep
+Oct
+Nov
+Dec
+Month found
+201
+1922
+1923
+1924
+1925
+1926
+1927
+1928
+1929
+1930
+1931
+1932
+1933
+1934
+1935
+1936
+1937
+1938
+1939
+1940
+1941
+1942
+1943
+1944
+1945
+1946
+1947
+1948
+1949
+1950
+1951
+1952
+1953
+1954
+1955
+1956
+1957
+1958
+1959
+1960
+1961
+1962
+1963
+1964
+1965
+1966
+1967
+1968
+1969
+1970
+1971
+1972
+1973
+1974
+1975
+1976
+1977
+1978
+1979
+1980
+1981
+1982
+1983
+1984
+1985
+1986
+1987
+1988
+1989
+1990
+1991
+1992
+1993
+1994
+1995
+1996
+1997
+1998
+1999
+2000
+2001
+2002
+2003
+2004
+2005
+2006
+2007
+2008
+2009
+2010
+2011
+2012
+2013
+2014
+2015
+2016
+2017
+2018
+2019
+2020
+2021
+2022
+Year found
+42
+27
+28
+date found
+English
+record found
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesFullTextSearch.py:267 ****TestCase Full Text Search-010 - Validate Basic Filters Language and Dispute Dates ***
+INFO     root:test_testCasesFullTextSearch.py:268 *****Login Successful****
+INFO     root:test_testCasesFullTextSearch.py:269 **** Full Text Search testing *****
+INFO     root:test_testCasesFullTextSearch.py:272 Full Text Search menu was clicked
+INFO     root:test_testCasesFullTextSearch.py:282 English
+INFO     root:test_testCasesFullTextSearch.py:295 Jan
+INFO     root:test_testCasesFullTextSearch.py:306 1922
+INFO     root:test_testCasesFullTextSearch.py:306 1923
+INFO     root:test_testCasesFullTextSearch.py:306 1924
+INFO     root:test_testCasesFullTextSearch.py:306 1925
+INFO     root:test_testCasesFullTextSearch.py:306 1926
+INFO     root:test_testCasesFullTextSearch.py:306 1927
+INFO     root:test_testCasesFullTextSearch.py:306 1928
+INFO     root:test_testCasesFullTextSearch.py:306 1929
+INFO     root:test_testCasesFullTextSearch.py:306 1930
+INFO     root:test_testCasesFullTextSearch.py:306 1931
+INFO     root:test_testCasesFullTextSearch.py:306 1932
+INFO     root:test_testCasesFullTextSearch.py:306 1933
+INFO     root:test_testCasesFullTextSearch.py:306 1934
+INFO     root:test_testCasesFullTextSearch.py:306 1935
+INFO     root:test_testCasesFullTextSearch.py:306 1936
+INFO     root:test_testCasesFullTextSearch.py:306 1937
+INFO     root:test_testCasesFullTextSearch.py:306 1938
+INFO     root:test_testCasesFullTextSearch.py:306 1939
+INFO     root:test_testCasesFullTextSearch.py:306 1940
+INFO     root:test_testCasesFullTextSearch.py:306 1941
+INFO     root:test_testCasesFullTextSearch.py:306 1942
+INFO     root:test_testCasesFullTextSearch.py:306 1943
+INFO     root:test_testCasesFullTextSearch.py:306 1944
+INFO     root:test_testCasesFullTextSearch.py:306 1945
+INFO     root:test_testCasesFullTextSearch.py:306 1946
+INFO     root:test_testCasesFullTextSearch.py:306 1947
+INFO     root:test_testCasesFullTextSearch.py:306 1948
+INFO     root:test_testCasesFullTextSearch.py:306 1949
+INFO     root:test_testCasesFullTextSearch.py:306 1950
+INFO     root:test_testCasesFullTextSearch.py:306 1951
+INFO     root:test_testCasesFullTextSearch.py:306 1952
+INFO     root:test_testCasesFullTextSearch.py:306 1953
+INFO     root:test_testCasesFullTextSearch.py:306 1954
+INFO     root:test_testCasesFullTextSearch.py:306 1955
+INFO     root:test_testCasesFullTextSearch.py:306 1956
+INFO     root:test_testCasesFullTextSearch.py:306 1957
+INFO     root:test_testCasesFullTextSearch.py:306 1958
+INFO     root:test_testCasesFullTextSearch.py:306 1959
+INFO     root:test_testCasesFullTextSearch.py:306 1960
+INFO     root:test_testCasesFullTextSearch.py:306 1961
+INFO     root:test_testCasesFullTextSearch.py:306 1962
+INFO     root:test_testCasesFullTextSearch.py:306 1963
+INFO     root:test_testCasesFullTextSearch.py:306 1964
+INFO     root:test_testCasesFullTextSearch.py:306 1965
+INFO     root:test_testCasesFullTextSearch.py:306 1966
+INFO     root:test_testCasesFullTextSearch.py:306 1967
+INFO     root:test_testCasesFullTextSearch.py:306 1968
+INFO     root:test_testCasesFullTextSearch.py:306 1969
+INFO     root:test_testCasesFullTextSearch.py:306 1970
+INFO     root:test_testCasesFullTextSearch.py:306 1971
+INFO     root:test_testCasesFullTextSearch.py:306 1972
+INFO     root:test_testCasesFullTextSearch.py:306 1973
+INFO     root:test_testCasesFullTextSearch.py:306 1974
+INFO     root:test_testCasesFullTextSearch.py:306 1975
+INFO     root:test_testCasesFullTextSearch.py:306 1976
+INFO     root:test_testCasesFullTextSearch.py:306 1977
+INFO     root:test_testCasesFullTextSearch.py:306 1978
+INFO     root:test_testCasesFullTextSearch.py:306 1979
+INFO     root:test_testCasesFullTextSearch.py:306 1980
+INFO     root:test_testCasesFullTextSearch.py:306 1981
+INFO     root:test_testCasesFullTextSearch.py:306 1982
+INFO     root:test_testCasesFullTextSearch.py:306 1983
+INFO     root:test_testCasesFullTextSearch.py:306 1984
+INFO     root:test_testCasesFullTextSearch.py:306 1985
+INFO     root:test_testCasesFullTextSearch.py:306 1986
+INFO     root:test_testCasesFullTextSearch.py:306 1987
+INFO     root:test_testCasesFullTextSearch.py:306 1988
+INFO     root:test_testCasesFullTextSearch.py:306 1989
+INFO     root:test_testCasesFullTextSearch.py:306 1990
+INFO     root:test_testCasesFullTextSearch.py:306 1991
+INFO     root:test_testCasesFullTextSearch.py:306 1992
+INFO     root:test_testCasesFullTextSearch.py:306 1993
+INFO     root:test_testCasesFullTextSearch.py:306 1994
+INFO     root:test_testCasesFullTextSearch.py:306 1995
+INFO     root:test_testCasesFullTextSearch.py:306 1996
+INFO     root:test_testCasesFullTextSearch.py:306 1997
+INFO     root:test_testCasesFullTextSearch.py:306 1998
+INFO     root:test_testCasesFullTextSearch.py:306 1999
+INFO     root:test_testCasesFullTextSearch.py:306 2000
+INFO     root:test_testCasesFullTextSearch.py:306 2001
+INFO     root:test_testCasesFullTextSearch.py:306 2002
+INFO     root:test_testCasesFullTextSearch.py:306 2003
+INFO     root:test_testCasesFullTextSearch.py:306 2004
+INFO     root:test_testCasesFullTextSearch.py:306 2005
+INFO     root:test_testCasesFullTextSearch.py:306 2006
+INFO     root:test_testCasesFullTextSearch.py:306 2007
+INFO     root:test_testCasesFullTextSearch.py:306 2008
+INFO     root:test_testCasesFullTextSearch.py:306 2009
+INFO     root:test_testCasesFullTextSearch.py:306 2010
+INFO     root:test_testCasesFullTextSearch.py:306 2011
+INFO     root:test_testCasesFullTextSearch.py:306 2012
+INFO     root:test_testCasesFullTextSearch.py:306 2013
+INFO     root:test_testCasesFullTextSearch.py:306 2014
+INFO     root:test_testCasesFullTextSearch.py:306 2015
+INFO     root:test_testCasesFullTextSearch.py:306 2016
+INFO     root:test_testCasesFullTextSearch.py:306 2017
+INFO     root:test_testCasesFullTextSearch.py:306 2018
+INFO     root:test_testCasesFullTextSearch.py:306 2019
+INFO     root:test_testCasesFullTextSearch.py:306 2020
+INFO     root:test_testCasesFullTextSearch.py:306 2021
+INFO     root:test_testCasesFullTextSearch.py:316 27
+INFO     root:test_testCasesFullTextSearch.py:316 28
+INFO     root:test_testCasesFullTextSearch.py:316 29
+INFO     root:test_testCasesFullTextSearch.py:316 30
+INFO     root:test_testCasesFullTextSearch.py:316 31
+INFO     root:test_testCasesFullTextSearch.py:316 1
+INFO     root:test_testCasesFullTextSearch.py:316 2
+INFO     root:test_testCasesFullTextSearch.py:329 Jan
+INFO     root:test_testCasesFullTextSearch.py:329 Feb
+INFO     root:test_testCasesFullTextSearch.py:329 Mar
+INFO     root:test_testCasesFullTextSearch.py:329 Apr
+INFO     root:test_testCasesFullTextSearch.py:329 May
+INFO     root:test_testCasesFullTextSearch.py:329 Jun
+INFO     root:test_testCasesFullTextSearch.py:329 Jul
+INFO     root:test_testCasesFullTextSearch.py:329 Aug
+INFO     root:test_testCasesFullTextSearch.py:329 Sep
+INFO     root:test_testCasesFullTextSearch.py:329 Oct
+INFO     root:test_testCasesFullTextSearch.py:329 Nov
+INFO     root:test_testCasesFullTextSearch.py:329 Dec
+INFO     root:test_testCasesFullTextSearch.py:340 1922
+INFO     root:test_testCasesFullTextSearch.py:340 1923
+INFO     root:test_testCasesFullTextSearch.py:340 1924
+INFO     root:test_testCasesFullTextSearch.py:340 1925
+INFO     root:test_testCasesFullTextSearch.py:340 1926
+INFO     root:test_testCasesFullTextSearch.py:340 1927
+INFO     root:test_testCasesFullTextSearch.py:340 1928
+INFO     root:test_testCasesFullTextSearch.py:340 1929
+INFO     root:test_testCasesFullTextSearch.py:340 1930
+INFO     root:test_testCasesFullTextSearch.py:340 1931
+INFO     root:test_testCasesFullTextSearch.py:340 1932
+INFO     root:test_testCasesFullTextSearch.py:340 1933
+INFO     root:test_testCasesFullTextSearch.py:340 1934
+INFO     root:test_testCasesFullTextSearch.py:340 1935
+INFO     root:test_testCasesFullTextSearch.py:340 1936
+INFO     root:test_testCasesFullTextSearch.py:340 1937
+INFO     root:test_testCasesFullTextSearch.py:340 1938
+INFO     root:test_testCasesFullTextSearch.py:340 1939
+INFO     root:test_testCasesFullTextSearch.py:340 1940
+INFO     root:test_testCasesFullTextSearch.py:340 1941
+INFO     root:test_testCasesFullTextSearch.py:340 1942
+INFO     root:test_testCasesFullTextSearch.py:340 1943
+INFO     root:test_testCasesFullTextSearch.py:340 1944
+INFO     root:test_testCasesFullTextSearch.py:340 1945
+INFO     root:test_testCasesFullTextSearch.py:340 1946
+INFO     root:test_testCasesFullTextSearch.py:340 1947
+INFO     root:test_testCasesFullTextSearch.py:340 1948
+INFO     root:test_testCasesFullTextSearch.py:340 1949
+INFO     root:test_testCasesFullTextSearch.py:340 1950
+INFO     root:test_testCasesFullTextSearch.py:340 1951
+INFO     root:test_testCasesFullTextSearch.py:340 1952
+INFO     root:test_testCasesFullTextSearch.py:340 1953
+INFO     root:test_testCasesFullTextSearch.py:340 1954
+INFO     root:test_testCasesFullTextSearch.py:340 1955
+INFO     root:test_testCasesFullTextSearch.py:340 1956
+INFO     root:test_testCasesFullTextSearch.py:340 1957
+INFO     root:test_testCasesFullTextSearch.py:340 1958
+INFO     root:test_testCasesFullTextSearch.py:340 1959
+INFO     root:test_testCasesFullTextSearch.py:340 1960
+INFO     root:test_testCasesFullTextSearch.py:340 1961
+INFO     root:test_testCasesFullTextSearch.py:340 1962
+INFO     root:test_testCasesFullTextSearch.py:340 1963
+INFO     root:test_testCasesFullTextSearch.py:340 1964
+INFO     root:test_testCasesFullTextSearch.py:340 1965
+INFO     root:test_testCasesFullTextSearch.py:340 1966
+INFO     root:test_testCasesFullTextSearch.py:340 1967
+INFO     root:test_testCasesFullTextSearch.py:340 1968
+INFO     root:test_testCasesFullTextSearch.py:340 1969
+INFO     root:test_testCasesFullTextSearch.py:340 1970
+INFO     root:test_testCasesFullTextSearch.py:340 1971
+INFO     root:test_testCasesFullTextSearch.py:340 1972
+INFO     root:test_testCasesFullTextSearch.py:340 1973
+INFO     root:test_testCasesFullTextSearch.py:340 1974
+INFO     root:test_testCasesFullTextSearch.py:340 1975
+INFO     root:test_testCasesFullTextSearch.py:340 1976
+INFO     root:test_testCasesFullTextSearch.py:340 1977
+INFO     root:test_testCasesFullTextSearch.py:340 1978
+INFO     root:test_testCasesFullTextSearch.py:340 1979
+INFO     root:test_testCasesFullTextSearch.py:340 1980
+INFO     root:test_testCasesFullTextSearch.py:340 1981
+INFO     root:test_testCasesFullTextSearch.py:340 1982
+INFO     root:test_testCasesFullTextSearch.py:340 1983
+INFO     root:test_testCasesFullTextSearch.py:340 1984
+INFO     root:test_testCasesFullTextSearch.py:340 1985
+INFO     root:test_testCasesFullTextSearch.py:340 1986
+INFO     root:test_testCasesFullTextSearch.py:340 1987
+INFO     root:test_testCasesFullTextSearch.py:340 1988
+INFO     root:test_testCasesFullTextSearch.py:340 1989
+INFO     root:test_testCasesFullTextSearch.py:340 1990
+INFO     root:test_testCasesFullTextSearch.py:340 1991
+INFO     root:test_testCasesFullTextSearch.py:340 1992
+INFO     root:test_testCasesFullTextSearch.py:340 1993
+INFO     root:test_testCasesFullTextSearch.py:340 1994
+INFO     root:test_testCasesFullTextSearch.py:340 1995
+INFO     root:test_testCasesFullTextSearch.py:340 1996
+INFO     root:test_testCasesFullTextSearch.py:340 1997
+INFO     root:test_testCasesFullTextSearch.py:340 1998
+INFO     root:test_testCasesFullTextSearch.py:340 1999
+INFO     root:test_testCasesFullTextSearch.py:340 2000
+INFO     root:test_testCasesFullTextSearch.py:340 2001
+INFO     root:test_testCasesFullTextSearch.py:340 2002
+INFO     root:test_testCasesFullTextSearch.py:340 2003
+INFO     root:test_testCasesFullTextSearch.py:340 2004
+INFO     root:test_testCasesFullTextSearch.py:340 2005
+INFO     root:test_testCasesFullTextSearch.py:340 2006
+INFO     root:test_testCasesFullTextSearch.py:340 2007
+INFO     root:test_testCasesFullTextSearch.py:340 2008
+INFO     root:test_testCasesFullTextSearch.py:340 2009
+INFO     root:test_testCasesFullTextSearch.py:340 2010
+INFO     root:test_testCasesFullTextSearch.py:340 2011
+INFO     root:test_testCasesFullTextSearch.py:340 2012
+INFO     root:test_testCasesFullTextSearch.py:340 2013
+INFO     root:test_testCasesFullTextSearch.py:340 2014
+INFO     root:test_testCasesFullTextSearch.py:340 2015
+INFO     root:test_testCasesFullTextSearch.py:340 2016
+INFO     root:test_testCasesFullTextSearch.py:340 2017
+INFO     root:test_testCasesFullTextSearch.py:340 2018
+INFO     root:test_testCasesFullTextSearch.py:340 2019
+INFO     root:test_testCasesFullTextSearch.py:340 2020
+INFO     root:test_testCasesFullTextSearch.py:340 2021
+INFO     root:test_testCasesFullTextSearch.py:340 2022
+INFO     root:test_testCasesFullTextSearch.py:350 27
+INFO     root:test_testCasesFullTextSearch.py:350 28
+INFO     root:test_testCasesFullTextSearch.py:362 English
+INFO     root:test_testCasesFullTextSearch.py:363 English<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">FullTextSearch/test_testCasesFullTextSearch.py::Test_FullTextSearch::test_FilterDisputeDocuments</td>
+          <td class="col-duration">34.59</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>3
+United Arab Emirates
+United Kingdom
+United States
+State found
+36
+United Arab Emirates
+United Kingdom
+United States
+Agreement between Japan and India for an Economic Partnership (2011) (excerpts)
+Agreement between Singapore and the Separate Customs Territory of Taiwan, Penghu, Kinmen and Matsu on Economic Partnership (2013)
+Agreement on Investment of the Framework Agreement on Comprehensive Economic Cooperation between the People’s Republic of China and the Association of Southeast Asian Nations (2009) (citation and source)
+Agreement on Promotion, Protection and Guarantee of Investments among Member States of the Organisation of the Islamic Conference (1981)
+Agreement-Contract
+Arab Investment Agreement (1980)
+ASEAN Agreement for the Promotion and Protection of Investments (1987)
+Australia - Singapore Free Trade Agreement (Chapter 8) (2003)
+Australia - Thailand Free Trade Agreement (2004) (citation and source)
+Australia - United States Free Trade Agreement (2004) (excerpts)
+Canada - Colombia Free Trade Agreement (Chapter 8) (2008)
+Canada - Peru Free Trade Agreement (2008) (excerpts)
+Caribbean Community (CARICOM) - Dominican Republic Free Trade Agreement (1998) (excerpts)
+Central America - Panama Free Trade Agreement (2002) (excerpts)
+Chile - Colombia Free Trade Agreement (2006) [Spanish]
+Chile - United States Free Trade Agreement (2003) (excerpts)
+Colombia - Mexico Free Trade Agreement (1994)
+Colombia - United States Trade Promotion Agreement (2006) (excerpts)
+Dominican Republic-Central America-United States Free Trade Agreement (CAFTA-DR) (excerpts of Chapters 1, 2, 10)
+Eurasian Investment Agreement (2008) [Russian]
+European Free Trade Association (EFTA)/Korea, Republic Investment Agreement (2005)
+Free Trade Agreement between Colombia, Republic of El Salvador, Guatemala and Honduras (2007) (excerpts) [Spanish]
+Korea, Republic - United States Free Trade Agreement (2007) (excerpts) [English]
+Korea, Republic - United States Free Trade Agreement (Exchange of Letters) (2010)
+Korea, Republic-India Comprehensive Economic Partnership Agreement (2009)
+Morocco - United States Free Trade Agreement (2004) (excerpts)
+Oman - United States Free Trade Agreement (2006) (excerpts)
+Panama - United States Trade Promotion Agreement (2007) (excerpts)
+Partnership and Cooperation Agreement between the European Union and its Member States, of the One Part, and the Republic of Iraq, of the Other Part (2012)
+Peru - Singapore Free Trade Agreement (Chapter 10) (2008)
+Peru - United States Trade Promotion Agreement (2006) (excerpts)
+United States-Mexico-Canada Free Trade Agreement (USMCA) (Chapter 14)
+US-Vietnam Trade Relations Agreement (2000)
+Applicable Instrument found
+38
+United Arab Emirates
+United Kingdom
+United States
+Agreement between Japan and India for an Economic Partnership (2011) (excerpts)
+Agreement between Singapore and the Separate Customs Territory of Taiwan, Penghu, Kinmen and Matsu on Economic Partnership (2013)
+Agreement on Investment of the Framework Agreement on Comprehensive Economic Cooperation between the People’s Republic of China and the Association of Southeast Asian Nations (2009) (citation and source)
+Agreement on Promotion, Protection and Guarantee of Investments among Member States of the Organisation of the Islamic Conference (1981)
+Agreement-Contract
+Arab Investment Agreement (1980)
+ASEAN Agreement for the Promotion and Protection of Investments (1987)
+Australia - Singapore Free Trade Agreement (Chapter 8) (2003)
+Australia - Thailand Free Trade Agreement (2004) (citation and source)
+Australia - United States Free Trade Agreement (2004) (excerpts)
+Canada - Colombia Free Trade Agreement (Chapter 8) (2008)
+Canada - Peru Free Trade Agreement (2008) (excerpts)
+Caribbean Community (CARICOM) - Dominican Republic Free Trade Agreement (1998) (excerpts)
+Central America - Panama Free Trade Agreement (2002) (excerpts)
+Chile - Colombia Free Trade Agreement (2006) [Spanish]
+Chile - United States Free Trade Agreement (2003) (excerpts)
+Colombia - Mexico Free Trade Agreement (1994)
+Colombia - United States Trade Promotion Agreement (2006) (excerpts)
+Dominican Republic-Central America-United States Free Trade Agreement (CAFTA-DR) (excerpts of Chapters 1, 2, 10)
+Eurasian Investment Agreement (2008) [Russian]
+European Free Trade Association (EFTA)/Korea, Republic Investment Agreement (2005)
+Free Trade Agreement between Colombia, Republic of El Salvador, Guatemala and Honduras (2007) (excerpts) [Spanish]
+Korea, Republic - United States Free Trade Agreement (2007) (excerpts) [English]
+Korea, Republic - United States Free Trade Agreement (Exchange of Letters) (2010)
+Korea, Republic-India Comprehensive Economic Partnership Agreement (2009)
+Morocco - United States Free Trade Agreement (2004) (excerpts)
+Oman - United States Free Trade Agreement (2006) (excerpts)
+Panama - United States Trade Promotion Agreement (2007) (excerpts)
+Partnership and Cooperation Agreement between the European Union and its Member States, of the One Part, and the Republic of Iraq, of the Other Part (2012)
+Peru - Singapore Free Trade Agreement (Chapter 10) (2008)
+Peru - United States Trade Promotion Agreement (2006) (excerpts)
+United States-Mexico-Canada Free Trade Agreement (USMCA) (Chapter 14)
+US-Vietnam Trade Relations Agreement (2000)
+ICC Rules of Arbitration (1998) (citation)
+Arbitration Rules found
+×
+United States
+×
+US-Vietnam Trade Relations Agreement (2000)
+×
+ICC Rules of Arbitration (1998) (citation)
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesFullTextSearch.py:372 ****TestCase Full Text Search-011 - Validate Filter Dispute Documents ***
+INFO     root:test_testCasesFullTextSearch.py:373 *****Login Successful****
+INFO     root:test_testCasesFullTextSearch.py:374 **** Full Text Search testing *****
+INFO     root:test_testCasesFullTextSearch.py:377 Full Text Search menu was clicked
+INFO     root:test_testCasesFullTextSearch.py:388 United Arab Emirates
+INFO     root:test_testCasesFullTextSearch.py:388 United Kingdom
+INFO     root:test_testCasesFullTextSearch.py:388 United States
+INFO     root:test_testCasesFullTextSearch.py:401 United Arab Emirates
+INFO     root:test_testCasesFullTextSearch.py:401 United Kingdom
+INFO     root:test_testCasesFullTextSearch.py:401 United States
+INFO     root:test_testCasesFullTextSearch.py:401 Agreement between Japan and India for an Economic Partnership (2011) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:401 Agreement between Singapore and the Separate Customs Territory of Taiwan, Penghu, Kinmen and Matsu on Economic Partnership (2013)
+INFO     root:test_testCasesFullTextSearch.py:401 Agreement on Investment of the Framework Agreement on Comprehensive Economic Cooperation between the People’s Republic of China and the Association of Southeast Asian Nations (2009) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:401 Agreement on Promotion, Protection and Guarantee of Investments among Member States of the Organisation of the Islamic Conference (1981)
+INFO     root:test_testCasesFullTextSearch.py:401 Agreement-Contract
+INFO     root:test_testCasesFullTextSearch.py:401 Arab Investment Agreement (1980)
+INFO     root:test_testCasesFullTextSearch.py:401 ASEAN Agreement for the Promotion and Protection of Investments (1987)
+INFO     root:test_testCasesFullTextSearch.py:401 Australia - Singapore Free Trade Agreement (Chapter 8) (2003)
+INFO     root:test_testCasesFullTextSearch.py:401 Australia - Thailand Free Trade Agreement (2004) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:401 Australia - United States Free Trade Agreement (2004) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:401 Canada - Colombia Free Trade Agreement (Chapter 8) (2008)
+INFO     root:test_testCasesFullTextSearch.py:401 Canada - Peru Free Trade Agreement (2008) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:401 Caribbean Community (CARICOM) - Dominican Republic Free Trade Agreement (1998) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:401 Central America - Panama Free Trade Agreement (2002) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:401 Chile - Colombia Free Trade Agreement (2006) [Spanish]
+INFO     root:test_testCasesFullTextSearch.py:401 Chile - United States Free Trade Agreement (2003) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:401 Colombia - Mexico Free Trade Agreement (1994)
+INFO     root:test_testCasesFullTextSearch.py:401 Colombia - United States Trade Promotion Agreement (2006) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:401 Dominican Republic-Central America-United States Free Trade Agreement (CAFTA-DR) (excerpts of Chapters 1, 2, 10)
+INFO     root:test_testCasesFullTextSearch.py:401 Eurasian Investment Agreement (2008) [Russian]
+INFO     root:test_testCasesFullTextSearch.py:401 European Free Trade Association (EFTA)/Korea, Republic Investment Agreement (2005)
+INFO     root:test_testCasesFullTextSearch.py:401 Free Trade Agreement between Colombia, Republic of El Salvador, Guatemala and Honduras (2007) (excerpts) [Spanish]
+INFO     root:test_testCasesFullTextSearch.py:401 Korea, Republic - United States Free Trade Agreement (2007) (excerpts) [English]
+INFO     root:test_testCasesFullTextSearch.py:401 Korea, Republic - United States Free Trade Agreement (Exchange of Letters) (2010)
+INFO     root:test_testCasesFullTextSearch.py:401 Korea, Republic-India Comprehensive Economic Partnership Agreement (2009)
+INFO     root:test_testCasesFullTextSearch.py:401 Morocco - United States Free Trade Agreement (2004) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:401 Oman - United States Free Trade Agreement (2006) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:401 Panama - United States Trade Promotion Agreement (2007) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:401 Partnership and Cooperation Agreement between the European Union and its Member States, of the One Part, and the Republic of Iraq, of the Other Part (2012)
+INFO     root:test_testCasesFullTextSearch.py:401 Peru - Singapore Free Trade Agreement (Chapter 10) (2008)
+INFO     root:test_testCasesFullTextSearch.py:401 Peru - United States Trade Promotion Agreement (2006) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:401 United States-Mexico-Canada Free Trade Agreement (USMCA) (Chapter 14)
+INFO     root:test_testCasesFullTextSearch.py:401 US-Vietnam Trade Relations Agreement (2000)
+INFO     root:test_testCasesFullTextSearch.py:414 United Arab Emirates
+INFO     root:test_testCasesFullTextSearch.py:414 United Kingdom
+INFO     root:test_testCasesFullTextSearch.py:414 United States
+INFO     root:test_testCasesFullTextSearch.py:414 Agreement between Japan and India for an Economic Partnership (2011) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:414 Agreement between Singapore and the Separate Customs Territory of Taiwan, Penghu, Kinmen and Matsu on Economic Partnership (2013)
+INFO     root:test_testCasesFullTextSearch.py:414 Agreement on Investment of the Framework Agreement on Comprehensive Economic Cooperation between the People’s Republic of China and the Association of Southeast Asian Nations (2009) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:414 Agreement on Promotion, Protection and Guarantee of Investments among Member States of the Organisation of the Islamic Conference (1981)
+INFO     root:test_testCasesFullTextSearch.py:414 Agreement-Contract
+INFO     root:test_testCasesFullTextSearch.py:414 Arab Investment Agreement (1980)
+INFO     root:test_testCasesFullTextSearch.py:414 ASEAN Agreement for the Promotion and Protection of Investments (1987)
+INFO     root:test_testCasesFullTextSearch.py:414 Australia - Singapore Free Trade Agreement (Chapter 8) (2003)
+INFO     root:test_testCasesFullTextSearch.py:414 Australia - Thailand Free Trade Agreement (2004) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:414 Australia - United States Free Trade Agreement (2004) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:414 Canada - Colombia Free Trade Agreement (Chapter 8) (2008)
+INFO     root:test_testCasesFullTextSearch.py:414 Canada - Peru Free Trade Agreement (2008) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:414 Caribbean Community (CARICOM) - Dominican Republic Free Trade Agreement (1998) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:414 Central America - Panama Free Trade Agreement (2002) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:414 Chile - Colombia Free Trade Agreement (2006) [Spanish]
+INFO     root:test_testCasesFullTextSearch.py:414 Chile - United States Free Trade Agreement (2003) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:414 Colombia - Mexico Free Trade Agreement (1994)
+INFO     root:test_testCasesFullTextSearch.py:414 Colombia - United States Trade Promotion Agreement (2006) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:414 Dominican Republic-Central America-United States Free Trade Agreement (CAFTA-DR) (excerpts of Chapters 1, 2, 10)
+INFO     root:test_testCasesFullTextSearch.py:414 Eurasian Investment Agreement (2008) [Russian]
+INFO     root:test_testCasesFullTextSearch.py:414 European Free Trade Association (EFTA)/Korea, Republic Investment Agreement (2005)
+INFO     root:test_testCasesFullTextSearch.py:414 Free Trade Agreement between Colombia, Republic of El Salvador, Guatemala and Honduras (2007) (excerpts) [Spanish]
+INFO     root:test_testCasesFullTextSearch.py:414 Korea, Republic - United States Free Trade Agreement (2007) (excerpts) [English]
+INFO     root:test_testCasesFullTextSearch.py:414 Korea, Republic - United States Free Trade Agreement (Exchange of Letters) (2010)
+INFO     root:test_testCasesFullTextSearch.py:414 Korea, Republic-India Comprehensive Economic Partnership Agreement (2009)
+INFO     root:test_testCasesFullTextSearch.py:414 Morocco - United States Free Trade Agreement (2004) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:414 Oman - United States Free Trade Agreement (2006) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:414 Panama - United States Trade Promotion Agreement (2007) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:414 Partnership and Cooperation Agreement between the European Union and its Member States, of the One Part, and the Republic of Iraq, of the Other Part (2012)
+INFO     root:test_testCasesFullTextSearch.py:414 Peru - Singapore Free Trade Agreement (Chapter 10) (2008)
+INFO     root:test_testCasesFullTextSearch.py:414 Peru - United States Trade Promotion Agreement (2006) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:414 United States-Mexico-Canada Free Trade Agreement (USMCA) (Chapter 14)
+INFO     root:test_testCasesFullTextSearch.py:414 US-Vietnam Trade Relations Agreement (2000)
+INFO     root:test_testCasesFullTextSearch.py:414 ICC Rules of Arbitration (1998) (citation)
+INFO     root:test_testCasesFullTextSearch.py:417 ICC Rules of Arbitration (1998) (citation)
+INFO     root:test_testCasesFullTextSearch.py:426 Clicked on Basic Filters
+INFO     root:test_testCasesFullTextSearch.py:430 ×
+United States
+INFO     root:test_testCasesFullTextSearch.py:434 ×
+US-Vietnam Trade Relations Agreement (2000)
+INFO     root:test_testCasesFullTextSearch.py:438 ×
+ICC Rules of Arbitration (1998) (citation)
+INFO     root:test_testCasesFullTextSearch.py:441 Basic Filters popup closed<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">FullTextSearch/test_testCasesFullTextSearch.py::Test_FullTextSearch::test_FilterByResearchTools</td>
+          <td class="col-duration">37.27</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2
+&quot;Clean hands&quot; doctrine
+Subject found
+207
+&quot;Clean hands&quot; doctrine
+Unclean hands
+Agreement between the United States of America and the Union of Soviet Socialist Republics on the Maritime Boundary (1990) (citation and source)
+Albania - United Kingdom BIT (1994) (excerpts)
+Albania - United States BIT (1995) (excerpts)
+Subject found
+&quot;Clean hands&quot; doctrine
+Unclean hands
+Agreement between the United States of America and the Union of Soviet Socialist Republics on the Maritime Boundary (1990) (citation and source)
+Albania - United Kingdom BIT (1994) (excerpts)
+Albania - United States BIT (1995) (excerpts)
+Algiers Declarations - Iran - United States General Declaration and Claims Settlement Declaration (citation and source)
+Angola - United Kingdom BIT (2000) (citation and source)
+Antigua and Barbuda - United Kingdom BIT (1987) (citation and source)
+Argentina - United Kingdom (1990)
+Argentina - United States BIT (1991) and Protocol
+Armenia - United Kingdom BIT (1993) (citation and source)
+Armenia - United States BIT (1992) and Annex
+Australia - United States Free Trade Agreement (2004) (excerpts)
+Azerbaijan - United Kingdom BIT (1996) (citation and source)
+Azerbaijan - United States BIT (1997) (citation and source)
+Bahrain - United Kingdom BIT (1991) (citation and source)
+Bahrain - United States BIT (1999) (citation and source)
+Bangladesh - United Kingdom BIT (1980) (citation and source)
+Bangladesh - United States BIT (1986) (citation and source)
+Barbados - United Kingdom BIT (1993) (citation and source)
+Belarus - United Kingdom BIT (1994) (citation and source)
+Belgium - Luxembourg - United Arab Emirates BIT (2004) (citation and source)
+Belize - United Kingdom BIT (1982) and Exchange of Notes
+Benin - United Kingdom BIT (1987) (citation and source)
+Bolivia - United Kingdom BIT (1988)
+Bolivia - United States BIT (1998) and Protocol
+Bosnia and Herzegovina - United Kingdom BIT (2002) (citation and source)
+Brazil - United Kingdom BIT (1994) (citation)
+Brunei - United States Treaty of Friendship, Commerce and Navigation (1850) (citation and source)
+Bulgaria - United Kingdom BIT (1995) (citation and source)
+Burundi - United Kingdom BIT (1990) (citation and source)
+Cameroon - United Kingdom BIT (1982) (citation and source)
+Cameroon - United States BIT (1986)
+Canada - United States Free Trade Agreement (excerpts)
+Canada - United States Softwood Lumber Agreement (1996) (citation and source)
+Canada - United States Softwood Lumber Agreement (2006) (citation and source)
+Canada - United States Transboundary Agreement (1986) (excerpts)
+Charter of the United Nations (1945) (citation and source)
+Chile - United Kingdom BIT (1996) (citation and source)
+Chile - United States Free Trade Agreement (2003) (excerpts)
+China - United Arab Emirates BIT (1993) (citation and source)
+China - United Kingdom BIT (1986) (citation and source)
+Colombia - United Kingdom BIT (2010)
+Colombia - United States Trade Promotion Agreement (2006) (excerpts)
+Congo (Democratic Republic - formerly Zaire) - United States (1984) and Protocol
+Constitution of the Food and Agriculture Organization of the United Nations (FAO) (1945) (citation and source)
+Costa Rica - United Kingdom BIT (1982) (citation and source)
+Croatia - United Kingdom BIT (1997) (citation and source)
+Cuba - United Kingdom BIT (1995) (citation and source)
+Czech and Slovak Federal Republic (Czech Republic and Slovak Republic) - United Kingdom BIT (1990) [English]
+Czech and Slovak Federal Republic (Czech Republic and Slovak Republic) - United States BIT (1991) and Protocol
+Czech Republic - United Arab Emirates BIT (1994)
+Declaration on Principles of International Law concerning Friendly Relations and Cooperation among States in accordance with the Charter of the United Nations (1970) (citation and source)
+Dominican Republic - United Kingdom BIT (2002) (citation and source)
+Dominican Republic-Central America-United States Free Trade Agreement (CAFTA-DR) (Chapter 21)
+Dominican Republic-Central America-United States Free Trade Agreement (CAFTA-DR) (excerpts of Chapters 1, 2, 10)
+Dominican Republic-Central America-United States Free Trade Agreement (CAFTA-DR) (excerpts) (citation and source)
+Ecuador - United Kingdom BIT (1994) (citation and source)
+Ecuador - United States (1993) and Protocol
+Egypt - United Arab Emirates BIT (1997) [Arabic]
+Egypt - United Kingdom BIT (1975)
+Egypt - United States BIT (1986) and Protocol
+El Salvador - United Kingdom BIT (1999) (citation and source)
+El Salvador - United States BIT (1999) (citation and source)
+Estonia - United Kingdom BIT (1994) (citation and source)
+Estonia - United States BIT (1994)
+Ethiopia - United Kingdom BIT (2009) (citation and source)
+Gambia - United Kingdom BIT (2002) (citation)
+Georgia - United Kingdom BIT (1995) (citation and source)
+Georgia - United States BIT (1994)
+Germany - United Arab Emirates BIT (1997) (citation and source)
+Germany - United States Mixed Claims Commission Agreements (1922) (citation and source)
+Ghana - United Kingdom BIT (1989) (citation and source)
+Greece - United Kingdom Treaty of Commerce and Navigation (1886) (citation and source)
+Grenada - United Kingdom BIT (1988) (citation and source)
+Grenada - United States BIT (1986)
+Guyana - United Kingdom BIT (1989) (citation and source)
+Haiti - United Kingdom BIT (1985) (citation and source)
+Haiti - United States BIT (1983) (citation and source)
+Honduras - United Kingdom BIT (1993) (excerpts)
+Honduras - United States BIT (1995) (citation and source)
+Hong Kong - United Kingdom BIT (1998) (citation and source)
+Hungary - United Kingdom BIT (1987)
+India - United Kingdom BIT (1994)
+Indonesia - United Kingdom BIT (1976)
+Iran - United States Claims Tribunal Rules of Procedure (citation and source)
+Iran - United States Treaty of Amity Economic Relations and Consular Rights (1955) (citation and source)
+Italy - United Arab Emirates BIT (1995) and Protocol [English]
+Ivory Coast (Côte d&#x27;Ivoire) - United Kingdom BIT (1995) (citation and source)
+Jamaica - United Kingdom BIT (1987) (citation and source)
+Jamaica - United States BIT (1994) (citation and source)
+Joint Declaration of China and United Kingdom on the Question of Hong Kong (1984) (citation and source)
+Jordan - United Kingdom BIT (1979) (citation and source)
+Jordan - United States BIT (1997)
+Jordan - United States Free Trade Agreement (2000) (citation and source)
+Kazakhstan - United Kingdom BIT (1995) (citation and source)
+Kazakhstan - United States BIT (1992)
+Kenya - United Kingdom BIT (1999)
+Korea (Republic) - United Kingdom BIT (1976) (citation and source)
+Korea, Republic - United States Free Trade Agreement (2007) (excerpts) [English]
+Kyoto Protocol to the United Nations Framework Convention on Climate Change (1997) (citation and source)
+Kyrgyz Republic (Kyrgyzstan) - United Kingdom BIT (1994) (citation and source)
+Kyrgyz Republic (Kyrgyzstan) - United States BIT (1993) (citation and source)
+Laos - United Kingdom BIT (1995) (citation and source)
+Latvia - United Kingdom BIT (1994)
+Latvia - United States BIT (1995) (citation and source)
+Lebanon - United Kingdom BIT (1999) (citation and source)
+Lesotho - United Kingdom BIT (1981) (citation and source)
+Lithuania - United Kingdom BIT (1993) (citation and source)
+Lithuania - United States BIT (1998) (citation and source)
+Malaysia - United Kingdom BIT (1981)
+Malta - United Kingdom BIT (1986) (citation and source)
+Mauritius - United Kingdom BIT (1986)
+Mexico - United Kingdom BIT (2006) (citation and source)
+Moldova - United Kingdom BIT (1996) (citation and source)
+Moldova - United States BIT (1993) and Protocol
+Mongolia - United Arab Emirates BIT (2001) (citation and source)
+Mongolia - United Kingdom BIT (1991)
+Mongolia - United States BIT (1994) (citation and source)
+Morocco - United Kingdom BIT (1990) (citation and source)
+Morocco - United States BIT (1985) (citation and source)
+Morocco - United States Free Trade Agreement (2004) (excerpts)
+Mozambique - United Kingdom BIT (2004) (citation and source)
+Mozambique - United States BIT (1998) (citation and source)
+Nepal - United Kingdom BIT (1993) (citation and source)
+Nicaragua - United Kingdom BIT (1996) (citation and source)
+Nicaragua - United States Treaty of Friendship, Commerce and Navigation (1956) (citation and source)
+Nigeria - United Kingdom BIT (1990) (citation and source)
+Oman - United Kingdom BIT (1995) (citation and source)
+Oman - United States Free Trade Agreement (2006) (excerpts)
+Pakistan - United Kingdom BIT (1994)
+Panama - United Kingdom BIT (1983) (citation and source)
+Panama - United States BIT and Protocol (1982)
+Panama - United States Trade Promotion Agreement (2007) (excerpts)
+Papua New Guinea - United Kingdom BIT (1981) (citation and source)
+Paraguay - United Kingdom BIT (1981) (citation and source)
+Peru - United Kingdom BIT (1993)
+Peru - United States Trade Promotion Agreement (2006) (excerpts)
+Philippines - United Kingdom BIT (1980) (excerpts)
+Poland - United Kingdom BIT (1987) (citation and source)
+Poland - United States Additional Protocol BIT (2004) (citation and source)
+Poland - United States BIT (1990) and Protocol
+Republic of the Congo - United Kingdom BIT (1989) (citation and source)
+Romania - United Kingdom BIT (1995)
+Romania - United States BIT (1992) and Protocol
+Russia - United States BIT (1992) (citation and source)
+Rwanda – United States BIT (2008)
+Saint Lucia - United Kingdom BIT (1983) (citation and source)
+Senegal - United Kingdom BIT (1980)
+Senegal - United States BIT (1983) (citation and source)
+Serbia - United Kingdom BIT (2002) and Exchange of Notes
+Sierra Leone - United Kingdom BIT (2000)
+Singapore - United Kingdom BIT (1975) (citation and source)
+Singapore - United States Free Trade Agreement (2003) (citation and source)
+Slovenia - United Kingdom BIT (1996)
+South Africa - United Kingdom BIT (1994) (citation and source)
+Spain - United Kingdom Double Tax Convention (2013) (citation and source)
+Sri Lanka - United Kingdom BIT (1980)
+Sri Lanka - United States BIT (1991) and Protocol
+Swaziland - United Kingdom BIT (1995) (citation and source)
+Tanzania - United Kingdom BIT (1994)
+Thailand - United Kingdom BIT (1978) (citation and source)
+Tonga - United Kingdom BIT (1997) (citation and source)
+Trinidad and Tobago - United Kingdom BIT (1993) (citation and source)
+Trinidad and Tobago - United States BIT (1994) and Protocol
+Tunisia - United Kingdom BIT (1989) (citation and source)
+Tunisia - United States BIT (1990) (citation and source)
+Turkey - United Kingdom BIT (1991)
+Turkey - United States BIT (1985) and Protocol
+Turkmenistan - United Arab Emirates BIT (1999) (citation and source)
+Turkmenistan - United Kingdom BIT (1995)
+Uganda - United Kingdom BIT (1998) (citation and source)
+Ukraine - United Kingdom (1993)
+Ukraine - United States BIT (1994)
+United Arab Emirates - United Kingdom BIT (1992) [English]
+United Kingdom - India Double Taxation Convention (1993)(citation and source)
+United Kingdom - Uruguay BIT (1991)
+United Kingdom - USSR (Russia) BIT (1989)
+United Kingdom - Uzbekistan BIT (1993) and Exchange of Notes
+United Kingdom - Vanuatu BIT (2003) (citation and source)
+United Kingdom - Venezuela BIT (1995)
+United Kingdom - Viet Nam BIT (2002) (citation and source)
+United Kingdom - Yemen BIT (1982) (citation and source)
+United Kingdom - Zimbabwe BIT (1995) (citation and source)
+United Nations Code of Conduct for Law Enforcement Officials (1979) (citation and source)
+United Nations Convention against Corruption (2003) (citation and source)
+United Nations Convention against Illicit Traffic in Narcotic Drugs and Psychotropic Substances (1988) (citation and source)
+United Nations Convention against Transnational Organized Crime (2000) (citation and source)
+United Nations Convention on Contracts for the International Sale of Goods (CISG) (excerpts)
+United Nations Convention on Jurisdictional Immunities of States and Their Property (2004)
+United Nations Convention on the Law of the Sea (1982) (excerpts)
+United Nations Convention on the Limitation Period in the International Sale of Goods (1974) (citation and source)
+United Nations Convention on Transparency in Treaty-based Investor-State Arbitration
+United Nations Declaration Against Corruption and Bribery in International Commercial Transactions (1996) (citation and source)
+United Nations Declaration on the Rights of Indigenous Peoples (citation and source)
+United Nations Draft International Agreement on Illicit Payments (1979) (citation and source)
+United Nations Framework Convention on Climate Change (1992) (citation and source)
+United Nations General Assembly Resolution 1710 (XVI) of 19 December 1961 &quot;United Nations Development Decade&quot; (citation and source)
+United Nations General Assembly Resolution 1803 (XVII) of 14 December 1962 &quot;Permanent sovereignty over natural resources&quot; (citation and source)
+United Nations General Declaration and the Programme of Action on the Establishment of a New International Economic Order 3281 (XXIX) of 12 December 1974 (citation and source)
+United Nations Guidelines on the Role of Prosecutors (1990) (citation and source)
+United States - Italy Treaty of Friendship, Commerce and Navigation (1948) (citation and source)
+United States - Mexico Claims Convention of 8 September 1923
+United States - Mexico Treaty Relating to the Utilization of Water (1944) (citation and source)
+United States - Uzbekistan BIT (1994) (citation and source)
+United States - Venezuela Claims Protocol (1903) (citation and source)
+Washington Treaty - United Kingdom - United States treaty concerning the Alabama Claims (1871) (citation and source)
+Article I(d): &quot;investment&quot;
+Article II(3)(a)
+Provision found
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesFullTextSearch.py:445 ****TestCase Full Text Search-013 - Validate Filter By Research Tools ***
+INFO     root:test_testCasesFullTextSearch.py:446 *****Login Successful****
+INFO     root:test_testCasesFullTextSearch.py:447 **** Full Text Search testing *****
+INFO     root:test_testCasesFullTextSearch.py:450 Full Text Search menu was clicked
+INFO     root:test_testCasesFullTextSearch.py:458 Clicked on Subject
+INFO     root:test_testCasesFullTextSearch.py:465 &quot;Clean hands&quot; doctrine
+INFO     root:test_testCasesFullTextSearch.py:468 &quot;Clean hands&quot; doctrine
+INFO     root:test_testCasesFullTextSearch.py:473 Clicked on TreatyInstrument
+INFO     root:test_testCasesFullTextSearch.py:480 &quot;Clean hands&quot; doctrine
+INFO     root:test_testCasesFullTextSearch.py:480 Unclean hands
+INFO     root:test_testCasesFullTextSearch.py:480 Agreement between the United States of America and the Union of Soviet Socialist Republics on the Maritime Boundary (1990) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:480 Albania - United Kingdom BIT (1994) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:480 Albania - United States BIT (1995) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:483 Albania - United States BIT (1995) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:489 Clicked on Provision
+INFO     root:test_testCasesFullTextSearch.py:497 &quot;Clean hands&quot; doctrine
+INFO     root:test_testCasesFullTextSearch.py:497 Unclean hands
+INFO     root:test_testCasesFullTextSearch.py:497 Agreement between the United States of America and the Union of Soviet Socialist Republics on the Maritime Boundary (1990) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Albania - United Kingdom BIT (1994) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 Albania - United States BIT (1995) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 Algiers Declarations - Iran - United States General Declaration and Claims Settlement Declaration (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Angola - United Kingdom BIT (2000) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Antigua and Barbuda - United Kingdom BIT (1987) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Argentina - United Kingdom (1990)
+INFO     root:test_testCasesFullTextSearch.py:497 Argentina - United States BIT (1991) and Protocol
+INFO     root:test_testCasesFullTextSearch.py:497 Armenia - United Kingdom BIT (1993) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Armenia - United States BIT (1992) and Annex
+INFO     root:test_testCasesFullTextSearch.py:497 Australia - United States Free Trade Agreement (2004) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 Azerbaijan - United Kingdom BIT (1996) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Azerbaijan - United States BIT (1997) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Bahrain - United Kingdom BIT (1991) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Bahrain - United States BIT (1999) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Bangladesh - United Kingdom BIT (1980) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Bangladesh - United States BIT (1986) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Barbados - United Kingdom BIT (1993) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Belarus - United Kingdom BIT (1994) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Belgium - Luxembourg - United Arab Emirates BIT (2004) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Belize - United Kingdom BIT (1982) and Exchange of Notes
+INFO     root:test_testCasesFullTextSearch.py:497 Benin - United Kingdom BIT (1987) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Bolivia - United Kingdom BIT (1988)
+INFO     root:test_testCasesFullTextSearch.py:497 Bolivia - United States BIT (1998) and Protocol
+INFO     root:test_testCasesFullTextSearch.py:497 Bosnia and Herzegovina - United Kingdom BIT (2002) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Brazil - United Kingdom BIT (1994) (citation)
+INFO     root:test_testCasesFullTextSearch.py:497 Brunei - United States Treaty of Friendship, Commerce and Navigation (1850) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Bulgaria - United Kingdom BIT (1995) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Burundi - United Kingdom BIT (1990) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Cameroon - United Kingdom BIT (1982) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Cameroon - United States BIT (1986)
+INFO     root:test_testCasesFullTextSearch.py:497 Canada - United States Free Trade Agreement (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 Canada - United States Softwood Lumber Agreement (1996) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Canada - United States Softwood Lumber Agreement (2006) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Canada - United States Transboundary Agreement (1986) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 Charter of the United Nations (1945) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Chile - United Kingdom BIT (1996) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Chile - United States Free Trade Agreement (2003) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 China - United Arab Emirates BIT (1993) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 China - United Kingdom BIT (1986) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Colombia - United Kingdom BIT (2010)
+INFO     root:test_testCasesFullTextSearch.py:497 Colombia - United States Trade Promotion Agreement (2006) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 Congo (Democratic Republic - formerly Zaire) - United States (1984) and Protocol
+INFO     root:test_testCasesFullTextSearch.py:497 Constitution of the Food and Agriculture Organization of the United Nations (FAO) (1945) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Costa Rica - United Kingdom BIT (1982) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Croatia - United Kingdom BIT (1997) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Cuba - United Kingdom BIT (1995) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Czech and Slovak Federal Republic (Czech Republic and Slovak Republic) - United Kingdom BIT (1990) [English]
+INFO     root:test_testCasesFullTextSearch.py:497 Czech and Slovak Federal Republic (Czech Republic and Slovak Republic) - United States BIT (1991) and Protocol
+INFO     root:test_testCasesFullTextSearch.py:497 Czech Republic - United Arab Emirates BIT (1994)
+INFO     root:test_testCasesFullTextSearch.py:497 Declaration on Principles of International Law concerning Friendly Relations and Cooperation among States in accordance with the Charter of the United Nations (1970) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Dominican Republic - United Kingdom BIT (2002) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Dominican Republic-Central America-United States Free Trade Agreement (CAFTA-DR) (Chapter 21)
+INFO     root:test_testCasesFullTextSearch.py:497 Dominican Republic-Central America-United States Free Trade Agreement (CAFTA-DR) (excerpts of Chapters 1, 2, 10)
+INFO     root:test_testCasesFullTextSearch.py:497 Dominican Republic-Central America-United States Free Trade Agreement (CAFTA-DR) (excerpts) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Ecuador - United Kingdom BIT (1994) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Ecuador - United States (1993) and Protocol
+INFO     root:test_testCasesFullTextSearch.py:497 Egypt - United Arab Emirates BIT (1997) [Arabic]
+INFO     root:test_testCasesFullTextSearch.py:497 Egypt - United Kingdom BIT (1975)
+INFO     root:test_testCasesFullTextSearch.py:497 Egypt - United States BIT (1986) and Protocol
+INFO     root:test_testCasesFullTextSearch.py:497 El Salvador - United Kingdom BIT (1999) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 El Salvador - United States BIT (1999) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Estonia - United Kingdom BIT (1994) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Estonia - United States BIT (1994)
+INFO     root:test_testCasesFullTextSearch.py:497 Ethiopia - United Kingdom BIT (2009) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Gambia - United Kingdom BIT (2002) (citation)
+INFO     root:test_testCasesFullTextSearch.py:497 Georgia - United Kingdom BIT (1995) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Georgia - United States BIT (1994)
+INFO     root:test_testCasesFullTextSearch.py:497 Germany - United Arab Emirates BIT (1997) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Germany - United States Mixed Claims Commission Agreements (1922) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Ghana - United Kingdom BIT (1989) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Greece - United Kingdom Treaty of Commerce and Navigation (1886) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Grenada - United Kingdom BIT (1988) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Grenada - United States BIT (1986)
+INFO     root:test_testCasesFullTextSearch.py:497 Guyana - United Kingdom BIT (1989) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Haiti - United Kingdom BIT (1985) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Haiti - United States BIT (1983) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Honduras - United Kingdom BIT (1993) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 Honduras - United States BIT (1995) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Hong Kong - United Kingdom BIT (1998) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Hungary - United Kingdom BIT (1987)
+INFO     root:test_testCasesFullTextSearch.py:497 India - United Kingdom BIT (1994)
+INFO     root:test_testCasesFullTextSearch.py:497 Indonesia - United Kingdom BIT (1976)
+INFO     root:test_testCasesFullTextSearch.py:497 Iran - United States Claims Tribunal Rules of Procedure (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Iran - United States Treaty of Amity Economic Relations and Consular Rights (1955) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Italy - United Arab Emirates BIT (1995) and Protocol [English]
+INFO     root:test_testCasesFullTextSearch.py:497 Ivory Coast (Côte d&#x27;Ivoire) - United Kingdom BIT (1995) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Jamaica - United Kingdom BIT (1987) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Jamaica - United States BIT (1994) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Joint Declaration of China and United Kingdom on the Question of Hong Kong (1984) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Jordan - United Kingdom BIT (1979) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Jordan - United States BIT (1997)
+INFO     root:test_testCasesFullTextSearch.py:497 Jordan - United States Free Trade Agreement (2000) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Kazakhstan - United Kingdom BIT (1995) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Kazakhstan - United States BIT (1992)
+INFO     root:test_testCasesFullTextSearch.py:497 Kenya - United Kingdom BIT (1999)
+INFO     root:test_testCasesFullTextSearch.py:497 Korea (Republic) - United Kingdom BIT (1976) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Korea, Republic - United States Free Trade Agreement (2007) (excerpts) [English]
+INFO     root:test_testCasesFullTextSearch.py:497 Kyoto Protocol to the United Nations Framework Convention on Climate Change (1997) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Kyrgyz Republic (Kyrgyzstan) - United Kingdom BIT (1994) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Kyrgyz Republic (Kyrgyzstan) - United States BIT (1993) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Laos - United Kingdom BIT (1995) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Latvia - United Kingdom BIT (1994)
+INFO     root:test_testCasesFullTextSearch.py:497 Latvia - United States BIT (1995) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Lebanon - United Kingdom BIT (1999) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Lesotho - United Kingdom BIT (1981) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Lithuania - United Kingdom BIT (1993) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Lithuania - United States BIT (1998) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Malaysia - United Kingdom BIT (1981)
+INFO     root:test_testCasesFullTextSearch.py:497 Malta - United Kingdom BIT (1986) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Mauritius - United Kingdom BIT (1986)
+INFO     root:test_testCasesFullTextSearch.py:497 Mexico - United Kingdom BIT (2006) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Moldova - United Kingdom BIT (1996) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Moldova - United States BIT (1993) and Protocol
+INFO     root:test_testCasesFullTextSearch.py:497 Mongolia - United Arab Emirates BIT (2001) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Mongolia - United Kingdom BIT (1991)
+INFO     root:test_testCasesFullTextSearch.py:497 Mongolia - United States BIT (1994) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Morocco - United Kingdom BIT (1990) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Morocco - United States BIT (1985) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Morocco - United States Free Trade Agreement (2004) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 Mozambique - United Kingdom BIT (2004) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Mozambique - United States BIT (1998) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Nepal - United Kingdom BIT (1993) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Nicaragua - United Kingdom BIT (1996) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Nicaragua - United States Treaty of Friendship, Commerce and Navigation (1956) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Nigeria - United Kingdom BIT (1990) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Oman - United Kingdom BIT (1995) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Oman - United States Free Trade Agreement (2006) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 Pakistan - United Kingdom BIT (1994)
+INFO     root:test_testCasesFullTextSearch.py:497 Panama - United Kingdom BIT (1983) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Panama - United States BIT and Protocol (1982)
+INFO     root:test_testCasesFullTextSearch.py:497 Panama - United States Trade Promotion Agreement (2007) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 Papua New Guinea - United Kingdom BIT (1981) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Paraguay - United Kingdom BIT (1981) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Peru - United Kingdom BIT (1993)
+INFO     root:test_testCasesFullTextSearch.py:497 Peru - United States Trade Promotion Agreement (2006) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 Philippines - United Kingdom BIT (1980) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 Poland - United Kingdom BIT (1987) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Poland - United States Additional Protocol BIT (2004) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Poland - United States BIT (1990) and Protocol
+INFO     root:test_testCasesFullTextSearch.py:497 Republic of the Congo - United Kingdom BIT (1989) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Romania - United Kingdom BIT (1995)
+INFO     root:test_testCasesFullTextSearch.py:497 Romania - United States BIT (1992) and Protocol
+INFO     root:test_testCasesFullTextSearch.py:497 Russia - United States BIT (1992) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Rwanda – United States BIT (2008)
+INFO     root:test_testCasesFullTextSearch.py:497 Saint Lucia - United Kingdom BIT (1983) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Senegal - United Kingdom BIT (1980)
+INFO     root:test_testCasesFullTextSearch.py:497 Senegal - United States BIT (1983) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Serbia - United Kingdom BIT (2002) and Exchange of Notes
+INFO     root:test_testCasesFullTextSearch.py:497 Sierra Leone - United Kingdom BIT (2000)
+INFO     root:test_testCasesFullTextSearch.py:497 Singapore - United Kingdom BIT (1975) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Singapore - United States Free Trade Agreement (2003) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Slovenia - United Kingdom BIT (1996)
+INFO     root:test_testCasesFullTextSearch.py:497 South Africa - United Kingdom BIT (1994) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Spain - United Kingdom Double Tax Convention (2013) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Sri Lanka - United Kingdom BIT (1980)
+INFO     root:test_testCasesFullTextSearch.py:497 Sri Lanka - United States BIT (1991) and Protocol
+INFO     root:test_testCasesFullTextSearch.py:497 Swaziland - United Kingdom BIT (1995) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Tanzania - United Kingdom BIT (1994)
+INFO     root:test_testCasesFullTextSearch.py:497 Thailand - United Kingdom BIT (1978) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Tonga - United Kingdom BIT (1997) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Trinidad and Tobago - United Kingdom BIT (1993) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Trinidad and Tobago - United States BIT (1994) and Protocol
+INFO     root:test_testCasesFullTextSearch.py:497 Tunisia - United Kingdom BIT (1989) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Tunisia - United States BIT (1990) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Turkey - United Kingdom BIT (1991)
+INFO     root:test_testCasesFullTextSearch.py:497 Turkey - United States BIT (1985) and Protocol
+INFO     root:test_testCasesFullTextSearch.py:497 Turkmenistan - United Arab Emirates BIT (1999) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Turkmenistan - United Kingdom BIT (1995)
+INFO     root:test_testCasesFullTextSearch.py:497 Uganda - United Kingdom BIT (1998) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Ukraine - United Kingdom (1993)
+INFO     root:test_testCasesFullTextSearch.py:497 Ukraine - United States BIT (1994)
+INFO     root:test_testCasesFullTextSearch.py:497 United Arab Emirates - United Kingdom BIT (1992) [English]
+INFO     root:test_testCasesFullTextSearch.py:497 United Kingdom - India Double Taxation Convention (1993)(citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Kingdom - Uruguay BIT (1991)
+INFO     root:test_testCasesFullTextSearch.py:497 United Kingdom - USSR (Russia) BIT (1989)
+INFO     root:test_testCasesFullTextSearch.py:497 United Kingdom - Uzbekistan BIT (1993) and Exchange of Notes
+INFO     root:test_testCasesFullTextSearch.py:497 United Kingdom - Vanuatu BIT (2003) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Kingdom - Venezuela BIT (1995)
+INFO     root:test_testCasesFullTextSearch.py:497 United Kingdom - Viet Nam BIT (2002) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Kingdom - Yemen BIT (1982) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Kingdom - Zimbabwe BIT (1995) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations Code of Conduct for Law Enforcement Officials (1979) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations Convention against Corruption (2003) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations Convention against Illicit Traffic in Narcotic Drugs and Psychotropic Substances (1988) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations Convention against Transnational Organized Crime (2000) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations Convention on Contracts for the International Sale of Goods (CISG) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations Convention on Jurisdictional Immunities of States and Their Property (2004)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations Convention on the Law of the Sea (1982) (excerpts)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations Convention on the Limitation Period in the International Sale of Goods (1974) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations Convention on Transparency in Treaty-based Investor-State Arbitration
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations Declaration Against Corruption and Bribery in International Commercial Transactions (1996) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations Declaration on the Rights of Indigenous Peoples (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations Draft International Agreement on Illicit Payments (1979) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations Framework Convention on Climate Change (1992) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations General Assembly Resolution 1710 (XVI) of 19 December 1961 &quot;United Nations Development Decade&quot; (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations General Assembly Resolution 1803 (XVII) of 14 December 1962 &quot;Permanent sovereignty over natural resources&quot; (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations General Declaration and the Programme of Action on the Establishment of a New International Economic Order 3281 (XXIX) of 12 December 1974 (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United Nations Guidelines on the Role of Prosecutors (1990) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United States - Italy Treaty of Friendship, Commerce and Navigation (1948) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United States - Mexico Claims Convention of 8 September 1923
+INFO     root:test_testCasesFullTextSearch.py:497 United States - Mexico Treaty Relating to the Utilization of Water (1944) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United States - Uzbekistan BIT (1994) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 United States - Venezuela Claims Protocol (1903) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Washington Treaty - United Kingdom - United States treaty concerning the Alabama Claims (1871) (citation and source)
+INFO     root:test_testCasesFullTextSearch.py:497 Article I(d): &quot;investment&quot;
+INFO     root:test_testCasesFullTextSearch.py:497 Article II(3)(a)
+INFO     root:test_testCasesFullTextSearch.py:500 Article II(3)(a)
+INFO     root:test_testCasesFullTextSearch.py:509 Clicked on Basic Filters
+INFO     root:test_testCasesFullTextSearch.py:512 ×
+&quot;Clean hands&quot; doctrine
+INFO     root:test_testCasesFullTextSearch.py:515 &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;00f3ee56df71d447fc7ca3f66735eb3a&quot;, element=&quot;982fb2f5-4448-4007-a63d-0a91fe47e537&quot;)&gt;
+INFO     root:test_testCasesFullTextSearch.py:518 
+INFO     root:test_testCasesFullTextSearch.py:521 Basic Filters popup closed
+INFO     root:test_testCasesFullTextSearch.py:525 0 documentscontaining: &quot;testInterests&quot;<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">FullTextSearch/test_testCasesFullTextSearch.py::Test_FullTextSearch::test_FullCaseAnalysis</td>
+          <td class="col-duration">23.84</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>Dispute Document
+[&#x27;CDwindow-5C977985A9A53BE5B88E8176FE8D28F0&#x27;, &#x27;CDwindow-6BC8FE3A053091E8D07842A9A40109B6&#x27;]
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesFullTextSearch.py:530 ****TestCase Full Text Search-004 - Validate Full Case Analysis ***
+INFO     root:test_testCasesFullTextSearch.py:531 *****Login Successful****
+INFO     root:test_testCasesFullTextSearch.py:532 **** Full Text Search testing *****
+INFO     root:test_testCasesFullTextSearch.py:535 Full Text Search menu was clicked
+INFO     root:test_testCasesFullTextSearch.py:551 Clicked on Full Case Analysis
+INFO     root:test_testCasesFullTextSearch.py:559 Opened Full Case Analysis<br/></div></td></tr></tbody></table></body></html>

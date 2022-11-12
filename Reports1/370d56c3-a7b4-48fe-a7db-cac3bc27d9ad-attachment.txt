@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesArticleCitator.py:37 ****TestCase AC-001 - Verify Add to Research***
+[32mINFO    [0m root:test_testCasesArticleCitator.py:38 *****Login Successful****
+[32mINFO    [0m root:test_testCasesArticleCitator.py:39 **** Article Citator testing *****
+[32mINFO    [0m root:test_testCasesArticleCitator.py:44 Article Citator menu is available
+[32mINFO    [0m root:test_testCasesArticleCitator.py:50 First Branch is expanded

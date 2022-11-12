@@ -1,0 +1,3 @@
+s = pyperclip.paste() 
+with open('new.txt','w') as g:
+   g.write(s)

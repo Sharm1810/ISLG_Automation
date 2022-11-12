@@ -1,0 +1,2 @@
+[32mINFO    [0m root:test_testCasesDashboard.py:38 ****TestCase Dashboard-001 - Validate Create ResearchTopic***
+[32mINFO    [0m root:test_testCasesDashboard.py:39 *****Login Successful****

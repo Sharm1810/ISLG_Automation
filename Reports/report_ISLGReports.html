@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) { // eslint-disable-line no-redeclare
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function findAll(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sortColumn(elem) {
+    toggleSortStates(elem);
+    const colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    let key;
+    if (elem.classList.contains('result')) {
+        key = keyResult;
+    } else if (elem.classList.contains('links')) {
+        key = keyLink;
+    } else {
+        key = keyAlpha;
+    }
+    sortTable(elem, key(colIndex));
+}
+
+function showAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(showExtras);
+}
+
+function hideAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(hideExtras);
+}
+
+function showExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.remove('collapsed');
+    expandcollapse.classList.remove('expander');
+    expandcollapse.classList.add('collapser');
+}
+
+function hideExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.add('collapsed');
+    expandcollapse.classList.remove('collapser');
+    expandcollapse.classList.add('expander');
+}
+
+function showFilters() {
+    const filterItems = document.getElementsByClassName('filter');
+    for (let i = 0; i < filterItems.length; i++)
+        filterItems[i].hidden = false;
+}
+
+function addCollapse() {
+    // Add links for show/hide all
+    const resulttable = find('table#results-table');
+    const showhideall = document.createElement('p');
+    showhideall.innerHTML = '<a href="javascript:showAllExtras()">Show all details</a> / ' +
+                            '<a href="javascript:hideAllExtras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    findAll('.col-result').forEach(function(elem) {
+        const collapsed = getQueryParameter('collapsed') || 'Passed';
+        const extras = elem.parentNode.nextElementSibling;
+        const expandcollapse = document.createElement('span');
+        if (extras.classList.contains('collapsed')) {
+            expandcollapse.classList.add('expander');
+        } else if (collapsed.includes(elem.innerHTML)) {
+            extras.classList.add('collapsed');
+            expandcollapse.classList.add('expander');
+        } else {
+            expandcollapse.classList.add('collapser');
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener('click', function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains('collapsed')) {
+                showExtras(event.currentTarget);
+            } else {
+                hideExtras(event.currentTarget);
+            }
+        });
+    });
+}
+
+function getQueryParameter(name) {
+    const match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function init () { // eslint-disable-line no-unused-vars
+    resetSortHeaders();
+
+    addCollapse();
+
+    showFilters();
+
+    sortColumn(find('.initial-sort'));
+
+    findAll('.sortable').forEach(function(elem) {
+        elem.addEventListener('click',
+            function() {
+                sortColumn(elem);
+            }, false);
+    });
+}
+
+function sortTable(clicked, keyFunc) {
+    const rows = findAll('.results-table-row');
+    const reversed = !clicked.classList.contains('asc');
+    const sortedRows = sort(rows, keyFunc, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    const thead = document.getElementById('results-table-head');
+    document.getElementById('results-table').remove();
+    const parent = document.createElement('table');
+    parent.id = 'results-table';
+    parent.appendChild(thead);
+    sortedRows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName('BODY')[0].appendChild(parent);
+}
+
+function sort(items, keyFunc, reversed) {
+    const sortArray = items.map(function(item, i) {
+        return [keyFunc(item), i];
+    });
+
+    sortArray.sort(function(a, b) {
+        const keyA = a[0];
+        const keyB = b[0];
+
+        if (keyA == keyB) return 0;
+
+        if (reversed) {
+            return keyA < keyB ? 1 : -1;
+        } else {
+            return keyA > keyB ? 1 : -1;
+        }
+    });
+
+    return sortArray.map(function(item) {
+        const index = item[1];
+        return items[index];
+    });
+}
+
+function keyAlpha(colIndex) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[colIndex].firstChild.data.toLowerCase();
+    };
+}
+
+function keyLink(colIndex) {
+    return function(elem) {
+        const dataCell = elem.childNodes[1].childNodes[colIndex].firstChild;
+        return dataCell == null ? '' : dataCell.innerText.toLowerCase();
+    };
+}
+
+function keyResult(colIndex) {
+    return function(elem) {
+        const strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+            'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[colIndex].firstChild.data);
+    };
+}
+
+function resetSortHeaders() {
+    findAll('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    findAll('.sortable').forEach(function(elem) {
+        const icon = document.createElement('div');
+        icon.className = 'sort-icon';
+        icon.textContent = 'vvv';
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove('desc', 'active');
+        elem.classList.add('asc', 'inactive');
+    });
+}
+
+function toggleSortStates(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        resetSortHeaders();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function isAllRowsHidden(value) {
+    return value.hidden == false;
+}
+
+function filterTable(elem) { // eslint-disable-line no-unused-vars
+    const outcomeAtt = 'data-test-result';
+    const outcome = elem.getAttribute(outcomeAtt);
+    const classOutcome = outcome + ' results-table-row';
+    const outcomeRows = document.getElementsByClassName(classOutcome);
+
+    for(let i = 0; i < outcomeRows.length; i++){
+        outcomeRows[i].hidden = !elem.checked;
+    }
+
+    const rows = findAll('.results-table-row').filter(isAllRowsHidden);
+    const allRowsHidden = rows.length == 0 ? true : false;
+    const notFoundMessage = document.getElementById('not-found-message');
+    notFoundMessage.hidden = !allRowsHidden;
+}
+</script>
+    <h1>report.html</h1>
+    <p>Report generated on 30-Jun-2022 at 13:54:48 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>Application: </td>
+        <td>ISLG Subscriber</td></tr>
+      <tr>
+        <td>Packages</td>
+        <td>{"pluggy": "1.0.0", "py": "1.11.0", "pytest": "6.2.5"}</td></tr>
+      <tr>
+        <td>Platform</td>
+        <td>Windows-10-10.0.19044-SP0</td></tr>
+      <tr>
+        <td>Project Name</td>
+        <td>ISLG Subscriber</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>3.9.6</td></tr>
+      <tr>
+        <td>Tester Name</td>
+        <td>Sharmila</td></tr></table>
+    <h2>Summary</h2>
+    <p>18 tests ran in 374.24 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">16 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">2 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable" col="duration">Duration</th>
+          <th class="sortable links" col="links">Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_ViewComparisonReports</td>
+          <td class="col-duration">12.08</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;testCases.Reports.test_testCasesReports.Test_Reports object at 0x000002352CBC3E20&gt;<br/><br/>    def test_ViewComparisonReports(self):<br/>        self.logger.info(&quot;****TestCase ISLG Reports-003 - Validate View Comparison Reports***&quot;)<br/>        self.logger.info(&quot;*****Login Successful****&quot;)<br/>        self.logger.info(&quot;**** ISLG Reports testing *****&quot;)<br/>        self.navigator = Reports(self.driver)<br/>        self.navigator.clickOnISLGReports()<br/>        self.logger.info(&quot;ISLG Reports menu was clicked&quot;)<br/>        time.sleep(2)<br/>        #self.navigator.clickOnClientListing()<br/>        self.navigator.clickOnViewComparisonReport()<br/>        clickOnFirstReportLink = self.driver.find_element(By.XPATH,<br/>                                                          &quot;//*[@id=&#x27;page-content-1&#x27;]/div[2]/div[1]/div[1]//a[1]&quot;)<br/>        clickOnFirstReportLink.click()<br/>        self.logger.info(&quot;Clicked on the First Link&quot;)<br/>        navigationMenuData = self.driver.find_element(By.XPATH, &quot;//*[@id=&#x27;dv-single-report&#x27;]/div[1]/div/nav&quot;)<br/>        self.logger.info(navigationMenuData.text)<br/>        reportsHeading = self.driver.find_element(By.XPATH, &quot;//*[@id=&#x27;page-content-1&#x27;]/div/div/div[2]/div/p[1]/strong&quot;)<br/>        self.logger.info(reportsHeading.text)<br/>&gt;       self.driver.find_element(By.XPATH, &quot;//*[@id=&#x27;dv-single-report&#x27;]/div[1]/div/nav/a[1]&quot;).click()<br/><br/>testCases\Reports\test_testCasesReports.py:120: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/>venv\lib\site-packages\selenium\webdriver\remote\webelement.py:80: in click<br/>    self._execute(Command.CLICK_ELEMENT)<br/>venv\lib\site-packages\selenium\webdriver\remote\webelement.py:633: in _execute<br/>    return self._parent.execute(command, params)<br/>venv\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute<br/>    self.error_handler.check_response(response)<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/><br/>self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x000002352CB999D0&gt;<br/>response = {&#x27;status&#x27;: 400, &#x27;value&#x27;: &#x27;{&quot;value&quot;:{&quot;error&quot;:&quot;element click intercepted&quot;,&quot;message&quot;:&quot;element click intercepted: Element ...\n\\tRtlGetAppContainerNamedObjectPath [0x77E57A9E+286]\\n\\tRtlGetAppContainerNamedObjectPath [0x77E57A6E+238]\\n&quot;}}&#x27;}<br/><br/>    def check_response(self, response):<br/>        &quot;&quot;&quot;<br/>        Checks that a JSON response from the WebDriver does not have an error.<br/>    <br/>        :Args:<br/>         - response - The JSON response from the WebDriver server as a dictionary<br/>           object.<br/>    <br/>        :Raises: If the response contains an error message.<br/>        &quot;&quot;&quot;<br/>        status = response.get(&#x27;status&#x27;, None)<br/>        if status is None or status == ErrorCode.SUCCESS:<br/>            return<br/>        value = None<br/>        message = response.get(&quot;message&quot;, &quot;&quot;)<br/>        screen = response.get(&quot;screen&quot;, &quot;&quot;)<br/>        stacktrace = None<br/>        if isinstance(status, int):<br/>            value_json = response.get(&#x27;value&#x27;, None)<br/>            if value_json and isinstance(value_json, basestring):<br/>                import json<br/>                try:<br/>                    value = json.loads(value_json)<br/>                    if len(value.keys()) == 1:<br/>                        value = value[&#x27;value&#x27;]<br/>                    status = value.get(&#x27;error&#x27;, None)<br/>                    if status is None:<br/>                        status = value[&quot;status&quot;]<br/>                        message = value[&quot;value&quot;]<br/>                        if not isinstance(message, basestring):<br/>                            value = message<br/>                            message = message.get(&#x27;message&#x27;)<br/>                    else:<br/>                        message = value.get(&#x27;message&#x27;, None)<br/>                except ValueError:<br/>                    pass<br/>    <br/>        exception_class = ErrorInResponseException<br/>        if status in ErrorCode.NO_SUCH_ELEMENT:<br/>            exception_class = NoSuchElementException<br/>        elif status in ErrorCode.NO_SUCH_FRAME:<br/>            exception_class = NoSuchFrameException<br/>        elif status in ErrorCode.NO_SUCH_WINDOW:<br/>            exception_class = NoSuchWindowException<br/>        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:<br/>            exception_class = StaleElementReferenceException<br/>        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:<br/>            exception_class = ElementNotVisibleException<br/>        elif status in ErrorCode.INVALID_ELEMENT_STATE:<br/>            exception_class = InvalidElementStateException<br/>        elif status in ErrorCode.INVALID_SELECTOR \<br/>                or status in ErrorCode.INVALID_XPATH_SELECTOR \<br/>                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:<br/>            exception_class = InvalidSelectorException<br/>        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:<br/>            exception_class = ElementNotSelectableException<br/>        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:<br/>            exception_class = ElementNotInteractableException<br/>        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:<br/>            exception_class = InvalidCookieDomainException<br/>        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:<br/>            exception_class = UnableToSetCookieException<br/>        elif status in ErrorCode.TIMEOUT:<br/>            exception_class = TimeoutException<br/>        elif status in ErrorCode.SCRIPT_TIMEOUT:<br/>            exception_class = TimeoutException<br/>        elif status in ErrorCode.UNKNOWN_ERROR:<br/>            exception_class = WebDriverException<br/>        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:<br/>            exception_class = UnexpectedAlertPresentException<br/>        elif status in ErrorCode.NO_ALERT_OPEN:<br/>            exception_class = NoAlertPresentException<br/>        elif status in ErrorCode.IME_NOT_AVAILABLE:<br/>            exception_class = ImeNotAvailableException<br/>        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:<br/>            exception_class = ImeActivationFailedException<br/>        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:<br/>            exception_class = MoveTargetOutOfBoundsException<br/>        elif status in ErrorCode.JAVASCRIPT_ERROR:<br/>            exception_class = JavascriptException<br/>        elif status in ErrorCode.SESSION_NOT_CREATED:<br/>            exception_class = SessionNotCreatedException<br/>        elif status in ErrorCode.INVALID_ARGUMENT:<br/>            exception_class = InvalidArgumentException<br/>        elif status in ErrorCode.NO_SUCH_COOKIE:<br/>            exception_class = NoSuchCookieException<br/>        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:<br/>            exception_class = ScreenshotException<br/>        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:<br/>            exception_class = ElementClickInterceptedException<br/>        elif status in ErrorCode.INSECURE_CERTIFICATE:<br/>            exception_class = InsecureCertificateException<br/>        elif status in ErrorCode.INVALID_COORDINATES:<br/>            exception_class = InvalidCoordinatesException<br/>        elif status in ErrorCode.INVALID_SESSION_ID:<br/>            exception_class = InvalidSessionIdException<br/>        elif status in ErrorCode.UNKNOWN_METHOD:<br/>            exception_class = UnknownMethodException<br/>        else:<br/>            exception_class = WebDriverException<br/>        if value == &#x27;&#x27; or value is None:<br/>            value = response[&#x27;value&#x27;]<br/>        if isinstance(value, basestring):<br/>            if exception_class == ErrorInResponseException:<br/>                raise exception_class(response, value)<br/>            raise exception_class(value)<br/>        if message == &quot;&quot; and &#x27;message&#x27; in value:<br/>            message = value[&#x27;message&#x27;]<br/>    <br/>        screen = None<br/>        if &#x27;screen&#x27; in value:<br/>            screen = value[&#x27;screen&#x27;]<br/>    <br/>        stacktrace = None<br/>        if &#x27;stackTrace&#x27; in value and value[&#x27;stackTrace&#x27;]:<br/>            stacktrace = []<br/>            try:<br/>                for frame in value[&#x27;stackTrace&#x27;]:<br/>                    line = self._value_or_default(frame, &#x27;lineNumber&#x27;, &#x27;&#x27;)<br/>                    file = self._value_or_default(frame, &#x27;fileName&#x27;, &#x27;&lt;anonymous&gt;&#x27;)<br/>                    if line:<br/>                        file = &quot;%s:%s&quot; % (file, line)<br/>                    meth = self._value_or_default(frame, &#x27;methodName&#x27;, &#x27;&lt;anonymous&gt;&#x27;)<br/>                    if &#x27;className&#x27; in frame:<br/>                        meth = &quot;%s.%s&quot; % (frame[&#x27;className&#x27;], meth)<br/>                    msg = &quot;    at %s (%s)&quot;<br/>                    msg = msg % (meth, file)<br/>                    stacktrace.append(msg)<br/>            except TypeError:<br/>                pass<br/>        if exception_class == ErrorInResponseException:<br/>            raise exception_class(response, message)<br/>        elif exception_class == UnexpectedAlertPresentException:<br/>            alert_text = None<br/>            if &#x27;data&#x27; in value:<br/>                alert_text = value[&#x27;data&#x27;].get(&#x27;text&#x27;)<br/>            elif &#x27;alert&#x27; in value:<br/>                alert_text = value[&#x27;alert&#x27;].get(&#x27;text&#x27;)<br/>            raise exception_class(message, screen, stacktrace, alert_text)<br/>&gt;       raise exception_class(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element &lt;a title=&quot;ISLG Reports&quot; href=&quot;/LegalAnalytics&quot;&gt;...&lt;/a&gt; is not clickable at point (318, 185). Other element would receive the click: &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;</span><br/><span class="error">E         (Session info: chrome=103.0.5060.66)</span><br/><br/>venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: ElementClickInterceptedException<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:103 ****TestCase ISLG Reports-003 - Validate View Comparison Reports***
+INFO     root:test_testCasesReports.py:104 *****Login Successful****
+INFO     root:test_testCasesReports.py:105 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:108 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:115 Clicked on the First Link
+INFO     root:test_testCasesReports.py:117 ISLG Reports Comparative Dispute Reports Disputes (General Information)
+INFO     root:test_testCasesReports.py:119 Comparative Dispute Reports<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_ViewComparisonReportsOrg</td>
+          <td class="col-duration">11.55</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;testCases.Reports.test_testCasesReports.Test_Reports object at 0x000002352DC175B0&gt;<br/><br/>    def test_ViewComparisonReportsOrg(self):<br/>        self.logger.info(&quot;****TestCase ISLG Reports-008 - Validate View Comparison Reports- Organization***&quot;)<br/>        self.logger.info(&quot;*****Login Successful****&quot;)<br/>        self.logger.info(&quot;**** ISLG Reports testing *****&quot;)<br/>        self.navigator = Reports(self.driver)<br/>        self.navigator.clickOnISLGReports()<br/>        self.logger.info(&quot;ISLG Reports menu was clicked&quot;)<br/>        time.sleep(2)<br/>        #self.navigator.clickOnClientListing()<br/>        self.navigator.clickOnViewComparisonReportsOrg()<br/>        self.logger.info(&quot;Clicked on View Comparison Reports for Organization&quot;)<br/>        getHeading = self.driver.find_element(By.XPATH, &quot;//*[@id=&#x27;page-content-1&#x27;]/div[1]/div/div[1]/div[2]/h2&quot;)<br/>        self.logger.info(getHeading.text)<br/>        firstOrgLink = self.driver.find_element(By.XPATH, &quot;//*[@id=&#x27;page-content-1&#x27;]/div[2]/div[1]/div/a&quot;)<br/>        firstOrgLink.click()<br/>        self.logger.info(&quot;Clicked on First Org Link&quot;)<br/>        orgBreadCrumbs = self.driver.find_element(By.XPATH, &quot;//*[@id=&#x27;dv-single-report&#x27;]/div[1]/div/nav&quot;)<br/>        self.logger.info(orgBreadCrumbs.text)<br/>        islgReports = self.driver.find_element(By.XPATH, &quot;//*[@id=&#x27;dv-single-report&#x27;]/div[1]/div/nav/a[1]/span&quot;)<br/>&gt;       islgReports.click()<br/><br/>testCases\Reports\test_testCasesReports.py:278: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/>venv\lib\site-packages\selenium\webdriver\remote\webelement.py:80: in click<br/>    self._execute(Command.CLICK_ELEMENT)<br/>venv\lib\site-packages\selenium\webdriver\remote\webelement.py:633: in _execute<br/>    return self._parent.execute(command, params)<br/>venv\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute<br/>    self.error_handler.check_response(response)<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/><br/>self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x000002352CB999D0&gt;<br/>response = {&#x27;status&#x27;: 400, &#x27;value&#x27;: &#x27;{&quot;value&quot;:{&quot;error&quot;:&quot;element click intercepted&quot;,&quot;message&quot;:&quot;element click intercepted: Element ...\n\\tRtlGetAppContainerNamedObjectPath [0x77E57A9E+286]\\n\\tRtlGetAppContainerNamedObjectPath [0x77E57A6E+238]\\n&quot;}}&#x27;}<br/><br/>    def check_response(self, response):<br/>        &quot;&quot;&quot;<br/>        Checks that a JSON response from the WebDriver does not have an error.<br/>    <br/>        :Args:<br/>         - response - The JSON response from the WebDriver server as a dictionary<br/>           object.<br/>    <br/>        :Raises: If the response contains an error message.<br/>        &quot;&quot;&quot;<br/>        status = response.get(&#x27;status&#x27;, None)<br/>        if status is None or status == ErrorCode.SUCCESS:<br/>            return<br/>        value = None<br/>        message = response.get(&quot;message&quot;, &quot;&quot;)<br/>        screen = response.get(&quot;screen&quot;, &quot;&quot;)<br/>        stacktrace = None<br/>        if isinstance(status, int):<br/>            value_json = response.get(&#x27;value&#x27;, None)<br/>            if value_json and isinstance(value_json, basestring):<br/>                import json<br/>                try:<br/>                    value = json.loads(value_json)<br/>                    if len(value.keys()) == 1:<br/>                        value = value[&#x27;value&#x27;]<br/>                    status = value.get(&#x27;error&#x27;, None)<br/>                    if status is None:<br/>                        status = value[&quot;status&quot;]<br/>                        message = value[&quot;value&quot;]<br/>                        if not isinstance(message, basestring):<br/>                            value = message<br/>                            message = message.get(&#x27;message&#x27;)<br/>                    else:<br/>                        message = value.get(&#x27;message&#x27;, None)<br/>                except ValueError:<br/>                    pass<br/>    <br/>        exception_class = ErrorInResponseException<br/>        if status in ErrorCode.NO_SUCH_ELEMENT:<br/>            exception_class = NoSuchElementException<br/>        elif status in ErrorCode.NO_SUCH_FRAME:<br/>            exception_class = NoSuchFrameException<br/>        elif status in ErrorCode.NO_SUCH_WINDOW:<br/>            exception_class = NoSuchWindowException<br/>        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:<br/>            exception_class = StaleElementReferenceException<br/>        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:<br/>            exception_class = ElementNotVisibleException<br/>        elif status in ErrorCode.INVALID_ELEMENT_STATE:<br/>            exception_class = InvalidElementStateException<br/>        elif status in ErrorCode.INVALID_SELECTOR \<br/>                or status in ErrorCode.INVALID_XPATH_SELECTOR \<br/>                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:<br/>            exception_class = InvalidSelectorException<br/>        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:<br/>            exception_class = ElementNotSelectableException<br/>        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:<br/>            exception_class = ElementNotInteractableException<br/>        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:<br/>            exception_class = InvalidCookieDomainException<br/>        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:<br/>            exception_class = UnableToSetCookieException<br/>        elif status in ErrorCode.TIMEOUT:<br/>            exception_class = TimeoutException<br/>        elif status in ErrorCode.SCRIPT_TIMEOUT:<br/>            exception_class = TimeoutException<br/>        elif status in ErrorCode.UNKNOWN_ERROR:<br/>            exception_class = WebDriverException<br/>        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:<br/>            exception_class = UnexpectedAlertPresentException<br/>        elif status in ErrorCode.NO_ALERT_OPEN:<br/>            exception_class = NoAlertPresentException<br/>        elif status in ErrorCode.IME_NOT_AVAILABLE:<br/>            exception_class = ImeNotAvailableException<br/>        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:<br/>            exception_class = ImeActivationFailedException<br/>        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:<br/>            exception_class = MoveTargetOutOfBoundsException<br/>        elif status in ErrorCode.JAVASCRIPT_ERROR:<br/>            exception_class = JavascriptException<br/>        elif status in ErrorCode.SESSION_NOT_CREATED:<br/>            exception_class = SessionNotCreatedException<br/>        elif status in ErrorCode.INVALID_ARGUMENT:<br/>            exception_class = InvalidArgumentException<br/>        elif status in ErrorCode.NO_SUCH_COOKIE:<br/>            exception_class = NoSuchCookieException<br/>        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:<br/>            exception_class = ScreenshotException<br/>        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:<br/>            exception_class = ElementClickInterceptedException<br/>        elif status in ErrorCode.INSECURE_CERTIFICATE:<br/>            exception_class = InsecureCertificateException<br/>        elif status in ErrorCode.INVALID_COORDINATES:<br/>            exception_class = InvalidCoordinatesException<br/>        elif status in ErrorCode.INVALID_SESSION_ID:<br/>            exception_class = InvalidSessionIdException<br/>        elif status in ErrorCode.UNKNOWN_METHOD:<br/>            exception_class = UnknownMethodException<br/>        else:<br/>            exception_class = WebDriverException<br/>        if value == &#x27;&#x27; or value is None:<br/>            value = response[&#x27;value&#x27;]<br/>        if isinstance(value, basestring):<br/>            if exception_class == ErrorInResponseException:<br/>                raise exception_class(response, value)<br/>            raise exception_class(value)<br/>        if message == &quot;&quot; and &#x27;message&#x27; in value:<br/>            message = value[&#x27;message&#x27;]<br/>    <br/>        screen = None<br/>        if &#x27;screen&#x27; in value:<br/>            screen = value[&#x27;screen&#x27;]<br/>    <br/>        stacktrace = None<br/>        if &#x27;stackTrace&#x27; in value and value[&#x27;stackTrace&#x27;]:<br/>            stacktrace = []<br/>            try:<br/>                for frame in value[&#x27;stackTrace&#x27;]:<br/>                    line = self._value_or_default(frame, &#x27;lineNumber&#x27;, &#x27;&#x27;)<br/>                    file = self._value_or_default(frame, &#x27;fileName&#x27;, &#x27;&lt;anonymous&gt;&#x27;)<br/>                    if line:<br/>                        file = &quot;%s:%s&quot; % (file, line)<br/>                    meth = self._value_or_default(frame, &#x27;methodName&#x27;, &#x27;&lt;anonymous&gt;&#x27;)<br/>                    if &#x27;className&#x27; in frame:<br/>                        meth = &quot;%s.%s&quot; % (frame[&#x27;className&#x27;], meth)<br/>                    msg = &quot;    at %s (%s)&quot;<br/>                    msg = msg % (meth, file)<br/>                    stacktrace.append(msg)<br/>            except TypeError:<br/>                pass<br/>        if exception_class == ErrorInResponseException:<br/>            raise exception_class(response, message)<br/>        elif exception_class == UnexpectedAlertPresentException:<br/>            alert_text = None<br/>            if &#x27;data&#x27; in value:<br/>                alert_text = value[&#x27;data&#x27;].get(&#x27;text&#x27;)<br/>            elif &#x27;alert&#x27; in value:<br/>                alert_text = value[&#x27;alert&#x27;].get(&#x27;text&#x27;)<br/>            raise exception_class(message, screen, stacktrace, alert_text)<br/>&gt;       raise exception_class(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element &lt;span&gt;...&lt;/span&gt; is not clickable at point (318, 196). Other element would receive the click: &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;</span><br/><span class="error">E         (Session info: chrome=103.0.5060.66)</span><br/><br/>venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: ElementClickInterceptedException<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:260 ****TestCase ISLG Reports-008 - Validate View Comparison Reports- Organization***
+INFO     root:test_testCasesReports.py:261 *****Login Successful****
+INFO     root:test_testCasesReports.py:262 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:265 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:269 Clicked on View Comparison Reports for Organization
+INFO     root:test_testCasesReports.py:271 Comparative Organization Reports
+INFO     root:test_testCasesReports.py:274 Clicked on First Org Link
+INFO     root:test_testCasesReports.py:276 ISLG Reports Comparative Organization Reports Number of Disputes (Counsel)<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_ViewReports</td>
+          <td class="col-duration">38.70</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>1
+
+Annulment
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:45 ****TestCase ISLG Reports-001 - Validate View All Reports***
+INFO     root:test_testCasesReports.py:46 *****Login Successful****
+INFO     root:test_testCasesReports.py:47 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:50 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:59 
+INFO     root:test_testCasesReports.py:70 Annulment  Showing 1 to 6 of 6<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_ViewAllDispute</td>
+          <td class="col-duration">13.37</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:75 ****TestCase ISLG Reports-002 - Validate View All Dispute***
+INFO     root:test_testCasesReports.py:76 *****Login Successful****
+INFO     root:test_testCasesReports.py:77 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:80 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:84 Clicked on View All Dispute
+INFO     root:test_testCasesReports.py:86 ISLG Reports Individual Dispute Reports
+INFO     root:test_testCasesReports.py:88                         20
+                        50
+                        100
+                        200
+                        500
+                    
+INFO     root:test_testCasesReports.py:92 Clicked on the First Report Link
+INFO     root:test_testCasesReports.py:94 9REN Holding S.a.r.l v. Kingdom of Spain
+INFO     root:test_testCasesReports.py:97 9REN v. Spain
+INFO     root:test_testCasesReports.py:99 Clicked on to navigate to the ISLG Reports page<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_ViewIndividualReports</td>
+          <td class="col-duration">23.13</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>10
+9REN v. Spain
+Alten Renewable v. Spain
+Antin v. Spain
+record found
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:125 ****TestCase ISLG Reports-004 - Validate View Individual Reports***
+INFO     root:test_testCasesReports.py:126 *****Login Successful****
+INFO     root:test_testCasesReports.py:127 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:130 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:139 9REN v. Spain
+INFO     root:test_testCasesReports.py:145 9REN v. Spain
+INFO     root:test_testCasesReports.py:139 Alten Renewable v. Spain
+INFO     root:test_testCasesReports.py:145 Alten Renewable v. Spain
+INFO     root:test_testCasesReports.py:139 Antin v. Spain
+INFO     root:test_testCasesReports.py:147 Clicked on View Individual Reports
+INFO     root:test_testCasesReports.py:149 ISLG Reports Individual Dispute Reports Antin v. Spain (ICSID Case No. ARB/13/31)
+INFO     root:test_testCasesReports.py:152 Clicked on to navigate to the ISLG Reports home<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_ViewComparisonReportsPeople</td>
+          <td class="col-duration">36.98</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>A. Bruce Bowden
+CDwindow-B5B223FC683E09ADF5760210233509C6
+[&#x27;CDwindow-B5B223FC683E09ADF5760210233509C6&#x27;, &#x27;CDwindow-D3CC5C3598ED8CFE3F4D468757D7B64D&#x27;]
+
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:156 ****TestCase ISLG Reports-005 - Validate View People Comparison Reports***
+INFO     root:test_testCasesReports.py:157 *****Login Successful****
+INFO     root:test_testCasesReports.py:158 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:161 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:165 Clicked on People - View Comparison Reports
+INFO     root:test_testCasesReports.py:168 Clicked on the First Report Link
+INFO     root:test_testCasesReports.py:170 ISLG Reports Comparative People Reports Number of Disputes (All)
+INFO     root:test_testCasesReports.py:175 A. Bruce Bowden
+INFO     root:test_testCasesReports.py:176 Clicked on the first name link
+INFO     root:test_testCasesReports.py:177 A. Bruce Bowden
+INFO     root:test_testCasesReports.py:189 clicked on the expand link
+INFO     root:test_testCasesReports.py:194 
+INFO     root:test_testCasesReports.py:202 Clicked on ISLG Report Home<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_ViewAllPeople</td>
+          <td class="col-duration">11.46</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>A. Bruce Bowden
+A. Manuel Garcia
+A. Rohan Perera
+A. Shlapak
+A. Thompson Bayliss
+Aaron de Jong
+Aaron Kates Rose
+Aaron Koh
+Aaron McDonald
+Aaron Shorr
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:206 ****TestCase ISLG Reports-006 - Validate View All People***
+INFO     root:test_testCasesReports.py:207 *****Login Successful****
+INFO     root:test_testCasesReports.py:208 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:211 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:215 Clicked on View All People
+INFO     root:test_testCasesReports.py:221 A. Bruce Bowden
+INFO     root:test_testCasesReports.py:227 A. Bruce Bowden
+INFO     root:test_testCasesReports.py:221 A. Manuel Garcia
+INFO     root:test_testCasesReports.py:227 A. Manuel Garcia
+INFO     root:test_testCasesReports.py:221 A. Rohan Perera
+INFO     root:test_testCasesReports.py:227 A. Rohan Perera
+INFO     root:test_testCasesReports.py:221 A. Shlapak
+INFO     root:test_testCasesReports.py:227 A. Shlapak
+INFO     root:test_testCasesReports.py:221 A. Thompson Bayliss
+INFO     root:test_testCasesReports.py:227 A. Thompson Bayliss
+INFO     root:test_testCasesReports.py:221 Aaron de Jong
+INFO     root:test_testCasesReports.py:227 Aaron de Jong
+INFO     root:test_testCasesReports.py:221 Aaron Kates Rose
+INFO     root:test_testCasesReports.py:227 Aaron Kates Rose
+INFO     root:test_testCasesReports.py:221 Aaron Koh
+INFO     root:test_testCasesReports.py:227 Aaron Koh
+INFO     root:test_testCasesReports.py:221 Aaron McDonald
+INFO     root:test_testCasesReports.py:227 Aaron McDonald
+INFO     root:test_testCasesReports.py:221 Aaron Shorr
+INFO     root:test_testCasesReports.py:227 Aaron Shorr<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_ViewIndividualReportsPeople</td>
+          <td class="col-duration">28.82</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>10
+A. Bruce Bowden
+A. Manuel Garcia
+record found
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:231 ****TestCase ISLG Reports-007 - Validate View Individual FReports- People***
+INFO     root:test_testCasesReports.py:232 *****Login Successful****
+INFO     root:test_testCasesReports.py:233 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:236 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:244 A. Bruce Bowden
+INFO     root:test_testCasesReports.py:250 A. Bruce Bowden  was selected
+INFO     root:test_testCasesReports.py:244 A. Manuel Garcia
+INFO     root:test_testCasesReports.py:253 ISLG Reports Individual People Reports A. Manuel Garcia
+INFO     root:test_testCasesReports.py:256 Clicked on to navigate to ISLG Reports home<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_ViewAllOrganizationReports</td>
+          <td class="col-duration">21.74</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>10
+11 King&#x27;s Bench Walk (KBW)
+record found
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:283 ****TestCase ISLG Reports-009 - Validate View All Organization Reports- Organization***
+INFO     root:test_testCasesReports.py:284 *****Login Successful****
+INFO     root:test_testCasesReports.py:285 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:288 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:298 11 King&#x27;s Bench Walk (KBW)
+INFO     root:test_testCasesReports.py:301 11 King&#x27;s Bench Walk (KBW)
+INFO     root:test_testCasesReports.py:310 ISLG Reports Individual Organization Reports 11 King&#x27;s Bench Walk (KBW)<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_ViewIndividualOrgReports</td>
+          <td class="col-duration">18.57</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>3
+11 King&#x27;s Bench Walk (KBW)
+record found
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:316 ****TestCase ISLG Reports-010 - Validate View Individual Org Reports- Organization***
+INFO     root:test_testCasesReports.py:317 *****Login Successful****
+INFO     root:test_testCasesReports.py:318 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:321 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:331 11 King&#x27;s Bench Walk (KBW)
+INFO     root:test_testCasesReports.py:334 11 King&#x27;s Bench Walk (KBW)
+INFO     root:test_testCasesReports.py:336 
+INFO     root:test_testCasesReports.py:341 ISLG Reports Individual Organization Reports 11 King&#x27;s Bench Walk (KBW)
+INFO     root:test_testCasesReports.py:344 Clicked on to navigate to the ISLG Report Home<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_ViewAllCountriesReports</td>
+          <td class="col-duration">30.07</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>10
+Albania
+record found
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:348 ****TestCase ISLG Reports-011 - Validate View All Countries***
+INFO     root:test_testCasesReports.py:349 *****Login Successful****
+INFO     root:test_testCasesReports.py:350 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:353 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:358 Clicked on View All Countries
+INFO     root:test_testCasesReports.py:365 Albania
+INFO     root:test_testCasesReports.py:368 Albania
+INFO     root:test_testCasesReports.py:370 
+INFO     root:test_testCasesReports.py:374 ISLG Reports Individual Country Reports
+INFO     root:test_testCasesReports.py:376 Clicked on the First Country link
+INFO     root:test_testCasesReports.py:380 Clicked on Expand Countries link
+INFO     root:test_testCasesReports.py:383 Albania
+INFO     root:test_testCasesReports.py:386 Clicked on to navigate to the ISLG Reports home<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_ViewIndividualCountryReports</td>
+          <td class="col-duration">26.83</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2
+Australia
+record found
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:390 ****TestCase ISLG Reports-012 - Validate Individual Countries***
+INFO     root:test_testCasesReports.py:391 *****Login Successful****
+INFO     root:test_testCasesReports.py:392 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:395 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:405 Australia
+INFO     root:test_testCasesReports.py:408 Australia
+INFO     root:test_testCasesReports.py:410 
+INFO     root:test_testCasesReports.py:414 Clicked on View Individual Reports
+INFO     root:test_testCasesReports.py:418 ISLG Reports Individual Country Reports Australia Disputes (Respondent State)
+INFO     root:test_testCasesReports.py:421 Clicked on to navigate to ISLG Reports home<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_ViewComparativeCountryReports</td>
+          <td class="col-duration">18.81</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:425 ****TestCase ISLG Reports-013 - Validate Comparative Countries***
+INFO     root:test_testCasesReports.py:426 *****Login Successful****
+INFO     root:test_testCasesReports.py:427 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:430 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:438 ISLG Reports Comparative Country Reports Number of Disputes (Respondent State)
+INFO     root:test_testCasesReports.py:441 Clicked on to navigate to the ISLG Reports home<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_SavedReports</td>
+          <td class="col-duration">13.61</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:446 ****TestCase ISLG Reports-014 - Validate Saved Reports***
+INFO     root:test_testCasesReports.py:447 *****Login Successful****
+INFO     root:test_testCasesReports.py:448 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:451 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:457 Clicked on Saved Reports<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_DisputeAddToNotepad</td>
+          <td class="col-duration">18.25</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:477 ****TestCase ISLG Reports-015 - Comparative Reports - Add to Notepad ***
+INFO     root:test_testCasesReports.py:478 *****Login Successful****
+INFO     root:test_testCasesReports.py:479 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:482 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:494 Added to your research notepad.<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_PeopleAddToNotepad</td>
+          <td class="col-duration">16.09</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:498 ****TestCase ISLG Reports-016 - Comparative People Reports - Add to Notepad ***
+INFO     root:test_testCasesReports.py:499 *****Login Successful****
+INFO     root:test_testCasesReports.py:500 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:503 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:515 Added to your research notepad.<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_OrgAddToNotepad</td>
+          <td class="col-duration">17.41</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:519 ****TestCase ISLG Reports-017 - Organization Reports - Add to Notepad ***
+INFO     root:test_testCasesReports.py:520 *****Login Successful****
+INFO     root:test_testCasesReports.py:521 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:524 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:536 Added to your research notepad.<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Reports/test_testCasesReports.py::Test_Reports::test_CountryAddToNotepad</td>
+          <td class="col-duration">15.95</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesReports.py:540 ****TestCase ISLG Reports-018 - Country Reports - Add to Notepad ***
+INFO     root:test_testCasesReports.py:541 *****Login Successful****
+INFO     root:test_testCasesReports.py:542 **** ISLG Reports testing *****
+INFO     root:test_testCasesReports.py:545 ISLG Reports menu was clicked
+INFO     root:test_testCasesReports.py:557 Added to your research notepad.<br/></div></td></tr></tbody></table></body></html>

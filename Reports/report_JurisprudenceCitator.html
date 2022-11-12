@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) { // eslint-disable-line no-redeclare
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function findAll(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sortColumn(elem) {
+    toggleSortStates(elem);
+    const colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    let key;
+    if (elem.classList.contains('result')) {
+        key = keyResult;
+    } else if (elem.classList.contains('links')) {
+        key = keyLink;
+    } else {
+        key = keyAlpha;
+    }
+    sortTable(elem, key(colIndex));
+}
+
+function showAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(showExtras);
+}
+
+function hideAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(hideExtras);
+}
+
+function showExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.remove('collapsed');
+    expandcollapse.classList.remove('expander');
+    expandcollapse.classList.add('collapser');
+}
+
+function hideExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.add('collapsed');
+    expandcollapse.classList.remove('collapser');
+    expandcollapse.classList.add('expander');
+}
+
+function showFilters() {
+    const filterItems = document.getElementsByClassName('filter');
+    for (let i = 0; i < filterItems.length; i++)
+        filterItems[i].hidden = false;
+}
+
+function addCollapse() {
+    // Add links for show/hide all
+    const resulttable = find('table#results-table');
+    const showhideall = document.createElement('p');
+    showhideall.innerHTML = '<a href="javascript:showAllExtras()">Show all details</a> / ' +
+                            '<a href="javascript:hideAllExtras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    findAll('.col-result').forEach(function(elem) {
+        const collapsed = getQueryParameter('collapsed') || 'Passed';
+        const extras = elem.parentNode.nextElementSibling;
+        const expandcollapse = document.createElement('span');
+        if (extras.classList.contains('collapsed')) {
+            expandcollapse.classList.add('expander');
+        } else if (collapsed.includes(elem.innerHTML)) {
+            extras.classList.add('collapsed');
+            expandcollapse.classList.add('expander');
+        } else {
+            expandcollapse.classList.add('collapser');
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener('click', function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains('collapsed')) {
+                showExtras(event.currentTarget);
+            } else {
+                hideExtras(event.currentTarget);
+            }
+        });
+    });
+}
+
+function getQueryParameter(name) {
+    const match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function init () { // eslint-disable-line no-unused-vars
+    resetSortHeaders();
+
+    addCollapse();
+
+    showFilters();
+
+    sortColumn(find('.initial-sort'));
+
+    findAll('.sortable').forEach(function(elem) {
+        elem.addEventListener('click',
+            function() {
+                sortColumn(elem);
+            }, false);
+    });
+}
+
+function sortTable(clicked, keyFunc) {
+    const rows = findAll('.results-table-row');
+    const reversed = !clicked.classList.contains('asc');
+    const sortedRows = sort(rows, keyFunc, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    const thead = document.getElementById('results-table-head');
+    document.getElementById('results-table').remove();
+    const parent = document.createElement('table');
+    parent.id = 'results-table';
+    parent.appendChild(thead);
+    sortedRows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName('BODY')[0].appendChild(parent);
+}
+
+function sort(items, keyFunc, reversed) {
+    const sortArray = items.map(function(item, i) {
+        return [keyFunc(item), i];
+    });
+
+    sortArray.sort(function(a, b) {
+        const keyA = a[0];
+        const keyB = b[0];
+
+        if (keyA == keyB) return 0;
+
+        if (reversed) {
+            return keyA < keyB ? 1 : -1;
+        } else {
+            return keyA > keyB ? 1 : -1;
+        }
+    });
+
+    return sortArray.map(function(item) {
+        const index = item[1];
+        return items[index];
+    });
+}
+
+function keyAlpha(colIndex) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[colIndex].firstChild.data.toLowerCase();
+    };
+}
+
+function keyLink(colIndex) {
+    return function(elem) {
+        const dataCell = elem.childNodes[1].childNodes[colIndex].firstChild;
+        return dataCell == null ? '' : dataCell.innerText.toLowerCase();
+    };
+}
+
+function keyResult(colIndex) {
+    return function(elem) {
+        const strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+            'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[colIndex].firstChild.data);
+    };
+}
+
+function resetSortHeaders() {
+    findAll('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    findAll('.sortable').forEach(function(elem) {
+        const icon = document.createElement('div');
+        icon.className = 'sort-icon';
+        icon.textContent = 'vvv';
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove('desc', 'active');
+        elem.classList.add('asc', 'inactive');
+    });
+}
+
+function toggleSortStates(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        resetSortHeaders();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function isAllRowsHidden(value) {
+    return value.hidden == false;
+}
+
+function filterTable(elem) { // eslint-disable-line no-unused-vars
+    const outcomeAtt = 'data-test-result';
+    const outcome = elem.getAttribute(outcomeAtt);
+    const classOutcome = outcome + ' results-table-row';
+    const outcomeRows = document.getElementsByClassName(classOutcome);
+
+    for(let i = 0; i < outcomeRows.length; i++){
+        outcomeRows[i].hidden = !elem.checked;
+    }
+
+    const rows = findAll('.results-table-row').filter(isAllRowsHidden);
+    const allRowsHidden = rows.length == 0 ? true : false;
+    const notFoundMessage = document.getElementById('not-found-message');
+    notFoundMessage.hidden = !allRowsHidden;
+}
+</script>
+    <h1>report.html</h1>
+    <p>Report generated on 29-Jun-2022 at 21:32:59 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>Application: </td>
+        <td>ISLG Subscriber</td></tr>
+      <tr>
+        <td>Packages</td>
+        <td>{"pluggy": "1.0.0", "py": "1.11.0", "pytest": "6.2.5"}</td></tr>
+      <tr>
+        <td>Platform</td>
+        <td>Windows-10-10.0.19044-SP0</td></tr>
+      <tr>
+        <td>Project Name</td>
+        <td>ISLG Subscriber</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>3.9.6</td></tr>
+      <tr>
+        <td>Tester Name</td>
+        <td>Sharmila</td></tr></table>
+    <h2>Summary</h2>
+    <p>10 tests ran in 277.08 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">10 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable" col="duration">Duration</th>
+          <th class="sortable links" col="links">Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">JurisprudenceCitator/test_testCasesJurisprudenceCitator.py::Test_JurisprudenceCitator::test_expandJurisprudence</td>
+          <td class="col-duration">50.63</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>None
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesJurisprudenceCitator.py:36 ****TestCase JC-001 - Expand and Collapse Jurisprudence***
+INFO     root:test_testCasesJurisprudenceCitator.py:37 *****Login Successful****
+INFO     root:test_testCasesJurisprudenceCitator.py:38 **** Jurisprudence Citator testing *****
+INFO     root:test_testCasesJurisprudenceCitator.py:43 Jurisprudence menu is available
+INFO     root:test_testCasesJurisprudenceCitator.py:47 None
+INFO     root:test_testCasesJurisprudenceCitator.py:49 Expanded Jurisprudence
+INFO     root:test_testCasesJurisprudenceCitator.py:51 Collapsed Jurisprudence<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">JurisprudenceCitator/test_testCasesJurisprudenceCitator.py::Test_JurisprudenceCitator::test_copyCitation</td>
+          <td class="col-duration">18.98</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>(//div[@class=&#x27;document__footer-right&#x27;]//a)[1]
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesJurisprudenceCitator.py:55 ***TestCase JC-002 - Copy Citation***
+INFO     root:test_testCasesJurisprudenceCitator.py:61 Expanded Jurisprudence
+INFO     root:test_testCasesJurisprudenceCitator.py:67 Citation copied to clipboard.
+INFO     root:test_testCasesJurisprudenceCitator.py:72 (//div[@class=&#x27;document__footer-right&#x27;]//a)[1]  copied citation<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">JurisprudenceCitator/test_testCasesJurisprudenceCitator.py::Test_JurisprudenceCitator::test_addToResearchNotepad</td>
+          <td class="col-duration">38.95</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesJurisprudenceCitator.py:85 ***TestCase JC-003 - Add To Research Notepad***
+INFO     root:test_testCasesJurisprudenceCitator.py:91 Expanded Jurisprudence
+INFO     root:test_testCasesJurisprudenceCitator.py:94 Clicked on Actions
+INFO     root:test_testCasesJurisprudenceCitator.py:96 Clicked on Research Notepad
+INFO     root:test_testCasesJurisprudenceCitator.py:98 Selected the first research topic option
+INFO     root:test_testCasesJurisprudenceCitator.py:100 Comments entered successfully
+INFO     root:test_testCasesJurisprudenceCitator.py:103 Added to Research Topic
+INFO     root:test_testCasesJurisprudenceCitator.py:106 Selected Entire Document option
+INFO     root:test_testCasesJurisprudenceCitator.py:108 Clicked on Add Research
+INFO     root:test_testCasesJurisprudenceCitator.py:111 Added to your research notepad.<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">JurisprudenceCitator/test_testCasesJurisprudenceCitator.py::Test_JurisprudenceCitator::test_documentComparison</td>
+          <td class="col-duration">20.76</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesJurisprudenceCitator.py:115 ***TestCase JC-004 - Document Comparison***
+INFO     root:test_testCasesJurisprudenceCitator.py:121 Expanded Jurisprudence
+INFO     root:test_testCasesJurisprudenceCitator.py:124 Clicked on Actions
+INFO     root:test_testCasesJurisprudenceCitator.py:126 Clicked on Document Comparison
+INFO     root:test_testCasesJurisprudenceCitator.py:129 Clicked on Document Comparison Group
+INFO     root:test_testCasesJurisprudenceCitator.py:131 Clicked on Add Comparison Group
+INFO     root:test_testCasesJurisprudenceCitator.py:134 Added to your document comparison group.<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">JurisprudenceCitator/test_testCasesJurisprudenceCitator.py::Test_JurisprudenceCitator::test_followTopic</td>
+          <td class="col-duration">18.44</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesJurisprudenceCitator.py:138 ***TestCase JC-005 - Follow Topic***
+INFO     root:test_testCasesJurisprudenceCitator.py:144 Expanded Jurisprudence
+INFO     root:test_testCasesJurisprudenceCitator.py:147 Clicked on Actions
+INFO     root:test_testCasesJurisprudenceCitator.py:149 Clicked on Follow Topic
+INFO     root:test_testCasesJurisprudenceCitator.py:152 You have followed this topic.<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">JurisprudenceCitator/test_testCasesJurisprudenceCitator.py::Test_JurisprudenceCitator::test_copyLocation</td>
+          <td class="col-duration">18.59</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesJurisprudenceCitator.py:156 ***TestCase JC-006 - Copy Location***
+INFO     root:test_testCasesJurisprudenceCitator.py:162 Expanded Jurisprudence
+INFO     root:test_testCasesJurisprudenceCitator.py:166 Clicked on Copy Location
+INFO     root:test_testCasesJurisprudenceCitator.py:169 Location copied to your clipboard.<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">JurisprudenceCitator/test_testCasesJurisprudenceCitator.py::Test_JurisprudenceCitator::test_allDisputeDetails</td>
+          <td class="col-duration">24.05</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>CDwindow-C41C92992E0F5C7AC453A07A0E483F3E
+[&#x27;CDwindow-C41C92992E0F5C7AC453A07A0E483F3E&#x27;, &#x27;CDwindow-ED17906DE00F67F6EC76AB07D60F6F29&#x27;]
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesJurisprudenceCitator.py:190 ***TestCase JC-007 - Dispute Details- All Dispute Details***
+INFO     root:test_testCasesJurisprudenceCitator.py:196 Expanded Jurisprudence
+INFO     root:test_testCasesJurisprudenceCitator.py:199 Clicked on Dispute Details Tab
+INFO     root:test_testCasesJurisprudenceCitator.py:201 Clicked on All Dispute Details Button
+INFO     root:test_testCasesJurisprudenceCitator.py:213 Burimi SRL and Eagle Games SH.A v. Republic of Albania (ICSID Case No. ARB/11/18)<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">JurisprudenceCitator/test_testCasesJurisprudenceCitator.py::Test_JurisprudenceCitator::test_allDocumentsFromDispute</td>
+          <td class="col-duration">29.03</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>CDwindow-C41C92992E0F5C7AC453A07A0E483F3E
+[&#x27;CDwindow-C41C92992E0F5C7AC453A07A0E483F3E&#x27;, &#x27;CDwindow-E5AC715ED3EA64E9C6615CDFDC1A7B54&#x27;]
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesJurisprudenceCitator.py:220 ***TestCase JC-008 -Dispute Details - All Documents From Dispute***
+INFO     root:test_testCasesJurisprudenceCitator.py:226 Expanded Jurisprudence
+INFO     root:test_testCasesJurisprudenceCitator.py:229 Clicked on Dispute Details Tab
+INFO     root:test_testCasesJurisprudenceCitator.py:231 Clicked on All Documents from Dispute
+INFO     root:test_testCasesJurisprudenceCitator.py:242 Disputes &amp; Dispute Documents
+INFO     root:test_testCasesJurisprudenceCitator.py:245 Burimi SRL and Eagle Games SH.A v. Republic of Albania (ICSID Case No. ARB/11/18)<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">JurisprudenceCitator/test_testCasesJurisprudenceCitator.py::Test_JurisprudenceCitator::test_expandProceedingDetails</td>
+          <td class="col-duration">23.22</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>CDwindow-C41C92992E0F5C7AC453A07A0E483F3E
+[&#x27;CDwindow-C41C92992E0F5C7AC453A07A0E483F3E&#x27;, &#x27;CDwindow-47F29699C42D6C4847C0EA98108BE1DA&#x27;]
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesJurisprudenceCitator.py:251 ***TestCase JC-009 -Dispute Details - Expand/Collapse Proceeding Details***
+INFO     root:test_testCasesJurisprudenceCitator.py:257 Expanded Jurisprudence
+INFO     root:test_testCasesJurisprudenceCitator.py:260 Clicked on Dispute Details Tab
+INFO     root:test_testCasesJurisprudenceCitator.py:262 Expand proceeding detailsExpand Proceeding Deatils dropdown is displayed as default
+INFO     root:test_testCasesJurisprudenceCitator.py:264 Clicked on Expand Proceeding Details Dropdown
+INFO     root:test_testCasesJurisprudenceCitator.py:276 ISLG Reports Individual People Reports Daniel M. Price
+INFO     root:test_testCasesJurisprudenceCitator.py:279 Daniel M. Price
+Change People<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">JurisprudenceCitator/test_testCasesJurisprudenceCitator.py::Test_JurisprudenceCitator::test_findAndReset</td>
+          <td class="col-duration">34.05</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_testCasesJurisprudenceCitator.py:284 ****TestCase AC-009 - Validate Find and Reset***
+INFO     root:test_testCasesJurisprudenceCitator.py:289 Jurisprudence Citator menu is available
+INFO     root:test_testCasesJurisprudenceCitator.py:306  matches found Matches Found
+INFO     root:test_testCasesJurisprudenceCitator.py:309 Clicked on Reset
+INFO     root:test_testCasesJurisprudenceCitator.py:306 0 matches found Matches Found
+INFO     root:test_testCasesJurisprudenceCitator.py:309 Clicked on Reset
+INFO     root:test_testCasesJurisprudenceCitator.py:306 0 matches found Matches Found
+INFO     root:test_testCasesJurisprudenceCitator.py:309 Clicked on Reset<br/></div></td></tr></tbody></table></body></html>
