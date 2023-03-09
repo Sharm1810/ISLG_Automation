@@ -1,0 +1,10 @@
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:121 ****TestCase AC-003 - Verify Cancel Add to Document Comparison***
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:122 *****Login Successful****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:123 **** Publication Citator testing *****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:128 Publication Citator menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:135 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:138 Clicked on See All link
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:141 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:153 Full Case Analysis - Clicked on Add to Document Comparison
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:156 Selected the first document comparison option
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:159 Clicked on Cancel and Closed the Add to Document Comparison screen

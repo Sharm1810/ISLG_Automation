@@ -1,0 +1,6 @@
+[32mINFO    [0m root:test_testCasesDisputes.py:195 ****TestCase Dispute Documents-006 - Validate All Dispute Details***
+[32mINFO    [0m root:test_testCasesDisputes.py:196 *****Login Successful****
+[32mINFO    [0m root:test_testCasesDisputes.py:197 **** Disputes & Dispute Documents Testing *****
+[32mINFO    [0m root:test_testCasesDisputes.py:200 Clicked on Dispute Documents
+[32mINFO    [0m root:test_testCasesDisputes.py:204 Clicked on the First Link
+[32mINFO    [0m root:test_testCasesDisputes.py:207 Clicked on All Dispute Details

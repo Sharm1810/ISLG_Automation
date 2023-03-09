@@ -1,0 +1,1 @@
+[32mINFO    [0m root:test_testCasesDashboards.py:407 ****TestCase Dashboard-012 - Validate Global Search- Reset Link***

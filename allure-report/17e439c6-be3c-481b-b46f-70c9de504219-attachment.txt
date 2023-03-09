@@ -1,0 +1,10 @@
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:722 ****TestCase AC-016 - Verify Keyword Search from the navigation menu***
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:723 *****Login Successful****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:724 **** Publication Citator testing *****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:729 Jurisprudence Citator menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:736 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:739 Clicked on See All link
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:742 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:754 Clicked on Keyword Search menu
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:758 Entered Keyword search
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:761 Clicked on Search

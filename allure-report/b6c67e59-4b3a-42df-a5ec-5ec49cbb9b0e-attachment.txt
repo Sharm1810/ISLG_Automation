@@ -1,0 +1,6 @@
+[32mINFO    [0m root:test_testCasesDashboards.py:171 ****TestCase Dashboard-005 - Validate search Research topic***
+[32mINFO    [0m root:test_testCasesDashboards.py:172 *****Login Successful****
+[32mINFO    [0m root:test_testCasesDashboards.py:175 Clicked on research Notepad
+[32mINFO    [0m root:test_testCasesDashboards.py:195 Showing 0 to 0 of 0 entries
+[32mINFO    [0m root:test_testCasesDashboards.py:195 Showing 0 to 0 of 0 entries
+[32mINFO    [0m root:test_testCasesDashboards.py:195 Showing 0 to 0 of 0 entries

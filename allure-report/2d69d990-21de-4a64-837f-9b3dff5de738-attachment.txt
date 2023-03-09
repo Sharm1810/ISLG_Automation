@@ -1,0 +1,9 @@
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:634 ****TestCase AC-014 - Verify Article Citator from the navigation menu***
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:635 *****Login Successful****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:636 **** Publication Citator testing *****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:641 Jurisprudence Citator menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:648 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:651 Clicked on See All link
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:654 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:666 Clicked on Article Citator menu
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:669 Expanded first link under Article Citator

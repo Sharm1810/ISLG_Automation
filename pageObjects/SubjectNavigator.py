@@ -50,8 +50,32 @@ class SubjectNavigator:
     searchFuzzyTypoChecked_xpath = "//*[@id='chkSnFuzzyTypo']"
     actionsclick_xpath = "(//div[@class='card__actions dropdown']//a)[1]"
     researchNotepadActions_xpath = "(//div[@class='card__actions dropdown']//div//p//a)[1]"
-
-
+    mainBranchFirstLink_xpath = "(//div[@class='card card--basic  dropdown']//div//a)[1]//span"
+    crossRef_xpath = "(//div[@class='dropdown item-list__item']//div//div[2]//div)[1]//span[1]"
+    innerCardHeader_xpath = "(//div[@class='card-list'][2]//div//div)[1]"
+    firstLink_xpath = "(//div[@class='card-list']//div//div[2]//div[2]//div//a)[1]"
+    fullCaseAnalysis_xpath = "(//div[@class='document__footer-right']//a)[1]"
+    subjectNavigatorMenu_xpath = "(//nav[@class='document__nav primarylang']//ul//li//a[1]//img)[1]"
+    subjectNavigatorExpandLink_xpath = "//div[@class='dropdown default-sidebar']//button"
+    viewSubjectNavigator_xpath = "(//div[@class='dropdown default-sidebar']//div//div//p[2]//small//a)[1]"
+    copyCitation_xpath = "//div[@class='document-details-view']//div//p//small//a"
+    viewPDF_xpath = "//div[@class='grid__col grid__col--md-4']//a"
+    downloadDocument_xpath = "(//p[@class='text--right']//a)[1]"
+    documentComparison_xpath = "(//p[@class='text--right']//button)[1]"
+    addToDocumentComparison_xpath = "(//p[@class='text--right']//button)[1]"
+    documentComparisonOption_xpath = "//*[@id='popup-add-to-dc']/div[1]/div[2]/ul/li[1]/label/span"
+    documentComparisonAdd_xpath = "//*[@id='btn-comparison-add']"
+    documentCompareCancel_xpath = "//*[@id='btn-comparison-Cancel']"
+    researchNotepad_xpath = "//button[@title='Add to Notepad']"
+    researchOption_xpath = "(//label[@class='form__radio']//input)[1]"
+    addNotepad_xpath = "//*[@id='btn-popup-add']"
+    actions_xpath = "(//div[@class='card__actions dropdown']//button)[1]"
+    researchNotepadDropdown_xpath = "(//div[@class='card__actions dropdown']//p//a)[1]"
+    researchOptionFirst_xpath = "(//div[@class='card card--compact']//ul//li)[1]"
+    bookmarkError_xpath = "//div[@class='topics-details bookmark-error']//span"
+    copyLocationDropdown_xpath = "(//div[@class='card__actions dropdown']//p//a)[3]"
+    researchNotepadCancel_xpath = "(//p[@class='text--right']//a)[1]"
+    copyLocationToastMessage_xpath = "//div[@data-notify= 'container']//span[3]"
 
     def __init__(self, driver):
         self.driver = driver
@@ -321,5 +345,103 @@ class SubjectNavigator:
     def clickResearchNotepad(self):
         notepad = self.driver.find_element(By.XPATH, self.researchNotepadActions_xpath)
         self.driver.execute_script("arguments[0].click();", notepad)
+
+    def clickOnFirstLinkMainBranch(self):
+        firstLink = self.driver.find_element(By.XPATH, self.mainBranchFirstLink_xpath)
+        self.driver.execute_script("arguments[0].click();", firstLink)
+
+    def crossReferences(self):
+        textTitle = self.driver.find_element(By.XPATH, self.crossRef_xpath)
+        cross = textTitle.text
+        return cross
+
+    def clickOnInnerCardHeader(self):
+        crossRefink = self.driver.find_element(By.XPATH, self.innerCardHeader_xpath)
+        self.driver.execute_script("arguments[0].click();", crossRefink)
+
+    def clickOnInnerFirstLink(self):
+        firstLink = self.driver.find_element(By.XPATH, self.firstLink_xpath)
+        self.driver.execute_script("arguments[0].click();", firstLink)
+
+    def clickOnFullCaseAnalysis(self):
+        fullCaseAnalysis = self.driver.find_element(By.XPATH, self.fullCaseAnalysis_xpath)
+        self.driver.execute_script("arguments[0].click();", fullCaseAnalysis)
+
+    def clickOnSubjectNavigatorMenu(self):
+        subjectNavigator = self.driver.find_element(By.XPATH, self.subjectNavigatorMenu_xpath)
+        self.driver.execute_script("arguments[0].click();", subjectNavigator)
+
+    def clickOnSubjectNavigatorLink(self):
+        subjectNavigatorLink = self.driver.find_element(By.XPATH, self.subjectNavigatorExpandLink_xpath)
+        self.driver.execute_script("arguments[0].click();", subjectNavigatorLink)
+
+    def clickOnViewSubjectNavigator(self):
+        subjectNavigatorView = self.driver.find_element(By.XPATH, self.viewSubjectNavigator_xpath)
+        self.driver.execute_script("arguments[0].click();", subjectNavigatorView)
+
+    def clickOnCopyCitation(self):
+        copyCitation = self.driver.find_element(By.XPATH, self.copyCitation_xpath)
+        self.driver.execute_script("arguments[0].click();", copyCitation)
+
+    def clickOnViewPDF(self):
+        viewPDF = self.driver.find_element(By.XPATH, self.viewPDF_xpath)
+        self.driver.execute_script("arguments[0].click();", viewPDF)
+
+    def clickOnDownloadDocument(self):
+        downloadDoc = self.driver.find_element(By.XPATH, self.downloadDocument_xpath)
+        self.driver.execute_script("arguments[0].click();", downloadDoc)
+
+    def clickOnDocumentComparison(self):
+        documentComparison = self.driver.find_element(By.XPATH, self.documentComparison_xpath)
+        self.driver.execute_script("arguments[0].click();", documentComparison)
+
+    def selectDocumentComparisonOption(self):
+        selectOptionComparison = self.driver.find_element(By.XPATH, self.documentComparisonOption_xpath)
+        self.driver.execute_script("arguments[0].click();", selectOptionComparison)
+
+    def clickOnAddDocumentCompare(self):
+        addCompare = self.driver.find_element(By.XPATH, self.documentComparisonAdd_xpath)
+        self.driver.execute_script("arguments[0].click();", addCompare)
+
+    def clickOnResearch(self):
+        researchNotepad = self.driver.find_element(By.XPATH, self.researchNotepad_xpath)
+        self.driver.execute_script("arguments[0].click();", researchNotepad)
+
+    def selectResearchOption(self):
+        researchOption = self.driver.find_element(By.XPATH, self.researchOption_xpath)
+        self.driver.execute_script("arguments[0].click();", researchOption)
+
+    def clickOnAddNotepad(self):
+        addNote = self.driver.find_element(By.XPATH, self.addNotepad_xpath)
+        self.driver.execute_script("arguments[0].click();", addNote)
+
+    def clickOnActionsDropdown(self):
+        actionsDropdown = self.driver.find_element(By.XPATH, self.actions_xpath)
+        self.driver.execute_script("arguments[0].click();", actionsDropdown)
+
+    def clickOnResearchNotepadDropdown(self):
+        researchNotepad = self.driver.find_element(By.XPATH, self.researchNotepadDropdown_xpath)
+        self.driver.execute_script("arguments[0].click();", researchNotepad)
+
+    def checkBookMarkError(self):
+        bookmarkError = self.driver.find_element(By.XPATH, self.bookmarkError_xpath)
+        error = bookmarkError.text
+        return error
+
+    def clickOnCopyLocationDropdown(self):
+        copyLocation = self.driver.find_element(By.XPATH, self.copyLocationDropdown_xpath)
+        self.driver.execute_script("arguments[0].click();", copyLocation)
+
+    def clickOnCancelResearch(self):
+        cancelResearch = self.driver.find_element(By.XPATH, self.researchNotepadCancel_xpath)
+        self.driver.execute_script("arguments[0].click();", cancelResearch)
+
+    def checkToastMessage(self):
+        toastMessage = self.driver.find_element(By.XPATH, self.copyLocationToastMessage_xpath)
+        message = toastMessage.text
+        time.sleep(10)
+        return message
+
+
 
 

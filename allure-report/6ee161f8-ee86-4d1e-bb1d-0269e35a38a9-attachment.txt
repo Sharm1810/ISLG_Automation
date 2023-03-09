@@ -1,0 +1,2 @@
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:217 ***TestCase TermsPhrases-006 - Copy Citation***
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:232 Clicked on Copy Citation

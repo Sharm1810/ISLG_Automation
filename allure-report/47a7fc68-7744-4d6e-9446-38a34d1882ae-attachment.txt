@@ -1,0 +1,6 @@
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:530 ****TestCase Full Text Search-004 - Validate Full Case Analysis ***
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:531 *****Login Successful****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:532 **** Full Text Search testing *****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:535 Full Text Search menu was clicked
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:551 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:559 Opened Full Case Analysis

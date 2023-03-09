@@ -1,0 +1,4 @@
+[32mINFO    [0m root:test_testCasesSN.py:214 ****TestCase 006 - Verify Search By Any Words***
+[32mINFO    [0m root:test_testCasesSN.py:221 Clicked on the expand search
+[32mINFO    [0m root:test_testCasesSN.py:235 Search Entry - 'Canada' 
+[32mINFO    [0m root:test_testCasesSN.py:236 396 No of Matches found

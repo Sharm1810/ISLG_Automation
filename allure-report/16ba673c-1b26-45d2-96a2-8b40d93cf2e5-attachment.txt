@@ -1,0 +1,3 @@
+[32mINFO    [0m root:test_testCasesArticleCitator.py:308 ****TestCase AC-009 - Validate Find and Reset***
+[32mINFO    [0m root:test_testCasesArticleCitator.py:313 Article Citator menu is available
+[32mINFO    [0m root:test_testCasesArticleCitator.py:330 6 Matches Found

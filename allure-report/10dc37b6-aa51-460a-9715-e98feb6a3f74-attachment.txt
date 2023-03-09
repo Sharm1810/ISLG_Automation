@@ -1,0 +1,6 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:239 ***TestCase JC-008 -Dispute Details - All Documents From Dispute***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:245 Expanded Jurisprudence
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:249 Clicked on Dispute Details Tab
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:252 Clicked on All Documents from Dispute
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:263 Disputes & Dispute Documents
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:266 Burimi SRL and Eagle Games SH.A v. Republic of Albania (ICSID Case No. ARB/11/18)

@@ -1,0 +1,10 @@
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:90 ***TestCase PC-003 - Add To Research Notepad***
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:96 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:99 Clicked on Actions
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:102 Clicked on Research Notepad
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:105 Selected the first research topic option
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:108 Comments entered successfully
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:111 Added to Research Topic
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:114 Selected Entire Document option
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:117 Clicked on Add Research
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:121 Added to your research notepad.

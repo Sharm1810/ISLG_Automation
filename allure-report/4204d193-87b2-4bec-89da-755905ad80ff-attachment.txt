@@ -1,0 +1,4 @@
+[32mINFO    [0m root:test_testCasesArticleCitator.py:289 ****TestCase AC-008 - Verify Instrument Deatils Tab***
+[32mINFO    [0m root:test_testCasesArticleCitator.py:294 Article Citator menu is available
+[32mINFO    [0m root:test_testCasesArticleCitator.py:300 Thirty First Branch is expanded
+[32mINFO    [0m root:test_testCasesArticleCitator.py:304 Clicked on Instrument Details Tab

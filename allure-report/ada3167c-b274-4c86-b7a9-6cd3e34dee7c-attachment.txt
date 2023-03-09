@@ -1,0 +1,29 @@
+[32mINFO    [0m root:test_testCasesDashboards.py:200 ****TestCase Dashboard-006 - Validate Research topic Table - Sort by Topic Name***
+[32mINFO    [0m root:test_testCasesDashboards.py:201 *****Login Successful****
+[32mINFO    [0m root:test_testCasesDashboards.py:204 Clicked on research Notepad
+[32mINFO    [0m root:test_testCasesDashboards.py:213 Topic Name Number of bookmarks Last Modified date Date Created
+[32mINFO    [0m root:test_testCasesDashboards.py:213 testApp11.014.2022  12 15 February, 2023 03:04 14 November, 2022 09:44
+  
+[32mINFO    [0m root:test_testCasesDashboards.py:213 testApp09.12.2022  10 08 November, 2022 10:48 12 September, 2022 01:29
+  
+[32mINFO    [0m root:test_testCasesDashboards.py:213 testApp08.08.2022  10 08 August, 2022 15:13 08 August, 2022 09:18
+  
+[32mINFO    [0m root:test_testCasesDashboards.py:213 testApp07.07.2022  8 08 August, 2022 09:14 07 July, 2022 09:29
+  
+[32mINFO    [0m root:test_testCasesDashboards.py:224 Topic Name Number of bookmarks Last Modified date Date Created
+[32mINFO    [0m root:test_testCasesDashboards.py:224 testApp08.08.2022  10 08 August, 2022 15:13 08 August, 2022 09:18
+  
+[32mINFO    [0m root:test_testCasesDashboards.py:224 testApp09.12.2022  10 08 November, 2022 10:48 12 September, 2022 01:29
+  
+[32mINFO    [0m root:test_testCasesDashboards.py:224 testApp11.014.2022  12 15 February, 2023 03:04 14 November, 2022 09:44
+  
+[32mINFO    [0m root:test_testCasesDashboards.py:224 testApp2.16.2023  11 16 February, 2023 08:33 16 February, 2023 07:35
+  
+[32mINFO    [0m root:test_testCasesDashboards.py:235 Topic Name Number of bookmarks Last Modified date Date Created
+[32mINFO    [0m root:test_testCasesDashboards.py:235 testApp11.014.2022  12 15 February, 2023 03:04 14 November, 2022 09:44
+  
+[32mINFO    [0m root:test_testCasesDashboards.py:235 testApp09.12.2022  10 08 November, 2022 10:48 12 September, 2022 01:29
+  
+[32mINFO    [0m root:test_testCasesDashboards.py:235 testApp08.08.2022  10 08 August, 2022 15:13 08 August, 2022 09:18
+  
+[32mINFO    [0m root:test_testCasesDashboards.py:235 testApp07.07.2022  8 08 August, 2022 09:14 07 July, 2022 09:29

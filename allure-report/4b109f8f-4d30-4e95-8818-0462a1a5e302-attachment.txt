@@ -1,0 +1,3 @@
+[32mINFO    [0m root:test_testCasesArticleCitator.py:336 ****TestCase AC-010 - Validate Full Case Analysis***
+[32mINFO    [0m root:test_testCasesArticleCitator.py:345 Thirty First Branch is expanded
+[32mINFO    [0m root:test_testCasesArticleCitator.py:350 Clicked on Full Case Analysis

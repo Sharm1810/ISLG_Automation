@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:272 ***TestCase JC-009 -Dispute Details - Expand/Collapse Proceeding Details***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:278 Expanded Jurisprudence
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:283 Clicked on Dispute Details Tab
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:286 Expand proceeding detailsExpand Proceeding Deatils dropdown is displayed as default
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:289 Clicked on Expand Proceeding Details Dropdown

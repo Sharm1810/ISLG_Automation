@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:313 ****TestCase AC-009 - Validate Find and Reset***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:318 Jurisprudence Citator menu is available
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:335  matches found Matches Found
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:338 Clicked on Reset
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:335 0 matches found Matches Found
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:338 Clicked on Reset
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:335 0 matches found Matches Found
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:338 Clicked on Reset

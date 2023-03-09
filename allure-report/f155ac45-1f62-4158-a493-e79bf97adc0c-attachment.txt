@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:283 ****TestCase PC-011 - Validate Find and Reset***
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:288 PublicationCitator menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:310 0 Matches Found
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:313 Clicked on Reset
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:310 1 Matches Found
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:313 Clicked on Reset
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:310 0 Matches Found
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:313 Clicked on Reset

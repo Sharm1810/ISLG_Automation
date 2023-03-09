@@ -1,0 +1,10 @@
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:70 ****TestCase TreatiesAndRules-002 - Validate Filter Type***
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:71 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:72 **** Treaties And Rules testing *****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:75 Treaties And Rules menu was clicked
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:80 Clicked on Filter Type
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:87 Arbitration Rules is displayed
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:89 records found
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:97 International Treaties & Rules is displayed
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:99 records found
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:106 records found

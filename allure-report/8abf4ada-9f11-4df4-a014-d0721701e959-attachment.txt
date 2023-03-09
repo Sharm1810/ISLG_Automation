@@ -1,0 +1,3 @@
+[32mINFO    [0m root:test_testCasesArticleCitator.py:376 ****TestCase AC-011 - Validate Provision Extract***
+[32mINFO    [0m root:test_testCasesArticleCitator.py:387 Fourth Branch is expanded
+[32mINFO    [0m root:test_testCasesArticleCitator.py:394 Document Extract for Provision: Article 1(2)

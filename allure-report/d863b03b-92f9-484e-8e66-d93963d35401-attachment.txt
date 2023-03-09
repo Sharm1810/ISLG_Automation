@@ -1,0 +1,4 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:170 ***TestCase JC-006 - Copy Location***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:176 Expanded Jurisprudence
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:182 Clicked on Copy Location
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:186 Location copied to your clipboard.

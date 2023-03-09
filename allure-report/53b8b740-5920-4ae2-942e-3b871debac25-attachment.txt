@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:219 ****TestCase TreatiesAndRules-007 - Instrument Details -Validate Copy Citation***
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:220 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:221 **** Treaties And Rules testing *****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:224 Treaties And Rules menu was clicked
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:228 Expanded the first link
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:230 Clicked on Instrument Details Tab
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:232 Clicked on Copy Citation
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:236 Citation copied to clipboard.

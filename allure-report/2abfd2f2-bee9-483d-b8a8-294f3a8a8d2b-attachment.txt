@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:160 ****TestCase PC-005 - Validate Find and Reset***
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:165 Terms And Phrases menu is available
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:184  Matches Found
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:187 Clicked on Reset
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:184 2 Matches Found
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:187 Clicked on Reset
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:184  Matches Found
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:187 Clicked on Reset

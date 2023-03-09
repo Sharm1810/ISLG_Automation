@@ -1,0 +1,9 @@
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:678 ****TestCase AC-015 - Verify Terms & Phrases from the navigation menu***
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:679 *****Login Successful****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:680 **** Publication Citator testing *****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:685 Publication Citator menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:692 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:695 Clicked on See All link
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:698 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:710 Clicked on Terms And Phrases menu
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:713 Expanded first link under Terms And Phrases

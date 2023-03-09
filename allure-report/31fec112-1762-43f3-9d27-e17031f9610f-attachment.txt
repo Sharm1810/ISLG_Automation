@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesDashboards.py:136 ****TestCase Dashboard-004 - Validate Delete ResearchTopic***
+[32mINFO    [0m root:test_testCasesDashboards.py:137 *****Login Successful****
+[32mINFO    [0m root:test_testCasesDashboards.py:140 Clicked on Research Notepad Link from the Dashboard
+[32mINFO    [0m root:test_testCasesDashboards.py:147 Research Topic 1st row from the table is    Test12
+[32mINFO    [0m root:test_testCasesDashboards.py:150 Clicked on Delete Topic
+[32mINFO    [0m root:test_testCasesDashboards.py:153 Clicked on Confirm Delete
+[32mINFO    [0m root:test_testCasesDashboards.py:164 Displayed Message   No data available in table

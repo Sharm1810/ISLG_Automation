@@ -1,0 +1,11 @@
+[32mINFO    [0m root:test_testCasesReports.py:240 ****TestCase ISLG Reports-007 - Validate View Individual FReports- People***
+[32mINFO    [0m root:test_testCasesReports.py:241 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:242 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:245 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:253 A Ra Jo
+[32mINFO    [0m root:test_testCasesReports.py:259 A Ra Jo  was selected
+[32mINFO    [0m root:test_testCasesReports.py:253 A. Bruce Bowden
+[32mINFO    [0m root:test_testCasesReports.py:259 A. Bruce Bowden  was selected
+[32mINFO    [0m root:test_testCasesReports.py:253 A. Manuel Garcia
+[32mINFO    [0m root:test_testCasesReports.py:262 ISLG Reports Individual People Reports A. Manuel Garcia
+[32mINFO    [0m root:test_testCasesReports.py:265 Clicked on to navigate to ISLG Reports home

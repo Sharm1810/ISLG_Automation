@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesSN.py:304 ****TestCase 008 - Search By All Words***
+[32mINFO    [0m root:test_testCasesSN.py:311 Clicked on the expand search
+[32mINFO    [0m root:test_testCasesSN.py:324 Search Entry - 'Abuse of Right' 
+[32mINFO    [0m root:test_testCasesSN.py:325 48 No of Matches found
+[32mINFO    [0m root:test_testCasesSN.py:334 Search Entry - 'Clean hands' doctrine 
+[32mINFO    [0m root:test_testCasesSN.py:335 13 Matches Found
+[32mINFO    [0m root:test_testCasesSN.py:343 Search Entry - '+'Clean hands' + doctrine - claimant 
+[32mINFO    [0m root:test_testCasesSN.py:344 3 Matches Found

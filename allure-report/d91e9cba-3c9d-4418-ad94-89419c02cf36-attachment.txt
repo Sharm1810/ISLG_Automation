@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:166 ****TestCase AC-004 - Verify See All groups- Add to Document Comparison***
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:167 *****Login Successful****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:168 **** Publication Citator testing *****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:173 Publication Citator menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:180 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:183 Clicked on See All link
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:186 Clicked on Full Case Analysis

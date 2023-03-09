@@ -1,0 +1,2 @@
+[32mINFO    [0m root:test_testCasesSN.py:476 ****TestCase 012 - Verify Full Case Analysis***
+[32mINFO    [0m root:test_testCasesSN.py:484 Full Case Analaysis not displayed

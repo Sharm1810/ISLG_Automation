@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:30 ****TestCase AC-001 - Verify Navigation links***
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:31 *****Login Successful****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:32 **** Publication Citator testing *****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:37 Publication Citator menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:44 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:47 Clicked on See All link
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:50 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:66 Name doesn't match

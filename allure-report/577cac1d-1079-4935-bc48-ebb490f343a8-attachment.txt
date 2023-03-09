@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:264 ***TestCase PC-010 - Periodicals Sub menu***
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:270 Clicked on Other Sub Menu
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:272 Periodicals
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:274 660 matches found
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:278 Expanded Publication Citator

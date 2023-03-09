@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:37 ****TestCase TreatiesAndRules-001 - Validate Download Document***
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:38 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:39 **** Treaties And Rules testing *****
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:42 Clicked on  Treaties And Rules
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:45 Expanded the first Arbitration Rule
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:49 Clicked on First Link
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:52 Clicked on Download Document

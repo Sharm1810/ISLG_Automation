@@ -1,0 +1,12 @@
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:45 ****TestCase TermsPhrases-001 - Expands the First Branch***
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:46 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:47 **** Terms And Phrases testing *****
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:52 Terms And Phrases menu is available
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:56 Expanded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:58 Collapsed Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:60 Expanded Fourth Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:62 Collapsed Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:64 Expanded Twentieth Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:66 Collapsed Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:68 Expanded TwentySixth Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:70 Collapsed Branch

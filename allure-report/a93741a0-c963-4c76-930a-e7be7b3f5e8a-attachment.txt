@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:176 ****TestCase TreatiesAndRules-005 - Validate Follow Topic***
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:177 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:178 **** Treaties And Rules testing *****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:181 Treaties And Rules menu was clicked
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:185 Expanded the first link
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:188 Clicked on Actions
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:194 Toast Message : Followed Topic is displayed

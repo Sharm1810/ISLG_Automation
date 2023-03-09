@@ -1,0 +1,12 @@
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:360 ****TestCase AC-008 - Verify Research Notepad- Create New Research Topic***
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:361 *****Login Successful****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:362 **** Publication Citator testing *****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:367 Jurisprudence menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:373 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:376 Clicked on See All link
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:379 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:390 Full Case Analysis - Clicked on Research Notepad
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:396 Clicked on Create New Research Topic
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:400 Topic is entered
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:404 Clicked on Save Topic
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:412 Entered Topic equals the first option label  TopicTest

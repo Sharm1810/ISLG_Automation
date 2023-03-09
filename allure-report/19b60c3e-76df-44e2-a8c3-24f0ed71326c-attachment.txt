@@ -1,0 +1,10 @@
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:142 ****TestCase Full Text Search-004 - Validate Add to Notepad***
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:143 *****Login Successful****
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:144 **** Full Text Search testing *****
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:147 Full Text Search menu was clicked
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:151 Clicked on Search
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:155 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:166 Full Case Analysis - Clicked on Research Notepad
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:169 Selected Research Option
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:172 Clicked on Add to Notepad
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:176 Clicked on Add to Notepad

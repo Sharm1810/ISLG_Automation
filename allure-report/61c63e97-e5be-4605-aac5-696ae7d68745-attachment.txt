@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesSN.py:134 ****TestCase 003 - Verify Find and Reset***
+[32mINFO    [0m root:test_testCasesSN.py:138 Subject Navigator menu is available
+[32mINFO    [0m root:test_testCasesSN.py:149 62 Matches Found
+[32mINFO    [0m root:test_testCasesSN.py:159 62  Matches Found
+[32mINFO    [0m root:test_testCasesSN.py:163 ****Search Completed***

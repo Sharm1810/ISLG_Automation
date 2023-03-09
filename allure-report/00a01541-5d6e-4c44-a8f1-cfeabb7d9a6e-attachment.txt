@@ -1,0 +1,3 @@
+[32mINFO    [0m root:test_testCasesArticleCitatorEdgeCases.py:128 ****TestCase AC-018 - Expand All***
+[32mINFO    [0m root:test_testCasesArticleCitatorEdgeCases.py:129 *****Login Successful****
+[32mINFO    [0m root:test_testCasesArticleCitatorEdgeCases.py:130 **** Article Citator testing *****

@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesDashboards.py:316 ****TestCase Dashboard-009 - Validate delete document group***
+[32mINFO    [0m root:test_testCasesDashboards.py:317 *****Login Successful****
+[32mINFO    [0m root:test_testCasesDashboards.py:320 Clicked on Document Comparison link
+[32mINFO    [0m root:test_testCasesDashboards.py:327 Document Comparison Group Name- 1st row from the table is    GroupUpdate
+[32mINFO    [0m root:test_testCasesDashboards.py:330 Clicked on Delete Group
+[32mINFO    [0m root:test_testCasesDashboards.py:333 Clicked on Confirm Delete Group
+[32mINFO    [0m root:test_testCasesDashboards.py:344 Displayed Message   No data available in table

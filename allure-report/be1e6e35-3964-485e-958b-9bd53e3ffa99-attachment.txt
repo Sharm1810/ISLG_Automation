@@ -1,0 +1,6 @@
+[32mINFO    [0m root:test_testCasesReports.py:164 ****TestCase ISLG Reports-005 - Validate View People Comparison Reports***
+[32mINFO    [0m root:test_testCasesReports.py:165 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:166 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:169 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:173 Clicked on People - View Comparison Reports
+[32mINFO    [0m root:test_testCasesReports.py:176 Clicked on the First Report Link

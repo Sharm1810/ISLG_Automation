@@ -1,0 +1,11 @@
+[32mINFO    [0m root:test_testCasesDashboards.py:240 ****TestCase Dashboard-007- Validate Create DocumentComparison Group***
+[32mINFO    [0m root:test_testCasesDashboards.py:241 *****Login Successful****
+[32mINFO    [0m root:test_testCasesDashboards.py:244 Clicked on Document Comparison link
+[32mINFO    [0m root:test_testCasesDashboards.py:248 Clicked on Create Document Comparison
+[32mINFO    [0m root:test_testCasesDashboards.py:251 Entered Comparison Name
+[32mINFO    [0m root:test_testCasesDashboards.py:254 Entered Description
+[32mINFO    [0m root:test_testCasesDashboards.py:257 Clicked on Create Group
+[32mINFO    [0m root:test_testCasesDashboards.py:260 Clicked on Document Comparison link
+[32mINFO    [0m root:test_testCasesDashboards.py:262 Clicked on Create Document Comparison
+[32mINFO    [0m root:test_testCasesDashboards.py:265 Clicked on Create Group
+[32mINFO    [0m root:test_testCasesDashboards.py:269 Validation Message  Please enter name.  is displayed

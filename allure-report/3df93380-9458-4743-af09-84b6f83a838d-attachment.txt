@@ -1,0 +1,13 @@
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:76 ****TestCase TermsPhrases-002 - Add to Research Notepad***
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:77 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:78 **** Terms And Phrases testing *****
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:83 Terms And Phrases menu is available
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:87 Terms & Phrases
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:90 Expanded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:93 Clicked on Actions
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:99 Clicked on Research Notepad
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:103 Selected the first option
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:106 Clicked on Add Button
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:109 Selected Entire Document
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:112 Clicked on Add Button
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:115 <selenium.webdriver.remote.webelement.WebElement (session="93e779bcde24a266924c14f4ea1aa395", element="bad00abc-df33-4117-b99b-d00e296a3fe5")>

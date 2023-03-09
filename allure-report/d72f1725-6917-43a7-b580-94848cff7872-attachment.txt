@@ -1,0 +1,9 @@
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:260 ****TestCase AC-006 - Verify Research Notepad- See All Topics***
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:261 *****Login Successful****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:262 **** Publication Citator testing *****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:267 Jurisprudence Citator menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:274 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:277 Clicked on See All link
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:280 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:291 Full Case Analysis - Clicked on Research Notepad
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:302 Research Notepad

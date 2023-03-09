@@ -1,0 +1,11 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:340 ****TestCase AC-007 - Verify Research Notepad- Cancel Research Notepad (Back arrow link)***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:342 *****Login Successful****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:343 **** Publication Citator testing *****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:348 Jurisprudence Citator menu is available
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:354 First Branch is expanded
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:356 Expanded Jurisprudence Citator
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:359 Expanded inner card
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:362 Clicked on See All link
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:365 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:376 Full Case Analysis - Clicked on Research Notepad
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:382 Closed research Notepad popup

@@ -340,6 +340,36 @@ class ArticleCitator():
         fulltextSearch = self.driver.find_element(By.XPATH, self.goToFullTextSearch_xpath)
         self.driver.execute_script("arguments[0].click();", fulltextSearch)
 
+    def provisionExract(self):
+        count = len(self.driver.find_elements_by_xpath("(//div[@class='ACCardData']//div//div//a[1]"))
+        print(count)
+        elems = self.driver.find_elements_by_xpath("(//div[@class='ACCardData']//div//div//a[1])[position( ) < 6]")
+        for elem in elems:
+            print(elem.get_attribute("data-searchtitle"))
+            self.driver.execute_script("arguments[0].click();", elem)
+            time.sleep(2)
+            provisionExtract = self.driver.find_elements(By.PARTIAL_LINK_TEXT, "provision extract")
+            if provisionExtract:
+                for provision in provisionExtract:
+                    self.driver.execute_script("arguments[0].click();", provision)
+                    time.sleep(3)
+                    try:
+                        provisionText = self.driver.find_element(By.XPATH,
+                                                                 "//div[@id='popup-prv-extract']//div//div[2]//div//div[2]")
+                        if len(provisionText.text) > 0:
+                            print("Text is displayed")
+
+                        else:
+                            print("take care")
+                    except NoSuchElementException:
+                        print("Text is not displayed")
+
+                    closebutton = self.driver.find_element(By.XPATH,
+                                                           "//*[@id='popup-prv-extract']/div[1]/div[1]/button")
+                    self.driver.execute_script("arguments[0].click();", closebutton)
+                    time.sleep(2)
+
+
 
 
 

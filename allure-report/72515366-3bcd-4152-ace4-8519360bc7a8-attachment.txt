@@ -1,0 +1,10 @@
+[32mINFO    [0m root:test_testCasesArticleCitator.py:251 ****TestCase AC-007 - Verify Find in Provision Tab***
+[32mINFO    [0m root:test_testCasesArticleCitator.py:256 Article Citator menu is available
+[32mINFO    [0m root:test_testCasesArticleCitator.py:263 First Branch is expanded
+[32mINFO    [0m root:test_testCasesArticleCitator.py:265 Clicking on Provision tab
+[32mINFO    [0m root:test_testCasesArticleCitator.py:280 
+[32mINFO    [0m root:test_testCasesArticleCitator.py:283 <selenium.webdriver.remote.webelement.WebElement (session="dd4c1a0c94fc1e065de7c82189465323", element="47181b06-a860-479e-8b9d-ef20134dcd16")>
+[32mINFO    [0m root:test_testCasesArticleCitator.py:280 No records found.
+[32mINFO    [0m root:test_testCasesArticleCitator.py:283 <selenium.webdriver.remote.webelement.WebElement (session="dd4c1a0c94fc1e065de7c82189465323", element="47181b06-a860-479e-8b9d-ef20134dcd16")>
+[32mINFO    [0m root:test_testCasesArticleCitator.py:280 No records found.
+[32mINFO    [0m root:test_testCasesArticleCitator.py:283 <selenium.webdriver.remote.webelement.WebElement (session="dd4c1a0c94fc1e065de7c82189465323", element="47181b06-a860-479e-8b9d-ef20134dcd16")>

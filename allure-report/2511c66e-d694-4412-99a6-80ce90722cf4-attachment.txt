@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:188 ***TestCase PC-006 - Books Sub menu***
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:194 Clicked on Books Sub Menu
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:196 Books
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:198 907 matches found
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:202 Expanded Publication Citator

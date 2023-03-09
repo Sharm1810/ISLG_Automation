@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesReports.py:108 ****TestCase ISLG Reports-003 - Validate View Comparison Reports***
+[32mINFO    [0m root:test_testCasesReports.py:109 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:110 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:113 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:120 Clicked on the First Link
+[32mINFO    [0m root:test_testCasesReports.py:123 ISLG Reports Comparative Dispute Reports Disputes (General Information)
+[32mINFO    [0m root:test_testCasesReports.py:126 Comparative Dispute Reports

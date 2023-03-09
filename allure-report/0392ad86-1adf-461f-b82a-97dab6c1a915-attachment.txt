@@ -1,0 +1,10 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:501 ****TestCase AC-010 - Verify Download Document***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:502 *****Login Successful****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:503 **** Jurisprudence Citator testing *****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:508 Jurisprudence Citator menu is available
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:514 First Branch is expanded
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:516 Expanded Jurisprudence Citator
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:519 Expanded inner card
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:522 Clicked on See All link
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:525 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:537 Clicked on Download Document

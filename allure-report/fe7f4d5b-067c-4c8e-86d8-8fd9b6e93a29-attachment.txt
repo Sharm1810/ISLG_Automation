@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:183 ****TestCase Full Text Search-005 - Validate Document Details - Copy Citation***
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:184 *****Login Successful****
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:185 **** Full Text Search testing *****
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:188 Full Text Search menu was clicked
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:192 Clicked on Search
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:196 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:208 Clicked on Expand Document Deatils
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:213 Clicked on Copy Citation associated with Dispute Details

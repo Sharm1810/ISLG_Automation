@@ -1,0 +1,6 @@
+[32mINFO    [0m root:test_testCasesReports.py:441 ****TestCase ISLG Reports-013 - Validate Comparative Countries***
+[32mINFO    [0m root:test_testCasesReports.py:442 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:443 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:446 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:455 ISLG Reports Comparative Country Reports Number of Disputes (Respondent State)
+[32mINFO    [0m root:test_testCasesReports.py:458 Clicked on to navigate to the ISLG Reports home

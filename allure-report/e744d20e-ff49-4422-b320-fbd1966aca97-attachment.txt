@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:221 ****TestCase Full Text Search-008 - Validate Boolean***
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:222 *****Login Successful****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:223 **** Full Text Search testing *****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:226 Full Text Search menu was clicked
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:233 False
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:234 Boolean option is selected by default
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:242 3085 documentscontaining: "test"

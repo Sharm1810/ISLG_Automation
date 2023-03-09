@@ -1,0 +1,9 @@
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:161 ****TestCase TermsPhrases-004 - Validate Expand Proceedings***
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:162 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:163 **** Terms And Phrases testing *****
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:168 Terms And Phrases menu is available
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:172 Expanded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:175 Expanded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:178 Clicked on Dispute Details tab
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:181 Clicked on Expand Proceeding Details
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:184 Clicked on Collapse Proceeding Details

@@ -1,0 +1,10 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:86 ***TestCase JC-003 - Add To Research Notepad***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:92 Expanded Jurisprudence
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:96 Clicked on Actions
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:99 Clicked on Research Notepad
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:102 Selected the first research topic option
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:105 Comments entered successfully
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:108 Added to Research Topic
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:111 Selected Entire Document option
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:114 Clicked on Add Research
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:118 Added to your research notepad.

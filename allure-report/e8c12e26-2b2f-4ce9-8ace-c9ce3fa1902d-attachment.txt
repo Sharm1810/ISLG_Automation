@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:198 ****TestCase TreatiesAndRules-006 - Validate Copy Citation***
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:199 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:200 **** Treaties And Rules testing *****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:203 Treaties And Rules menu was clicked
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:207 Expanded the first link
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:212 Citation copied to clipboard.
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:215 
+  Citation copied

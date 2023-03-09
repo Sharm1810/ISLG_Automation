@@ -1,0 +1,3 @@
+[32mINFO    [0m root:test_testCasesSN.py:403 ****TestCase 010 - Verify Use As Full Text Search***
+[32mINFO    [0m root:test_testCasesSN.py:428 ×
+Abuse of corporate form (legal personality, etc.)  Full Text is present

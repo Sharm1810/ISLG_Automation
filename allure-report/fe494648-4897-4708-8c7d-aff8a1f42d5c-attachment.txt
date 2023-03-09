@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:159 ***TestCase PC-005 - Follow Topic***
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:165 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:168 Clicked on Actions
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:171 Clicked on Follow Topic
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:175 Toast Message - you have followed topic is displayed

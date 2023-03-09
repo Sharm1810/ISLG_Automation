@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesReports.py:269 ****TestCase ISLG Reports-008 - Validate View Comparison Reports- Organization***
+[32mINFO    [0m root:test_testCasesReports.py:270 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:271 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:274 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:282 Clicked on Home

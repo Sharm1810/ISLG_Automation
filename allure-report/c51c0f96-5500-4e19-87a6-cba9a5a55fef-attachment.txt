@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesArticleCitator.py:167 ****TestCase AC-005 - Verify Collapse- Provision tab and Instrumentation Deatils***
+[32mINFO    [0m root:test_testCasesArticleCitator.py:168 *****Login Successful****
+[32mINFO    [0m root:test_testCasesArticleCitator.py:169 **** Subject Navigator testing *****
+[32mINFO    [0m root:test_testCasesArticleCitator.py:177 Provision/Rule References is displayed
+[32mINFO    [0m root:test_testCasesArticleCitator.py:180 Instrument Details is displayed

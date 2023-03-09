@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:227 ****TestCase TreatiesAndRules-009 - Instrument Details - Validate View Original PDF***
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:228 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:229 **** Treaties And Rules testing *****
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:232 Clicked on  Treaties And Rules
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:235 Expanded the first Arbitration Rule
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:239 Clicked on Instrument Details
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:242 Clicked on First Link under Instrument Details
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:246 Clicked on View Original PDF

@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:513 ****TestCase TermsPhrases-013 - Validate Full Case Analysis - View Paragraph Excerpt***
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:515 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:516 **** Terms And Phrases testing *****
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:521 Terms And Phrases menu is available
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:525 Expanded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:528 Expanded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:532 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:535 Clicked on Paragraph Excerpt

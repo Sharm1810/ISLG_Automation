@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:76 ****TestCase Full Text Search-002 - Validate Copy Citation***
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:77 *****Login Successful****
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:78 **** Full Text Search testing *****
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:81 Full Text Search menu was clicked
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:85 Clicked on Search
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:89 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:101 Clicked on Copy Citation

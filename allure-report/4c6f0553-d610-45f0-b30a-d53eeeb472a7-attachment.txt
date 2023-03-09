@@ -1,0 +1,4 @@
+[32mINFO    [0m root:test_testCasesSN.py:30 ****TestCase 001 - Verify Add to Research***
+[32mINFO    [0m root:test_testCasesSN.py:33 Clicked on Subject Navigator from the navigation menu
+[32mINFO    [0m root:test_testCasesSN.py:37 Clicked on Branch A
+[32mINFO    [0m root:test_testCasesSN.py:59 Added to Research Notepad

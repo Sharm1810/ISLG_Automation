@@ -1,0 +1,10 @@
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:74 ****TestCase AC-002 - Verify Add to Document Comparison***
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:75 *****Login Successful****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:76 **** Publication Citator testing *****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:81 Jursiprudence Citator menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:88 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:91 Clicked on See All link
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:94 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:108 Full Case Analysis - Clicked on Add to Document Comparison
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:111 Selected the first document comparison option
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:114 Added to Document Comparison

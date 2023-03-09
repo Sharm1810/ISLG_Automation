@@ -1,0 +1,9 @@
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:393 ****TestCase TermsPhrases-010 - Validate Full Case Analysis - Add to Document Comparison***
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:394 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:395 **** Terms And Phrases testing *****
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:400 Terms And Phrases menu is available
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:404 Expanded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:407 Expanded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:411 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:422 Clicked on Document Comparison
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:425 Selected the first document comparison option

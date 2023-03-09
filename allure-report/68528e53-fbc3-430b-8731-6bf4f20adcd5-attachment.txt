@@ -1,0 +1,12 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:129 ****TestCase AC-003 - Verify Cancel Add to Document Comparison***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:130 *****Login Successful****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:131 **** Jurisprudence Citator testing *****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:136 Jurisprudence Citator menu is available
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:142 First Branch is expanded
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:144 Expanded Jurisprudence Citator
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:147 Expanded inner card
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:150 Clicked on See All link
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:153 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:165 Full Case Analysis - Clicked on Add to Document Comparison
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:168 Selected the first document comparison option
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:171 Clicked on Cancel and Closed the Add to Document Comparison screen

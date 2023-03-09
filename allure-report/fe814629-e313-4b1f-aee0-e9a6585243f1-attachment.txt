@@ -1,0 +1,3 @@
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:268 ***TestCase TermsPhrases-008 - Copy Excerpt**
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:279 clicked on a paragraph excerpt
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:282 Clicked on Copy Excerpt

@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesReports.py:521 ****TestCase ISLG Reports-016 - Comparative People Reports - Add to Notepad ***
+[32mINFO    [0m root:test_testCasesReports.py:522 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:523 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:526 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:543 Added to your research notepad.

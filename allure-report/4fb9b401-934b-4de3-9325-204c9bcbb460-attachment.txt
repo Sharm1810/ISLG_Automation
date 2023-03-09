@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:109 ****TestCase Full Text Search-003 - Validate Download Document***
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:110 *****Login Successful****
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:111 **** Full Text Search testing *****
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:114 Full Text Search menu was clicked
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:118 Clicked on Search
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:122 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesFullTextSearchRegressionTesting.py:134 Clicked on Download Document

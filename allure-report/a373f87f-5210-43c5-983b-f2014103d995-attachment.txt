@@ -1,0 +1,11 @@
+[32mINFO    [0m root:test_testCasesDashboards.py:278 ****TestCase Dashboard-008 - Validate update document group***
+[32mINFO    [0m root:test_testCasesDashboards.py:279 *****Login Successful****
+[32mINFO    [0m root:test_testCasesDashboards.py:282 Clicked on Document Comparison link
+[32mINFO    [0m root:test_testCasesDashboards.py:286 Clicked on Edit Group
+[32mINFO    [0m root:test_testCasesDashboards.py:289 Cleared existing name and entered new name
+[32mINFO    [0m root:test_testCasesDashboards.py:292 Clicked on Save Group
+[32mINFO    [0m root:test_testCasesDashboards.py:294 Clicked on Document Comparison link
+[32mINFO    [0m root:test_testCasesDashboards.py:298 Clicked on Edit Group
+[32mINFO    [0m root:test_testCasesDashboards.py:303 Clicked on Save Group
+[32mINFO    [0m root:test_testCasesDashboards.py:309 Displayed the incorrect required message
+[32mINFO    [0m root:test_testCasesDashboards.py:311 Empty Message is dispplayed

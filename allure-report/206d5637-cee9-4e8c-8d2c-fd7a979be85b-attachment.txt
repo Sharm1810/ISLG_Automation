@@ -1,0 +1,10 @@
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:37 ****TestCase TreatiesAndRules-001 - Validate Search and Reset***
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:38 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:39 **** Treaties And Rules testing *****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:42 Treaties And Rules menu was clicked
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:63 records found Matches Found
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:66 Clicked on Reset
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:63 records found Matches Found
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:66 Clicked on Reset
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:63 records found Matches Found
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:66 Clicked on Reset

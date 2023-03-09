@@ -1,0 +1,11 @@
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:274 ****TestCase TermsPhrases-007 - Validate Dispute Details - Add To Notepad***
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:275 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:276 **** Terms And Phrases testing *****
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:281 Terms And Phrases menu is available
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:285 Expanded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:288 Expanded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:291 Clicked on Dispute Details tab
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:294 Clicked on All Disputes
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:305 Clicked on Notepad
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:308 Selected an option
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:311 Clicked on Add Notepad

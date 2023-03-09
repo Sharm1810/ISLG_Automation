@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:138 ****TestCase Full Text Search-005 - Validate View Document***
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:139 *****Login Successful****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:140 **** Full Text Search testing *****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:143 Full Text Search menu was clicked
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:163 Clicked on View Document

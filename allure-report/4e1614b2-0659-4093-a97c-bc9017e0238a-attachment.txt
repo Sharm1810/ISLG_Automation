@@ -1,0 +1,6 @@
+[32mINFO    [0m root:test_testCasesArticleCitator.py:78 ****TestCase AC-002 - Verify Document to Comparison***
+[32mINFO    [0m root:test_testCasesArticleCitator.py:83 First Branch is expanded
+[32mINFO    [0m root:test_testCasesArticleCitator.py:86 Clicked on Actions
+[32mINFO    [0m root:test_testCasesArticleCitator.py:89 Clicked On Document Comparison
+[32mINFO    [0m root:test_testCasesArticleCitator.py:92 Selected the first option
+[32mINFO    [0m root:test_testCasesArticleCitator.py:95 Clicked on Add Document Comparison

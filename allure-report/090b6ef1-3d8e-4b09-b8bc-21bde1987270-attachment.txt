@@ -1,0 +1,9 @@
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:315 ****TestCase AC-007 - Verify Research Notepad- Cancel Research Notepad (Back arrow link)***
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:317 *****Login Successful****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:318 **** Publication Citator testing *****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:323 Publication Citator menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:329 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:332 Clicked on See All link
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:335 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:346 Full Case Analysis - Clicked on Research Notepad
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:352 Closed research Notepad popup

@@ -1,0 +1,6 @@
+[32mINFO    [0m root:test_testCasesDashboards.py:423 ****TestCase Dashboard-013 - Validate Global Search- Subject Navigator***
+[32mINFO    [0m root:test_testCasesDashboards.py:428 Clicked on Global Search
+[32mINFO    [0m root:test_testCasesDashboards.py:431 Set focus on Search textbox
+[32mINFO    [0m root:test_testCasesDashboards.py:435 Key sent to the textbox
+[32mINFO    [0m root:test_testCasesDashboards.py:439 Clicked on Find
+[32mINFO    [0m root:test_testCasesDashboards.py:466 Validation message    Please enter search keyword   is displayed

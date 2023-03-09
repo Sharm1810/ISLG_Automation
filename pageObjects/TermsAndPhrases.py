@@ -42,8 +42,8 @@ class TermsAndPhrases:
     clientListing_css_selector = "#dvClientListing > div > button"
     heading_xpath = "//*[@id='page-content']/div/div[3]/div/div[1]/h1"
     actions_xpath = "(//div[@class='card__actions dropdown']//button)[1]"
-    researchNotepad_xpath = "(//div[@class='card__actions dropdown']//p//a)[1]"
-    researchTopicOption1_xpath = "(//label[@class='form__radio']//input)[1]"
+    researchNotepad_xpath = "(//div[@class='card__actions dropdown']//div[1]//p//a)[1]"
+    researchTopicOption1_xpath = "//div[@id= 'TopicSelection']//ul//li[1]"
     researchAddButton_xpath = "//*[@id='btnAddRNFirst']"
     researchTopicOption2_xpath = "//*[@id='EntireTerm']"
     researchAddButton2_xpath = "//*[@id='btnAddRNTermSecond']"
@@ -61,6 +61,30 @@ class TermsAndPhrases:
     paragraphExcerpt_xpath = "(//span[@class='tooltip-elem']//a)[1]"
     copyExcerpt_xpath = "(//small//a[@class='link--has-icon copy-excerpt'])[1]"
     textLink_xpath = "(//a[@class='link__text termSourceBookmarkTitle'])[1]"
+    expandFirstFullCase_xpath = "(//span[@class='link__text link--neutral'])[1]"
+    sideBarLink_xpath = "//div[@class='dropdown default-sidebar']//button"
+    viewInTermsAndPhrasesLink_xpath = "//div[@class='dropdown default-sidebar']//div//div//p[2]//small//a"
+    disputeDetails_xpath = "(//div[@class='tabs__list']//a)[2]"
+    allDispute_xpath = "//div[@class='document__footer-left']//p//a"
+    expandProceeding_xpath = "(//div[@class='dropdown']//button)[1]"
+    allDisputeDetails_xpath = "//*[contains(@title, 'All Dispute Details')]"
+    documentComparison_xpath = "(//p[@class='text--right']//button)[1]"
+    addToDocumentComparison_xpath = "(//p[@class='text--right']//button)[1]"
+    documentComparisonOption_xpath = "//*[@id='popup-add-to-dc']/div[1]/div[2]/ul/li[1]/label/span"
+    documentComparisonAdd_xpath = "//*[@id='btn-comparison-add']"
+    downloadDocument_xpath = "//p[@class='text--right DisputeALLDetails']//a"
+    startDownload_xpath = "//p[@class='text--right']//button[2]"
+    researchNotepad_xpath = "//button[@title='Add to Notepad']"
+    researchOption_xpath = "(//label[@class='form__radio']//input)[1]"
+    addNotepad_xpath = "//*[@id='btn-popup-add']"
+    notepadAdd_xpath = "//p[@class='text--right DisputeALLDetails']//button"
+    copyCitation_xpath = "//span[@class='citationdiv']//p//small//a"
+    download_xpath = "(//p[@class='text--right']//a)[1]"
+    viewPDF_xpath = "//div[@class='grid__col grid__col--md-4']//a"
+    previewExcerpt_xpath = "(//span[@class='tooltip-elem']//a)[1]"
+
+
+
 
     def __init__(self, driver):
         self.driver = driver
@@ -109,8 +133,8 @@ class TermsAndPhrases:
         self.driver.execute_script("arguments[0].click();", researchNotepad)
 
     def clickOnResearchTopicOption(self):
-        researchTopicOption = self.driver.find_element(By.XPATH, self.researchTopicOption1_xpath)
-        self.driver.execute_script("arguments[0].click();", researchTopicOption)
+        researchTopicOption1 = self.driver.find_element(By.XPATH, self.researchTopicOption1_xpath)
+        self.driver.execute_script("arguments[0].click();", researchTopicOption1)
 
     def clickOnAddResearch(self):
         researchAdd = self.driver.find_element(By.XPATH, self.researchAddButton_xpath)
@@ -179,4 +203,88 @@ class TermsAndPhrases:
     def clickOnTextLink(self):
         textlink = self.driver.find_element(By.XPATH, self.textLink_xpath)
         self.driver.execute_script("arguments[0].click();", textlink)
+
+    def clickOnExpandFirst(self):
+        firstBranch = self.driver.find_element(By.XPATH, self.expandFirstFullCase_xpath)
+        self.driver.execute_script("arguments[0].click();", firstBranch)
+
+    def clickOnViewAllTerms(self):
+        viewTerms = self.driver.find_element(By.XPATH, self.sideBarLink_xpath)
+        self.driver.execute_script("arguments[0].click();", viewTerms)
+
+    def clickOnViewInTermsAndPhrasesLink(self):
+        viewLink = self.driver.find_element(By.XPATH, self.viewInTermsAndPhrasesLink_xpath)
+        self.driver.execute_script("arguments[0].click();", viewLink)
+
+    def clickOnDisputeDetails(self):
+        disputeDetails = self.driver.find_element(By.XPATH, self.disputeDetails_xpath)
+        self.driver.execute_script("arguments[0].click();", disputeDetails)
+
+    def clickOnAllDispute(self):
+        allDispute = self.driver.find_element(By.XPATH, self. allDispute_xpath)
+        self.driver.execute_script("arguments[0].click();", allDispute)
+
+    def clickOnExpandProceeding(self):
+        proceeding = self.driver.find_element(By.XPATH, self.expandProceeding_xpath)
+        self.driver.execute_script("arguments[0].click();", proceeding)
+
+    def clickOnAllDisputes(self):
+        dispute = self.driver.find_element(By.XPATH, self.allDisputeDetails_xpath)
+        self.driver.execute_script("arguments[0].click();", dispute)
+
+    def clickOnDocumentComparison(self):
+        documentComparison = self.driver.find_element(By.XPATH, self.documentComparison_xpath)
+        self.driver.execute_script("arguments[0].click();", documentComparison)
+
+    def selectDocumentComparisonOption(self):
+        selectOptionComparison = self.driver.find_element(By.XPATH, self.documentComparisonOption_xpath)
+        self.driver.execute_script("arguments[0].click();", selectOptionComparison)
+
+    def clickOnAddDocumentCompare(self):
+        addCompare = self.driver.find_element(By.XPATH, self.documentComparisonAdd_xpath)
+        self.driver.execute_script("arguments[0].click();", addCompare)
+
+    def clickOnDownloadDocument(self):
+        downloadDoc = self.driver.find_element(By.XPATH, self.downloadDocument_xpath)
+        self.driver.execute_script("arguments[0].click();", downloadDoc)
+
+    def clickOnStartDownload(self):
+        downloadStart = self.driver.find_element(By.XPATH, self.startDownload_xpath)
+        self.driver.execute_script("arguments[0].click();", downloadStart)
+
+    def clickOnResearch(self):
+        researchNotepad = self.driver.find_element(By.XPATH, self.researchNotepad_xpath)
+        self.driver.execute_script("arguments[0].click();", researchNotepad)
+
+    def selectResearchOption(self):
+        researchOption = self.driver.find_element(By.XPATH, self.researchOption_xpath)
+        self.driver.execute_script("arguments[0].click();", researchOption)
+
+    def clickOnAddNotepad(self):
+        addNote = self.driver.find_element(By.XPATH, self.addNotepad_xpath)
+        self.driver.execute_script("arguments[0].click();", addNote)
+
+    def clickOnNotepad(self):
+        notePad = self.driver.find_element(By.XPATH, self.notepadAdd_xpath)
+        self.driver.execute_script("arguments[0].click();", notePad)
+
+    def clickOnDownload(self):
+        download = self.driver.find_element(By.XPATH, self.download_xpath)
+        self.driver.execute_script("arguments[0].click();", download)
+
+    def clickOnViewPDF(self):
+        viewPDF = self.driver.find_element(By.XPATH, self.viewPDF_xpath)
+        self.driver.execute_script("arguments[0].click();", viewPDF)
+
+    def clickOnExcerpt(self):
+        viewExcerpt = self.driver.find_element(By.XPATH, self.previewExcerpt_xpath)
+        self.driver.execute_script("arguments[0].click();", viewExcerpt)
+
+
+
+
+
+
+
+
 

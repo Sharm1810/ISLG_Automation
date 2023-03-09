@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesArticleCitator.py:138 ****TestCase AC-004 - Verify Follow Topic***
+[32mINFO    [0m root:test_testCasesArticleCitator.py:143 First Branch is expanded
+[32mINFO    [0m root:test_testCasesArticleCitator.py:146 Clicked on Actions
+[32mINFO    [0m root:test_testCasesArticleCitator.py:149 Clicked on Follow Topic
+[32mINFO    [0m root:test_testCasesArticleCitator.py:152 Displayed messageYou have followed this topic.

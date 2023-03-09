@@ -1,0 +1,3 @@
+[32mINFO    [0m root:test_testCasesSN.py:372 ****TestCase 004 - Verify Follow Topic***
+[32mINFO    [0m root:test_testCasesSN.py:388 You have followed this topic. is displayed when Followed Topic option is clicked
+[32mINFO    [0m root:test_testCasesSN.py:391 Clicked on Follow Topic

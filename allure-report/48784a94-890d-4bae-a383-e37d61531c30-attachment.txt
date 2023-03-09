@@ -1,0 +1,9 @@
+[32mINFO    [0m root:test_testCasesDisputes.py:104 ****TestCase Dispute Documents-003 - Validate Add to Research Notepad***
+[32mINFO    [0m root:test_testCasesDisputes.py:105 *****Login Successful****
+[32mINFO    [0m root:test_testCasesDisputes.py:106 **** Disputes & Dispute Documents Testing *****
+[32mINFO    [0m root:test_testCasesDisputes.py:109 Clicked on Dispute Documents
+[32mINFO    [0m root:test_testCasesDisputes.py:113 Clicked on the First Link
+[32mINFO    [0m root:test_testCasesDisputes.py:116 Clicked on Actions
+[32mINFO    [0m root:test_testCasesDisputes.py:118 Clicked on Research Notepad
+[32mINFO    [0m root:test_testCasesDisputes.py:121 Clicked on Add to Research Notepad
+[32mINFO    [0m root:test_testCasesDisputes.py:125 Added to your research notepad.

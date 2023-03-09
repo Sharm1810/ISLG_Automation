@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesSubjectNavigatorRegression.py:31 ****TestCase SN-001 - Validate Cross References***
+[32mINFO    [0m root:test_testCasesSubjectNavigatorRegression.py:32 *****Login Successful****
+[32mINFO    [0m root:test_testCasesSubjectNavigatorRegression.py:33 **** Subject Navigator testing *****
+[32mINFO    [0m root:test_testCasesSubjectNavigatorRegression.py:38 Subject Navigator menu is available
+[32mINFO    [0m root:test_testCasesSubjectNavigatorRegression.py:42 Clicked on Expand branch associated with the first Branch

@@ -1,0 +1,3 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:55 ***TestCase JC-002 - Copy Citation***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:61 Expanded Jurisprudence
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:68 Citation copied to clipboard.

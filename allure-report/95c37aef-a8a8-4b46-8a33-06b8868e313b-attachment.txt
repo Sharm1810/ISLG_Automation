@@ -1,0 +1,10 @@
+[32mINFO    [0m root:test_testCasesReports.py:406 ****TestCase ISLG Reports-012 - Validate Individual Countries***
+[32mINFO    [0m root:test_testCasesReports.py:407 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:408 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:411 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:421 Australia
+[32mINFO    [0m root:test_testCasesReports.py:424 Australia
+[32mINFO    [0m root:test_testCasesReports.py:426 
+[32mINFO    [0m root:test_testCasesReports.py:430 Clicked on View Individual Reports
+[32mINFO    [0m root:test_testCasesReports.py:434 ISLG Reports Individual Country Reports Australia Disputes (Respondent State)
+[32mINFO    [0m root:test_testCasesReports.py:437 Clicked on to navigate to ISLG Reports home

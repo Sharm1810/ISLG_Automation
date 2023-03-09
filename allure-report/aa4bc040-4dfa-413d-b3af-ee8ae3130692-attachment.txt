@@ -1,0 +1,2 @@
+[32mINFO    [0m root:test_testCasesSN.py:348 ****TestCase 009 - Verify Card/Compact View***
+[32mINFO    [0m root:test_testCasesSN.py:367 ****Compact View is clicked****

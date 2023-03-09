@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:125 ****TestCase TermsPhrases-003 - Validate All Disputes Documents***
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:126 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:127 **** Terms And Phrases testing *****
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:132 Terms And Phrases menu is available
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:136 Expanded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:139 Expanded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:142 Clicked on Dispute Details tab
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:145 Clicked on All Documents from Dispute

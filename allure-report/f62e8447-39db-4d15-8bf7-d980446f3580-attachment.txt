@@ -1,0 +1,6 @@
+[32mINFO    [0m root:test_testCasesReports.py:494 ****TestCase ISLG Reports-015 - Comparative Reports - Add to Notepad ***
+[32mINFO    [0m root:test_testCasesReports.py:495 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:496 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:499 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:507 Clicked on General Disputes link
+[32mINFO    [0m root:test_testCasesReports.py:517 Toast Message - Added to Notepad is displayed

@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:111 ****TestCase TreatiesAndRules-003 - Validate Research Notepad***
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:112 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:113 **** Treaties And Rules testing *****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:116 Treaties And Rules menu was clicked
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:120 Expanded the first Arbitration Rule
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:123 Clicked on Actions
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:128 Clicked on Research Notepad

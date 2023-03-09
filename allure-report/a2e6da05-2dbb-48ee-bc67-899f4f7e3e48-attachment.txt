@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:243 ****TestCase TreatiesAndRules-008 - Validate Add To Document Comparison***
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:244 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:245 **** Treaties And Rules testing *****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:248 Treaties And Rules menu was clicked
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:252 Clicked on the Third Link
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:254 Clicked on Actions
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:256 Clicked on Document Comparison
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:260 Added to your document comparison group.

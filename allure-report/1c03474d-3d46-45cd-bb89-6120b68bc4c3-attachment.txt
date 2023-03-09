@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:246 ****TestCase Full Text Search-009 - Validate default selection Linguistic Aids ***
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:247 *****Login Successful****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:248 **** Full Text Search testing *****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:251 Full Text Search menu was clicked
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:256 True
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:258 True
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:260 <selenium.webdriver.remote.webelement.WebElement (session="edf984ff6c8d978d95552803bba0ea06", element="122f20c0-678d-463c-8143-6f7085b8cdb0")>
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:263 1

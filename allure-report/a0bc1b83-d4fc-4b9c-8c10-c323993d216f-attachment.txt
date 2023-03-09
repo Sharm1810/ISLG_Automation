@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesDashboards.py:380 ****TestCase Dashboard-011 - Validate Cancel Document Comparison Group***
+[32mINFO    [0m root:test_testCasesDashboards.py:381 *****Login Successful****
+[32mINFO    [0m root:test_testCasesDashboards.py:384 Clicked on Document Comparison link
+[32mINFO    [0m root:test_testCasesDashboards.py:388 Clicked on Create Document Comparison
+[32mINFO    [0m root:test_testCasesDashboards.py:392 Entered Comparison Name
+[32mINFO    [0m root:test_testCasesDashboards.py:396 Entered Description
+[32mINFO    [0m root:test_testCasesDashboards.py:400 Clicked on Cancel

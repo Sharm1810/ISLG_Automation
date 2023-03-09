@@ -1,0 +1,1 @@
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:139 ***TestCase TermsPhrases-004 - Follow Topic***

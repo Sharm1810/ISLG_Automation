@@ -1,0 +1,13 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:837 ****TestCase AC-017 - Verify Go To Full Text Search***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:838 *****Login Successful****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:839 **** Jurisprudence Citator testing *****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:844 Jurisprudence Citator menu is available
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:851 First Branch is expanded
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:853 Expanded Jurisprudence Citator
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:856 Expanded inner card
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:859 Clicked on See All link
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:862 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:874 Clicked on Keyword Search menu
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:878 Entered Keyword search
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:881 Clicked on Search
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:886 Clicked on Go To Full Text search link

@@ -1,0 +1,12 @@
+[32mINFO    [0m root:test_testCasesArticleCitator.py:37 ****TestCase AC-001 - Verify Add to Research***
+[32mINFO    [0m root:test_testCasesArticleCitator.py:38 *****Login Successful****
+[32mINFO    [0m root:test_testCasesArticleCitator.py:39 **** Article Citator testing *****
+[32mINFO    [0m root:test_testCasesArticleCitator.py:44 Article Citator menu is available
+[32mINFO    [0m root:test_testCasesArticleCitator.py:50 First Branch is expanded
+[32mINFO    [0m root:test_testCasesArticleCitator.py:53 Clicked on Actions
+[32mINFO    [0m root:test_testCasesArticleCitator.py:56 Clicked on Research Notepad
+[32mINFO    [0m root:test_testCasesArticleCitator.py:61 Selected the option
+[32mINFO    [0m root:test_testCasesArticleCitator.py:65 Clicked on Add Research
+[32mINFO    [0m root:test_testCasesArticleCitator.py:67 Selected Entire Document option
+[32mINFO    [0m root:test_testCasesArticleCitator.py:70 Clicked on Add
+[32mINFO    [0m root:test_testCasesArticleCitator.py:73 Displayed message Added to your research notepad.

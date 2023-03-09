@@ -1,0 +1,1 @@
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:250 ***TestCase TermsPhrases-007 - Catalogue Subject Navigator**

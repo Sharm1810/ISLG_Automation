@@ -1,0 +1,6 @@
+[32mINFO    [0m root:test_testCasesSN.py:260 ****TestCase 007 - Verify Search By Boolean***
+[32mINFO    [0m root:test_testCasesSN.py:264 Subject Navigator menu is available
+[32mINFO    [0m root:test_testCasesSN.py:275 5 records found
+[32mINFO    [0m root:test_testCasesSN.py:285 73 records found
+[32mINFO    [0m root:test_testCasesSN.py:295 179 records found
+[32mINFO    [0m root:test_testCasesSN.py:298 ****Search Completed***

@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:81 ****TestCase TreatiesAndRules-003 - Validate Research Notepad***
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:82 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:83 **** Treaties And Rules testing *****
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:86 Clicked on  Treaties And Rules
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:89 Expanded the first Arbitration Rule
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:93 Clicked on First Link
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:96 Clicked on Add to Notepad

@@ -1,0 +1,25 @@
+[32mINFO    [0m root:test_testCasesReports.py:215 ****TestCase ISLG Reports-006 - Validate View All People***
+[32mINFO    [0m root:test_testCasesReports.py:216 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:217 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:220 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:224 Clicked on View All People
+[32mINFO    [0m root:test_testCasesReports.py:230 A Ra Jo
+[32mINFO    [0m root:test_testCasesReports.py:236 A Ra Jo
+[32mINFO    [0m root:test_testCasesReports.py:230 A. Bruce Bowden
+[32mINFO    [0m root:test_testCasesReports.py:236 A. Bruce Bowden
+[32mINFO    [0m root:test_testCasesReports.py:230 A. Manuel Garcia
+[32mINFO    [0m root:test_testCasesReports.py:236 A. Manuel Garcia
+[32mINFO    [0m root:test_testCasesReports.py:230 A. Patrick Doyle Esq.
+[32mINFO    [0m root:test_testCasesReports.py:236 A. Patrick Doyle Esq.
+[32mINFO    [0m root:test_testCasesReports.py:230 A. Rohan Perera
+[32mINFO    [0m root:test_testCasesReports.py:236 A. Rohan Perera
+[32mINFO    [0m root:test_testCasesReports.py:230 A. Shlapak
+[32mINFO    [0m root:test_testCasesReports.py:236 A. Shlapak
+[32mINFO    [0m root:test_testCasesReports.py:230 A. Thompson Bayliss
+[32mINFO    [0m root:test_testCasesReports.py:236 A. Thompson Bayliss
+[32mINFO    [0m root:test_testCasesReports.py:230 Aalt Colenbrander
+[32mINFO    [0m root:test_testCasesReports.py:236 Aalt Colenbrander
+[32mINFO    [0m root:test_testCasesReports.py:230 Aaron de Jong
+[32mINFO    [0m root:test_testCasesReports.py:236 Aaron de Jong
+[32mINFO    [0m root:test_testCasesReports.py:230 Aaron Kates Rose
+[32mINFO    [0m root:test_testCasesReports.py:236 Aaron Kates Rose

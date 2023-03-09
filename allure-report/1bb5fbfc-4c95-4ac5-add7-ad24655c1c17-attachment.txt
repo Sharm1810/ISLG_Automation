@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:199 ****TestCase Full Text Search-007 - Validate Any Words***
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:200 *****Login Successful****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:201 **** Full Text Search testing *****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:204 Full Text Search menu was clicked
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:217 3085 documentscontaining: "test"

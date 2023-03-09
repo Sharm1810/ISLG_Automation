@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:226 ***TestCase PC-008 - News/Online Source Sub menu***
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:232 Clicked on News/Online Source Sub Menu
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:234 News/Online Source
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:236 70 matches found
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:240 Expanded Publication Citator

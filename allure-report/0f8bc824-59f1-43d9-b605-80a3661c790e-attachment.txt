@@ -1,0 +1,9 @@
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:420 ****TestCase AC-009 - Verify Copy Citation***
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:421 *****Login Successful****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:422 **** Publicatiom Citator testing *****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:427 Jurisprudence Citator menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:434 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:437 Clicked on See All link
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:440 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:452 Clicked on Copy Citation Link
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:454 Toast Message - Citation Copied to clipboard

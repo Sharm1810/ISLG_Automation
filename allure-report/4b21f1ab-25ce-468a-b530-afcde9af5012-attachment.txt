@@ -1,0 +1,89 @@
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:372 ****TestCase Full Text Search-011 - Validate Filter Dispute Documents ***
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:373 *****Login Successful****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:374 **** Full Text Search testing *****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:377 Full Text Search menu was clicked
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:388 United Arab Emirates
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:388 United Kingdom
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:388 United States
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 United Arab Emirates
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 United Kingdom
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 United States
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Agreement between Japan and India for an Economic Partnership (2011) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Agreement between Singapore and the Separate Customs Territory of Taiwan, Penghu, Kinmen and Matsu on Economic Partnership (2013)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Agreement on Promotion, Protection and Guarantee of Investments among Member States of the Organisation of the Islamic Conference (1981)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Agreement-Contract
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Arab Investment Agreement (1980)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 ASEAN - Australia - New Zealand Free Trade Agreement (AANZFTA) Chapter 11 (2009)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 ASEAN Agreement for the Promotion and Protection of Investments (1987)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Australia - Singapore Free Trade Agreement (Chapter 8) (2003)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Australia - Thailand Free Trade Agreement (2004) (citation and source)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Australia - United States Free Trade Agreement (2004) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Canada - Colombia Free Trade Agreement (Chapter 8) (2008)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Canada - Peru Free Trade Agreement (2008) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Caribbean Community (CARICOM) - Dominican Republic Free Trade Agreement (1998) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Central America - Panama Free Trade Agreement (2002) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Chile - Colombia Free Trade Agreement (2006) [Spanish]
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Chile - United States Free Trade Agreement (2003) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Colombia - Mexico Free Trade Agreement (1994)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Colombia - United States Trade Promotion Agreement (2006) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Dominican Republic-Central America-United States Free Trade Agreement (CAFTA-DR) (excerpts of Chapters 1, 2, 10)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Eurasian Investment Agreement (2008) [Russian]
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 European Free Trade Association (EFTA)/Korea, Republic Investment Agreement (2005)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Free Trade Agreement between Colombia, Republic of El Salvador, Guatemala and Honduras (2007) (excerpts) [Spanish]
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Korea, Republic - United States Free Trade Agreement (2007) (excerpts) [English]
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Korea, Republic - United States Free Trade Agreement (Exchange of Letters) (2010)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Korea, Republic-India Comprehensive Economic Partnership Agreement (2009)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Morocco - United States Free Trade Agreement (2004) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Oman - United States Free Trade Agreement (2006) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Panama - United States Trade Promotion Agreement (2007) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Partnership and Cooperation Agreement between the European Union and its Member States, of the One Part, and the Republic of Iraq, of the Other Part (2012)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Peru - Singapore Free Trade Agreement (Chapter 10) (2008)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 Peru - United States Trade Promotion Agreement (2006) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 United States-Mexico-Canada Free Trade Agreement (USMCA) (Chapter 14)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:401 US-Vietnam Trade Relations Agreement (2000)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 United Arab Emirates
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 United Kingdom
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 United States
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Agreement between Japan and India for an Economic Partnership (2011) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Agreement between Singapore and the Separate Customs Territory of Taiwan, Penghu, Kinmen and Matsu on Economic Partnership (2013)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Agreement on Promotion, Protection and Guarantee of Investments among Member States of the Organisation of the Islamic Conference (1981)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Agreement-Contract
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Arab Investment Agreement (1980)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 ASEAN - Australia - New Zealand Free Trade Agreement (AANZFTA) Chapter 11 (2009)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 ASEAN Agreement for the Promotion and Protection of Investments (1987)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Australia - Singapore Free Trade Agreement (Chapter 8) (2003)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Australia - Thailand Free Trade Agreement (2004) (citation and source)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Australia - United States Free Trade Agreement (2004) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Canada - Colombia Free Trade Agreement (Chapter 8) (2008)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Canada - Peru Free Trade Agreement (2008) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Caribbean Community (CARICOM) - Dominican Republic Free Trade Agreement (1998) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Central America - Panama Free Trade Agreement (2002) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Chile - Colombia Free Trade Agreement (2006) [Spanish]
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Chile - United States Free Trade Agreement (2003) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Colombia - Mexico Free Trade Agreement (1994)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Colombia - United States Trade Promotion Agreement (2006) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Dominican Republic-Central America-United States Free Trade Agreement (CAFTA-DR) (excerpts of Chapters 1, 2, 10)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Eurasian Investment Agreement (2008) [Russian]
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 European Free Trade Association (EFTA)/Korea, Republic Investment Agreement (2005)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Free Trade Agreement between Colombia, Republic of El Salvador, Guatemala and Honduras (2007) (excerpts) [Spanish]
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Korea, Republic - United States Free Trade Agreement (2007) (excerpts) [English]
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Korea, Republic - United States Free Trade Agreement (Exchange of Letters) (2010)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Korea, Republic-India Comprehensive Economic Partnership Agreement (2009)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Morocco - United States Free Trade Agreement (2004) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Oman - United States Free Trade Agreement (2006) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Panama - United States Trade Promotion Agreement (2007) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Partnership and Cooperation Agreement between the European Union and its Member States, of the One Part, and the Republic of Iraq, of the Other Part (2012)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Peru - Singapore Free Trade Agreement (Chapter 10) (2008)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 Peru - United States Trade Promotion Agreement (2006) (excerpts)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 United States-Mexico-Canada Free Trade Agreement (USMCA) (Chapter 14)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 US-Vietnam Trade Relations Agreement (2000)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:414 ICC Rules of Arbitration (1998) (citation)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:417 ICC Rules of Arbitration (1998) (citation)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:426 Clicked on Basic Filters
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:430 ×
+United States
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:434 ×
+US-Vietnam Trade Relations Agreement (2000)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:438 ×
+ICC Rules of Arbitration (1998) (citation)
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:441 Basic Filters popup closed

@@ -1,0 +1,12 @@
+[32mINFO    [0m root:test_testCasesReports.py:133 ****TestCase ISLG Reports-004 - Validate View Individual Reports***
+[32mINFO    [0m root:test_testCasesReports.py:134 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:135 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:138 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:147 9REN v. Spain
+[32mINFO    [0m root:test_testCasesReports.py:153 9REN v. Spain
+[32mINFO    [0m root:test_testCasesReports.py:147 Alten Renewable v. Spain
+[32mINFO    [0m root:test_testCasesReports.py:153 Alten Renewable v. Spain
+[32mINFO    [0m root:test_testCasesReports.py:147 Antin v. Spain
+[32mINFO    [0m root:test_testCasesReports.py:155 Clicked on View Individual Reports
+[32mINFO    [0m root:test_testCasesReports.py:157 ISLG Reports Individual Dispute Reports Antin v. Spain (ICSID Case No. ARB/13/31)
+[32mINFO    [0m root:test_testCasesReports.py:160 Clicked on to navigate to the ISLG Reports home

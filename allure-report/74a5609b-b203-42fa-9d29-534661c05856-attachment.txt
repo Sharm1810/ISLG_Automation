@@ -1,0 +1,16 @@
+[32mINFO    [0m root:test_testCasesReports.py:75 ****TestCase ISLG Reports-002 - Validate View All Dispute***
+[32mINFO    [0m root:test_testCasesReports.py:76 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:77 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:80 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:84 Clicked on View All Dispute
+[32mINFO    [0m root:test_testCasesReports.py:87 ISLG Reports Individual Dispute Reports
+[32mINFO    [0m root:test_testCasesReports.py:89                         20
+                        50
+                        100
+                        200
+                        500
+                    
+[32mINFO    [0m root:test_testCasesReports.py:94 Clicked on the First Report Link
+[32mINFO    [0m root:test_testCasesReports.py:97 9REN Holding S.a.r.l v. Kingdom of Spain
+[32mINFO    [0m root:test_testCasesReports.py:100 9REN v. Spain
+[32mINFO    [0m root:test_testCasesReports.py:103 Clicked on to navigate to the ISLG Reports page

@@ -1,0 +1,11 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:75 ****TestCase AC-002 - Verify Add to Document Comparison***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:76 *****Login Successful****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:77 **** Jurisprudence Citator testing *****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:82 Jursiprudence Citator menu is available
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:88 Expanded Jurisprudence Citator
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:91 Expanded inner card
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:96 Clicked on See All References Link
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:102 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:116 Full Case Analysis - Clicked on Add to Document Comparison
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:119 Selected the first document comparison option
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:122 Added to Document Comparison

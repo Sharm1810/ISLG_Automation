@@ -32,6 +32,21 @@ class TreatiesAndRules:
     documentComparison_xpath = "(//div[@class='card__actions dropdown']//div//p//a)[3]"
     documentComparisonOption_xpath = "//*[@id='GroupSelection']/ul/li[1]/label/span/i"
     documentAdd_xpath = "//*[@id='btnGroupAdd']"
+    firstLink_xpath = "//span[@class='copy-element']//a"
+    downloadDocument_xpath = "//*[@id='frm-download-treatiesrules-view']/p/a/span"
+    documentCompare_xpath = "//p[@class='text--right buttons--container']//button"
+    addToDocumentComparison_xpath = "(//p[@class='text--right']//button)[1]"
+    #documentComparisonOption_xpath = "//*[@id='popup-add-to-dc']/div[1]/div[2]/ul/li[1]/label/span"
+    documentComparisonAdd_xpath = "//*[@id='btn-comparison-add']"
+    compareOption_xpath = "//*[@id='popup-add-to-dc']/div[1]/div[2]/ul/li[1]/label/span"
+    addDocument_xpath = "//*[@id='btn-comparison-add']"
+    researchNotepad_xpath = "//button[@title='Add to Notepad']"
+    researchOption_xpath = "(//label[@class='form__radio']//input)[1]"
+    addNotepad_xpath = "//*[@id='btn-popup-add']"
+    viewPDF_xpath = "//span[@class='option-2 option active']//i"
+    instrumentDetailFirstLink_xpath = "//span[@class='copy-element']//a[1]"
+
+
 
 
 
@@ -110,6 +125,58 @@ class TreatiesAndRules:
         self.driver.execute_script("arguments[0].click();", group)
         add = self.driver.find_element(By.XPATH, self.documentAdd_xpath)
         self.driver.execute_script("arguments[0].click();", add)
+
+    def clickOnFirstLink(self):
+        firstLink = self.driver.find_element(By.XPATH, self.firstLink_xpath)
+        self.driver.execute_script("arguments[0].click();", firstLink)
+
+    def clickOnDownloadDocument(self):
+        downloadDocument = self.driver.find_element(By.XPATH, self.downloadDocument_xpath)
+        self.driver.execute_script("arguments[0].click();", downloadDocument)
+
+    def clickOnDocumentCompare(self):
+        documentComparison = self.driver.find_element(By.XPATH, self.documentCompare_xpath)
+        self.driver.execute_script("arguments[0].click();", documentComparison)
+
+    def selectDocumentComparisonOption(self):
+        selectOptionComparison = self.driver.find_element(By.XPATH, self.documentComparisonOption_xpath)
+        self.driver.execute_script("arguments[0].click();", selectOptionComparison)
+
+    def clickOnAddDocumentCompare(self):
+        addCompare = self.driver.find_element(By.XPATH, self.documentComparisonAdd_xpath)
+        self.driver.execute_script("arguments[0].click();", addCompare)
+
+    def selectGroupOption(self):
+        group = self.driver.find_element(By.XPATH, self.compareOption_xpath)
+        self.driver.execute_script("arguments[0].click();", group)
+
+    def clickOnAddDocument(self):
+        addDocument = self.driver.find_element(By.XPATH, self.addDocument_xpath)
+        self.driver.execute_script("arguments[0].click();", addDocument)
+
+    def clickOnResearch(self):
+        researchNotepad = self.driver.find_element(By.XPATH, self.researchNotepad_xpath)
+        self.driver.execute_script("arguments[0].click();", researchNotepad)
+
+    def selectResearchOption(self):
+        researchOption = self.driver.find_element(By.XPATH, self.researchOption_xpath)
+        self.driver.execute_script("arguments[0].click();", researchOption)
+
+    def clickOnAddNotepad(self):
+        addNote = self.driver.find_element(By.XPATH, self.addNotepad_xpath)
+        self.driver.execute_script("arguments[0].click();", addNote)
+
+    def clickOnViewPDF(self):
+        viewpdf = self.driver.find_element(By.XPATH, self.viewPDF_xpath)
+        self.driver.execute_script("arguments[0].click();", viewpdf)
+
+    def clickOnInstrumentDetailsLink(self):
+        firstLink = self.driver.find_element(By.XPATH, self.instrumentDetailFirstLink_xpath)
+        self.driver.execute_script("arguments[0].click();", firstLink)
+
+
+
+
 
 
 

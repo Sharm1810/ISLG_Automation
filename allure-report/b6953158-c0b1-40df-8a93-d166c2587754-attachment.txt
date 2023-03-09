@@ -1,0 +1,11 @@
+[32mINFO    [0m root:test_testCasesArticleCitator.py:186 ****TestCase AC-006 - Verify Provision Tab***
+[32mINFO    [0m root:test_testCasesArticleCitator.py:187 *****Login Successful****
+[32mINFO    [0m root:test_testCasesArticleCitator.py:188 **** Subject Navigator testing *****
+[32mINFO    [0m root:test_testCasesArticleCitator.py:193 Article Citator menu is available
+[32mINFO    [0m root:test_testCasesArticleCitator.py:199 First Branch is expanded
+[32mINFO    [0m root:test_testCasesArticleCitator.py:203 Provision Tab is set to focus
+[32mINFO    [0m root:test_testCasesArticleCitator.py:210 None
+[32mINFO    [0m root:test_testCasesArticleCitator.py:215   copied citation
+[32mINFO    [0m root:test_testCasesArticleCitator.py:227 Clicked on Instrument Details Tab
+[32mINFO    [0m root:test_testCasesArticleCitator.py:232 None
+[32mINFO    [0m root:test_testCasesArticleCitator.py:237   copied citation

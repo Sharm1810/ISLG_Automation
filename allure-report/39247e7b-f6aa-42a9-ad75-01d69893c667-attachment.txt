@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:207 ***TestCase PC-007 - Dictionary/Encyclopedia Sub menu***
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:213 Clicked on Dictionary/Encyclopedia Sub Menu
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:215 Dictionary/Encyclopedia
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:217 381 matches found
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:221 Expanded Publication Citator

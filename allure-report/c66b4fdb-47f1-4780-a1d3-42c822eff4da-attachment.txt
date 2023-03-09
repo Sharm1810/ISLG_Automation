@@ -1,0 +1,4 @@
+[32mINFO    [0m root:test_testCasesArticleCitator.py:103 ****TestCase AC-003 - Verify Copy Location***
+[32mINFO    [0m root:test_testCasesArticleCitator.py:108 First Branch is expanded
+[32mINFO    [0m root:test_testCasesArticleCitator.py:111 Clicked on Actions
+[32mINFO    [0m root:test_testCasesArticleCitator.py:114 Clicked on Copy Location

@@ -1,0 +1,11 @@
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:47 ****TestCase Full Text Search-001 - Validate Search & Reset***
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:48 *****Login Successful****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:49 **** Full Text Search testing *****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:52 Full Text Search menu was clicked
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:56 Full Text Search
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:74 3555 documents Matches Found
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:78 Clicked on Reset
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:74 6995 documents Matches Found
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:78 Clicked on Reset
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:74 3 documents Matches Found
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:78 Clicked on Reset

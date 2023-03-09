@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:36 ****TestCase JC-001 - Expand and Collapse Jurisprudence***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:37 *****Login Successful****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:38 **** Jurisprudence Citator testing *****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:43 Jurisprudence menu is available
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:47 None
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:49 Expanded Jurisprudence
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:51 Collapsed Jurisprudence

@@ -1,0 +1,4 @@
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:125 ****TestCase PC-004 - Verify Copy Location***
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:131 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:134 Clicked on Actions
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:137 Clicked on Copy Location

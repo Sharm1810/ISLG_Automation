@@ -1,0 +1,3 @@
+[32mINFO    [0m root:test_testCasesArticleCitator.py:402 ****TestCase AC-012 - Validate View All Provisions***
+[32mINFO    [0m root:test_testCasesArticleCitator.py:415 Fourth Branch is expanded
+[32mINFO    [0m root:test_testCasesArticleCitator.py:422 Clicked on View All provisions

@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:462 ****TestCase AC-010 - Verify Download Document***
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:463 *****Login Successful****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:464 **** Publication Citator testing *****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:469 Jurisprudence Citator menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:476 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:479 Clicked on See All link
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:482 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:494 Clicked on Download Document

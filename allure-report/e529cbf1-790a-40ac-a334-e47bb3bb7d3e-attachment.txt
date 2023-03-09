@@ -1,0 +1,10 @@
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:541 ****TestCase AC-012 - Verify Subject Navigator from the navigation menu***
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:542 *****Login Successful****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:543 **** Publication Citator testing *****
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:548 Publication Citator menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:555 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:558 Clicked on See All link
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:561 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:573 Clicked on Subject Navigator menu
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:576 Expanded first link under Subject Navigator
+[32mINFO    [0m root:test_testCasesPublicationCitatorRegression.py:580 Subject Navigator is displayed

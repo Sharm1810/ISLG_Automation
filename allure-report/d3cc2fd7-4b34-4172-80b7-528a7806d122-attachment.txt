@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:124 ****TestCase TreatiesAndRules-005 - Validate View Original PDF***
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:125 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:126 **** Treaties And Rules testing *****
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:129 Clicked on  Treaties And Rules
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:132 Expanded the first Arbitration Rule
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:136 Clicked on First Link
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:139 Clicked on View Original PDF

@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesDashboards.py:103 ****TestCase Dashboard-003 - Validate Edit ResearchTopic***
+[32mINFO    [0m root:test_testCasesDashboards.py:104 *****Login Successful****
+[32mINFO    [0m root:test_testCasesDashboards.py:107 Clicked on Research Notepad Link from the Dashboard
+[32mINFO    [0m root:test_testCasesDashboards.py:114 Clicked on Save Changes
+[32mINFO    [0m root:test_testCasesDashboards.py:120 Cleared the topic name
+[32mINFO    [0m root:test_testCasesDashboards.py:125 Please enter name.
+[32mINFO    [0m root:test_testCasesDashboards.py:127 Displayed the correct message   Please enter name.

@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:245 ***TestCase PC-009 - Other Sub menu***
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:251 Clicked on Other Sub Menu
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:253 Other
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:255 209 matches found
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:259 Expanded Publication Citator

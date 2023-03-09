@@ -1,0 +1,13 @@
+[32mINFO    [0m root:test_testCasesReports.py:363 ****TestCase ISLG Reports-011 - Validate View All Countries***
+[32mINFO    [0m root:test_testCasesReports.py:364 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:365 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:368 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:373 Clicked on View All Countries
+[32mINFO    [0m root:test_testCasesReports.py:381 Albania
+[32mINFO    [0m root:test_testCasesReports.py:384 Albania
+[32mINFO    [0m root:test_testCasesReports.py:386 
+[32mINFO    [0m root:test_testCasesReports.py:390 ISLG Reports Individual Country Reports
+[32mINFO    [0m root:test_testCasesReports.py:392 Clicked on the First Country link
+[32mINFO    [0m root:test_testCasesReports.py:396 Clicked on Expand Countries link
+[32mINFO    [0m root:test_testCasesReports.py:399 Albania
+[32mINFO    [0m root:test_testCasesReports.py:402 Clicked on to navigate to the ISLG Reports home

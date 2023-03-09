@@ -1,0 +1,6 @@
+[32mINFO    [0m root:test_testCasesReports.py:45 ****TestCase ISLG Reports-001 - Validate View All Reports***
+[32mINFO    [0m root:test_testCasesReports.py:46 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:47 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:50 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:59 
+[32mINFO    [0m root:test_testCasesReports.py:70 Annulment  Showing 1 to 20 of 97

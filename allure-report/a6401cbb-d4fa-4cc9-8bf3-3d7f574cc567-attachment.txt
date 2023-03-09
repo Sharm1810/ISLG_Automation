@@ -1,0 +1,10 @@
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:434 ****TestCase TermsPhrases-011 - Validate Full Case Analysis - Add to Research Notepad***
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:436 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:437 **** Terms And Phrases testing *****
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:442 Terms And Phrases menu is available
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:446 Expanded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:449 Expanded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:453 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:463 Full Case Analysis - Clicked on Research Notepad
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:466 Selected Research Option
+[32mINFO    [0m root:test_testCasesTermsAndPhrasesRegression.py:469 Clicked on Add to Notepad

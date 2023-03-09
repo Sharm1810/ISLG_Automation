@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:103 ****TestCase TreatiesAndRules-004 - Validate Copy Citation***
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:104 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:105 **** Treaties And Rules testing *****
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:108 Clicked on  Treaties And Rules
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:111 Expanded the first Arbitration Rule
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:115 Clicked on First Link
+[32mINFO    [0m root:test_testCasesTreatiesAndRulesRegression.py:118 Clicked on Copy Citation

@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesReports.py:463 ****TestCase ISLG Reports-014 - Validate Saved Reports***
+[32mINFO    [0m root:test_testCasesReports.py:464 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:465 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:468 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:474 Clicked on Saved Reports

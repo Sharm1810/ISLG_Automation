@@ -1,0 +1,6 @@
+[32mINFO    [0m root:test_testCasesDashboards.py:351 ****TestCase Dashboard-0010 - Validate search Group Name***
+[32mINFO    [0m root:test_testCasesDashboards.py:352 *****Login Successful****
+[32mINFO    [0m root:test_testCasesDashboards.py:355 Clicked on research Notepad
+[32mINFO    [0m root:test_testCasesDashboards.py:375 Showing 0 to 0 of 0 entries
+[32mINFO    [0m root:test_testCasesDashboards.py:375 Showing 1 to 5 of 5 entries
+[32mINFO    [0m root:test_testCasesDashboards.py:375 Showing 0 to 0 of 0 entries

@@ -1,0 +1,11 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:689 ****TestCase AC-014 - Verify Article Citator from the navigation menu***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:690 *****Login Successful****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:691 **** Jurisprudence Citator testing *****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:696 Jurisprudence Citator menu is available
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:702 First Branch is expanded
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:704 Expanded Jurisprudence Citator
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:707 Expanded inner card
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:710 Clicked on See All link
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:713 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:725 Clicked on Article Citator menu
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:728 Expanded first link under Article Citator

@@ -1,0 +1,2 @@
+[32mINFO    [0m root:test_testCasesSN.py:489 ****TestCase 013 - Verify Copy Citation***
+[32mINFO    [0m root:test_testCasesSN.py:497 Copy Citation

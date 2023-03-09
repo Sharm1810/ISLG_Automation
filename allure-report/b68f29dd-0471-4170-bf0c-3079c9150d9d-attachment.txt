@@ -1,0 +1,12 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:588 ****TestCase AC-012 - Verify Subject Navigator from the navigation menu***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:589 *****Login Successful****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:590 **** Jurisprudence Citator testing *****
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:595 Jurisprudence Citator menu is available
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:601 First Branch is expanded
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:603 Expanded Jurisprudence Citator
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:606 Expanded inner card
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:609 Clicked on See All link
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:612 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:624 Clicked on Subject Navigator menu
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:627 Expanded first link under Subject Navigator
+[32mINFO    [0m root:test_testCasesJurisprudenceCitatorRegression.py:631 Subject Navigator is displayed

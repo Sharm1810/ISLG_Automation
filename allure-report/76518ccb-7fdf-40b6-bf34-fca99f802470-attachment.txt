@@ -1,0 +1,5 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:149 ***TestCase JC-005 - Follow Topic***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:155 Expanded Jurisprudence
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:159 Clicked on Actions
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:162 Clicked on Follow Topic
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:166 You have followed this topic.

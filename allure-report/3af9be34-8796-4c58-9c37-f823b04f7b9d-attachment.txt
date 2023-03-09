@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:110 ****TestCase Full Text Search-003 - Validate Research Notepad***
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:111 *****Login Successful****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:112 **** Full Text Search testing *****
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:115 Full Text Search menu was clicked
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:123 Clicked on Actions
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:126 Clicked on Research Notepad
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:129 Clicked on Research Topic
+[32mINFO    [0m root:test_testCasesFullTextSearch.py:132 Clicked on Research Add button

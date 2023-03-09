@@ -1,0 +1,2 @@
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:61 ***TestCase PC-002 - Copy Citation***
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:72 Citation copied to clipboard.

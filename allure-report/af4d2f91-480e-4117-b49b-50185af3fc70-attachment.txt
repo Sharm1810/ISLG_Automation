@@ -1,0 +1,6 @@
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:122 ***TestCase JC-004 - Document Comparison***
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:128 Expanded Jurisprudence
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:133 Clicked on Actions
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:136 Clicked on Document Comparison
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:139 Clicked on Document Comparison Group
+[32mINFO    [0m root:test_testCasesJurisprudenceCitator.py:141 Clicked on Add Comparison Group

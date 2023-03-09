@@ -1,0 +1,4 @@
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:139 ***TestCase TermsPhrases-004 - Follow Topic***
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:145 Expandeded First Branch
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:152 Clicked on Follow Topic
+[32mINFO    [0m root:test_testCasesTermsAndPhrases.py:156 You have followed this topic.

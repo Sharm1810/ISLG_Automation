@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesReports.py:299 ****TestCase ISLG Reports-009 - Validate View All Organization Reports- Organization***
+[32mINFO    [0m root:test_testCasesReports.py:300 *****Login Successful****
+[32mINFO    [0m root:test_testCasesReports.py:301 **** ISLG Reports testing *****
+[32mINFO    [0m root:test_testCasesReports.py:304 ISLG Reports menu was clicked
+[32mINFO    [0m root:test_testCasesReports.py:314 11 King's Bench Walk (KBW)
+[32mINFO    [0m root:test_testCasesReports.py:317 11 King's Bench Walk (KBW)
+[32mINFO    [0m root:test_testCasesReports.py:326 ISLG Reports Individual Organization Reports 11 King's Bench Walk (KBW)

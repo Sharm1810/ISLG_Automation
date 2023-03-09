@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:138 ****TestCase TreatiesAndRules-004 - Validate Copy Location***
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:139 *****Login Successful****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:140 **** Treaties And Rules testing *****
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:143 Treaties And Rules menu was clicked
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:147 Expanded the first link
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:149 Clicked on Actions
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:151 Clicked on Copy Location
+[32mINFO    [0m root:test_testCasesTreatiesAndRules.py:155 Location copied to your clipboard.

@@ -1,0 +1,9 @@
+[32mINFO    [0m root:test_testCasesSubjectNavigatorRegression.py:203 ****TestCase SN-005 - Validate Full Case Analysis- View PDF***
+[32mINFO    [0m root:test_testCasesSubjectNavigatorRegression.py:204 *****Login Successful****
+[32mINFO    [0m root:test_testCasesSubjectNavigatorRegression.py:205 **** Subject Navigator testing *****
+[32mINFO    [0m root:test_testCasesSubjectNavigatorRegression.py:210 Subject Navigator menu is available
+[32mINFO    [0m root:test_testCasesSubjectNavigatorRegression.py:214 Clicked on Expand branch associated with the first Branch
+[32mINFO    [0m root:test_testCasesSubjectNavigatorRegression.py:221 Clicked on InnerCard Header Link
+[32mINFO    [0m root:test_testCasesSubjectNavigatorRegression.py:224 Clicked on first link to view the Full Case Analysis
+[32mINFO    [0m root:test_testCasesSubjectNavigatorRegression.py:228 Clicked on Full Case Analysis
+[32mINFO    [0m root:test_testCasesSubjectNavigatorRegression.py:240 Clicked on Original PDF

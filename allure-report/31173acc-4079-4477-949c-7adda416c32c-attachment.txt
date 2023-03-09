@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesArticleCitator.py:429 ****TestCase AC-012 - Validate Filter Type and Clear Filters***
+[32mINFO    [0m root:test_testCasesArticleCitator.py:436 Filter Type is expanded
+[32mINFO    [0m root:test_testCasesArticleCitator.py:446 Arbitration Rules is displayed
+[32mINFO    [0m root:test_testCasesArticleCitator.py:457 International Treaties & Rules is displayed
+[32mINFO    [0m root:test_testCasesArticleCitator.py:466 Bilateral Investment Treaties (BITs) is displayed
+[32mINFO    [0m root:test_testCasesArticleCitator.py:473 Free Trade Agreement (FTAs)  is displayed
+[32mINFO    [0m root:test_testCasesArticleCitator.py:481 NAFTA is displayed
+[32mINFO    [0m root:test_testCasesArticleCitator.py:489 Regional/Sectoral Agreements  is displayed

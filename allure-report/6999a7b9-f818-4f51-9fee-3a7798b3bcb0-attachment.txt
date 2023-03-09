@@ -1,0 +1,7 @@
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:40 ****TestCase PC-001 - Expand and Collapse Publication Citator***
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:41 *****Login Successful****
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:42 **** Publication Citator testing *****
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:48 Publication Citator menu is available
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:52 None
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:54 Expanded Publication Citator
+[32mINFO    [0m root:test_testCasesPublicationCitator.py:57 Collapsed Publication Citator

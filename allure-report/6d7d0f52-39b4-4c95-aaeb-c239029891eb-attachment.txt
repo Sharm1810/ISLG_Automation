@@ -1,0 +1,8 @@
+[32mINFO    [0m root:test_testCasesDisputes.py:171 ****TestCase Dispute Documents-005 - Validate Follow Topic***
+[32mINFO    [0m root:test_testCasesDisputes.py:172 *****Login Successful****
+[32mINFO    [0m root:test_testCasesDisputes.py:173 **** Disputes & Dispute Documents Testing *****
+[32mINFO    [0m root:test_testCasesDisputes.py:176 Clicked on Dispute Documents
+[32mINFO    [0m root:test_testCasesDisputes.py:180 Clicked on the First Link
+[32mINFO    [0m root:test_testCasesDisputes.py:183 Clicked on Actions
+[32mINFO    [0m root:test_testCasesDisputes.py:186 Clicked on Follow Topic
+[32mINFO    [0m root:test_testCasesDisputes.py:190 You have followed this topic.
