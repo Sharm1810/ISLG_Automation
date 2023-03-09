@@ -343,6 +343,9 @@ class PublicationCitator:
         self.driver.execute_script("arguments[0].click();", entirePub)
 
     def clickOnAddEntirePublication(self):
+        booksAddPublication = self.driver.find_element(By.XPATH, self.entirePublicationAdd_xpath)
+        self.driver.execute_script("arguments[0].click();", booksAddPublication)
+
 
 
 
