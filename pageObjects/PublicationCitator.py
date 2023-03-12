@@ -69,11 +69,22 @@ class PublicationCitator:
     goToFullTextSearch_xpath = "//*[@id='GotoFulltextSearch']"
     booksFirstLink_xpath = "(//div[@class='item-list compact__container']//div[2]//div//a)[1]"
     booksAction_xpath = "//div[@class='dropdown card__actions']//button"
+    dictionaryAction_xpath = "//div[@class='dropdown card__actions']//button"
     booksAddToNotepad_xpath = "//div[@class='card__actions dropdown']//div//p//a[1]"
     booksResearchOption_xpath = "(//div[@class='topics-details']//div//ul//li//label//input)[1]"
     booksResearchAdd_xpath = "//p[@class='text--right']//button[2]"
     booksResearchEntirePublication_xpath = "//div[@class='specific-reference-bookmark']//div//ul//li//label//input"
     entirePublicationAdd_xpath = "//p[@class='text--right']//button[3]"
+    booksCopyLocation_xpath = "//div[@class='card__actions dropdown']//div//p//a[2]"
+    booksFollowTopic_xpath = "(//div[@class='card__actions dropdown']//div//label//span//span//i)[1]"
+    dictionaryFirstLink_xpath = "(//div[@class='card card--basic dropdown publication-card']//div//a)[1]"
+    dictionaryAddToNotepad_xpath = "//div[@class='card__actions dropdown']//div//p//a[1]"
+    dictionaryResearchOption_xpath = "(//div[@class='topics-details']//div//ul//li//label//input)[1]"
+    dictionaryResearchAdd_xpath = "//p[@class='text--right']//button[2]"
+    dictionaryResearchEntirePublication_xpath = "//div[@class='specific-reference-bookmark']//div//ul//li//label//input"
+    dictionaryCopyLocation_xpath = "//div[@class='card__actions dropdown']//div//p//a[2]"
+    dictionaryFollowTopic_xpath = "(//div[@class='card__actions dropdown']//div//label//span//span//i)[1]"
+
 
 
 
@@ -345,6 +356,64 @@ class PublicationCitator:
     def clickOnAddEntirePublication(self):
         booksAddPublication = self.driver.find_element(By.XPATH, self.entirePublicationAdd_xpath)
         self.driver.execute_script("arguments[0].click();", booksAddPublication)
+
+    def clickOnBooksCopyLocation(self):
+        booksCopy = self.driver.find_element(By.XPATH, self.booksCopyLocation_xpath)
+        self.driver.execute_script("arguments[0].click();", booksCopy)
+
+    def clickOnBooksFollowTopic(self):
+        bookFollow = self.driver.find_element(By.XPATH, self.booksFollowTopic_xpath)
+        self.driver.execute_script("arguments[0].click();", bookFollow)
+
+    def clickOnDictionarySubMenu(self):
+        dictionarySubmenu = self.driver.find_element(By.XPATH, self.dictionarySubMenu_xpath)
+        self.driver.execute_script("arguments[0].click();", dictionarySubmenu)
+
+    def clickOnDictionaryFirstLink(self):
+        dictionaryFirstLink = self.driver.find_element(By.XPATH, self.dictionaryFirstLink_xpath)
+        self.driver.execute_script("arguments[0].click();", dictionaryFirstLink)
+
+    def clickOnDictionaryActions(self):
+        dictionaryActions = self.driver.find_element(By.XPATH, self.dictionaryAction_xpath)
+        self.driver.execute_script("arguments[0].click();", dictionaryActions)
+
+    def clickOnDictionaryResearchNotepad(self):
+        dictionaryNotepad = self.driver.find_element(By.XPATH, self.dictionaryAddToNotepad_xpath)
+        self.driver.execute_script("arguments[0].click();", dictionaryNotepad)
+
+    def selectDictionaryResearchOption(self):
+        dictionaryResearchOption = self.driver.find_element(By.XPATH, self.dictionaryResearchOption_xpath)
+        self.driver.execute_script("arguments[0].click();", dictionaryResearchOption)
+
+    def clickOnDictionaryResearchAdd(self):
+        dictionaryResearchAdd = self.driver.find_element(By.XPATH, self.dictionaryResearchAdd_xpath)
+        self.driver.execute_script("arguments[0].click();", dictionaryResearchAdd)
+
+    def selectDictionaryEntirePublication(self):
+        dictionaryEntirePublication = self.driver.find_element(By.XPATH, self.dictionaryResearchEntirePublication_xpath)
+        self.driver.execute_script("arguments[0].click();", dictionaryEntirePublication)
+
+    def clickOnDictionaryEntirePublicationAdd(self):
+        dictionaryEntirePublication = self.driver.find_element(By.XPATH, self.entirePublicationAdd_xpath)
+        self.driver.execute_script("arguments[0].click();", dictionaryEntirePublication)
+
+    def clickOnDictionaryCopyLocation(self):
+        dictionaryCopy = self.driver.find_element(By.XPATH, self.booksCopyLocation_xpath)
+        self.driver.execute_script("arguments[0].click();", dictionaryCopy)
+
+    def clickOnDictionaryFollowTopic(self):
+        dictionaryFollowTopic = self.driver.find_element(By.XPATH, self.dictionaryFollowTopic_xpath)
+        self.driver.execute_script("arguments[0].click();", dictionaryFollowTopic)
+
+
+
+
+
+
+
+
+
+
 
 
 

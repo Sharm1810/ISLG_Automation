@@ -8,6 +8,7 @@ import time
 import json
 
 import softest
+from IPython.utils import data
 from py._builtin import text
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.common.by import By
@@ -27,6 +28,8 @@ import string
 import pyperclip
 import pandas as pd
 import random
+import csv
+import openpyxl
 
 
 @pytest.mark.usefixtures("setup")
@@ -123,8 +126,14 @@ class Test_test_testCasesArticleCitatorEdgeCases(softest.TestCase):
                 #        # # time.sleep(2)
                 #
 
-    # @pytest.mark.skip(reason="None")
+    #@pytest.mark.skip(reason="None")
     def test_expand100(self):
+        global provisionText
+        path = "C:/Users/sharm/Desktop/provisionExtract.xlsx"
+        workbook = openpyxl.load_workbook(path)
+        sheet = workbook.active
+        r = 1
+        c = 1
         self.logger.info("****TestCase AC-018 - Expand All***")
         self.logger.info("*****Login Successful****")
         self.logger.info("**** Article Citator testing *****")
@@ -152,7 +161,37 @@ class Test_test_testCasesArticleCitatorEdgeCases(softest.TestCase):
                  self.driver.execute_script("arguments[0].click();", link)
                  time.sleep(2)
                  print(link.get_attribute("data-searchtitle"))
+                 viewAllProvisions = self.driver.find_element(By.XPATH, "//div[@class='document__bar']//div//div//p//a")
+                 self.driver.execute_script("arguments[0].click();", viewAllProvisions)
+                 time.sleep(2)
+                 # pages = self.driver.find_elements(By.XPATH, "//li[@class='dynamicpagecount active']//a")
+                 # for page in pages:
+                 provisionExtract = self.driver.find_elements(By.PARTIAL_LINK_TEXT, "provision extract")
+                 if provisionExtract:
+                     for provision in provisionExtract:
+                         self.driver.execute_script("arguments[0].click();", provision)
+                         time.sleep(3)
+                         try:
+                             provisionText = self.driver.find_element(By.XPATH,
+                                                                      "//div[@id='popup-prv-extract']//div//div[2]//div//div[2]")
 
+                             if len(provisionText.text) > 0:
+                                 print("Text displayed :  ", provisionText.text)
+
+                             else:
+                                 print("Elem found but length is not correct, handle this case.")
+                         except NoSuchElementException:
+                             notext = self.driver.find_element(By.XPATH, "//div[@id='popup-prv-extract']//div//div//div//span//span")
+                             ntext = notext.text
+                             print("Text is not displayed", ntext)
+                             sheet.cell(row=r, column=c).value = ntext
+                             r = r + 1
+                             workbook.save(path)
+
+                         closebutton = self.driver.find_element(By.XPATH,
+                                                                "//*[@id='popup-prv-extract']/div[1]/div[1]/button")
+                         self.driver.execute_script("arguments[0].click();", closebutton)
+                         time.sleep(2)
              print("100 Links")
              self.driver.refresh()
              #Find all the links again after the page refreshes
@@ -223,3 +262,13 @@ class Test_test_testCasesArticleCitatorEdgeCases(softest.TestCase):
         #
         #
         #
+    @pytest.mark.skip(reason="None")
+    def test_writetoExcel(self):
+        path = "C:/Users/sharm/Desktop/provisionExtract.xlsx"
+        workbook = openpyxl.load_workbook(path)
+        sheet = workbook.active
+        for r in range(1, 1000):
+            for c in range(1, 2):
+                sheet.cell(row=r, column=c).value = "welcome"
+        workbook.save(path)
+
